@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_ph3rd")
-name = "egg"
+name = "Egg"
 texture = ExtResource("2_y4si8")
 points = 10

@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kqe0iojjjh7"]
+[gd_scene load_steps=7 format=3 uid="uid://4kqe0iojjjh7"]
 
 [ext_resource type="Script" path="res://World/Collectables/EggCollectable.gd" id="1_ykx2i"]
-[ext_resource type="Resource" uid="uid://tusbw6pgmqj3" path="res://Inventory/Items/Egg.tres" id="2_0ipja"]
 [ext_resource type="Texture2D" uid="uid://0k7nqelurkfb" path="res://World/Assets/Egg item.png" id="2_iuux6"]
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="2_leqll"]
+
+[sub_resource type="Resource" id="Resource_jnliq"]
+script = ExtResource("2_leqll")
+name = "Egg"
+texture = ExtResource("2_iuux6")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
 radius = 7.07107
@@ -14,7 +19,7 @@ radius = 18.0
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ykx2i")
-item = ExtResource("2_0ipja")
+item = SubResource("Resource_jnliq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

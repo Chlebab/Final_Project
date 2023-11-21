@@ -25,6 +25,7 @@ offset_bottom = 16.0
 layout_mode = 2
 
 [node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+scale = Vector2(0.136905, 0.181034)
 
 [node name="Label" type="Label" parent="CenterContainer/Panel"]
 texture_filter = 1

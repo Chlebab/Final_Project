@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemyPathing.gd" id="7_8pkhx"]
 [ext_resource type="PackedScene" uid="uid://0efmts7sx4jw" path="res://World/Collectables/AppleTree.tscn" id="7_is2v0"]
 [ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
+[ext_resource type="PackedScene" uid="uid://cofy6y8e1bs8h" path="res://World/Collectables/PickUpCart.tscn" id="10_doe5p"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="10_3sb12"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6x4w"]
@@ -8583,6 +8584,7 @@ point_count = 7
 y_sort_enabled = true
 scale = Vector2(1, 1.00166)
 
+
 [node name="EggCollectable" parent="." instance=ExtResource("1_kyujc")]
 position = Vector2(11, -51.9138)
 
@@ -8658,6 +8660,18 @@ position = Vector2(0, 3)
 scale = Vector2(-6.9013, -2.56603)
 zoom = Vector2(2, 2)
 
+[node name="TVCollectable2" parent="." instance=ExtResource("9_ifdly")]
+position = Vector2(233, 222.63)
+
+[node name="PickUpCart" parent="." instance=ExtResource("10_doe5p")]
+position = Vector2(399, 277.539)
+
+[node name="EggCollectable" parent="." instance=ExtResource("1_kyujc")]
+position = Vector2(444, 189.685)
+
+[node name="EggCollectable2" parent="." instance=ExtResource("1_kyujc")]
+position = Vector2(441, 224.627)
+
 [node name="Timer" parent="Player" instance=ExtResource("10_3sb12")]
 offset_left = 124.0
 offset_top = -150.046
@@ -8667,3 +8681,4 @@ offset_bottom = -150.046
 [connection signal="move_detection_cone" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="move_detection_cone"]
 [connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="_return_to_path"]
 [connection signal="clear_inventory" from="Path2D/PathFollow2D/EnemyNavigator" to="Player" method="_on_enemy_navigator_clear_inventory"]
+[connection signal="drop_off_inv_at_cart" from="PickUpCart" to="Player" method="_on_pick_up_cart_drop_off_inv_at_cart"]

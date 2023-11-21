@@ -30,6 +30,16 @@ func display_points():
 	$PointsDisplay.text = str(points) + " points"
 
 func _on_enemy_navigator_clear_inventory():
+	print("You have been cought. Your inventory has been taken.")
+	empty_inventory()
+
+func empty_inventory():
 	for i in range(10):
 		inv.slots[i].item = null
 	update_slots.emit()
+
+
+func _on_pick_up_cart_drop_off_inv_at_cart():
+	print("You have reached the drop off point. Your inventory has been packed to the cart.")
+	empty_inventory()
+	
