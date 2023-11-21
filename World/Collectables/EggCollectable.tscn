@@ -8,6 +8,7 @@
 script = ExtResource("2_leqll")
 name = "Egg"
 texture = ExtResource("2_iuux6")
+points = 50
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
 radius = 7.07107
