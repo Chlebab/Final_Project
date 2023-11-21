@@ -6,12 +6,17 @@ var seconds: int = 0
 var msecs: int = 0
 var flash_timer: float = 0
 var flash_visible: bool = false
-var flash_frequency: float = 0.5  # Adjust this value to control the flash frequency
+var flash_frequency: float = 0.5 
+var points: int = 0
 
 func _process(delta) -> void:
 	time -= delta
 	if time <= 0:
 		time = 0
+	#	if points > 10000:
+	#		get_tree().change_scene_to_file(LevelTwo.tscn)
+	#	else:
+	#			get_tree().change_scene_to_file(GameOver.tscn)
 		stop()
 		
 	msecs = fmod(time, 1) * 100
