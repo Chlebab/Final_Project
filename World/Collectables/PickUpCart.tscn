@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cofy6y8e1bs8h"]
+
+[ext_resource type="Script" path="res://World/Collectables/PickUpCart.gd" id="1_y2ut0"]
+[ext_resource type="Texture2D" uid="uid://dm2o3og760e3u" path="res://World/Assets/animated_shopping_cart_blue_full2_left_32x32.png" id="2_l0ma2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pv3vi"]
+radius = 52.0384
+
+[node name="pickup_cart" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_y2ut0")
+
+[node name="interaction_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+shape = SubResource("CircleShape2D_pv3vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l0ma2")
+hframes = 3
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
