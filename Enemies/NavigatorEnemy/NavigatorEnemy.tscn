@@ -101,7 +101,7 @@ radius = 5.0
 height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
-radius = 280.0
+radius = 100.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_duo4b"]
 points = PackedVector2Array(100, -200, -100, -200, 0, 0)
@@ -135,10 +135,8 @@ shape = SubResource("CapsuleShape2D_u455q")
 [node name="DetectionZones" type="Node2D" parent="."]
 
 [node name="ChaseArea" type="Area2D" parent="DetectionZones"]
-visible = false
 
 [node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
-visible = false
 shape = SubResource("CircleShape2D_ch6tb")
 
 [node name="DetectionArea" type="Area2D" parent="DetectionZones"]
@@ -147,10 +145,8 @@ shape = SubResource("CircleShape2D_ch6tb")
 shape = SubResource("ConvexPolygonShape2D_duo4b")
 
 [node name="CatchArea" type="Area2D" parent="DetectionZones"]
-visible = false
 
 [node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
-visible = false
 shape = SubResource("CircleShape2D_cgdg5")
 
 [node name="DetectionRays" type="Node2D" parent="."]

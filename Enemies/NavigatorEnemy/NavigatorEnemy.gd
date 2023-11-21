@@ -21,6 +21,7 @@ func _physics_process(_delta):
 		move_towards(player_target.global_position, chase_speed)
 	elif pathfinding:
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
+		move_detection_cone(-velocity)
 		if global_position.distance_to(navigation_agent.target_position) < 1:
 			pathfinding = false
 			arrived_at_path.emit()
@@ -55,7 +56,7 @@ func _on_detection_area_body_entered(body):
 		player_target = body
 
 func _on_detection_area_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and player_target:
 		player_escaped_detection.emit()
 		player_target = null
 
