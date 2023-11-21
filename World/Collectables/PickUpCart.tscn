@@ -17,6 +17,7 @@ script = ExtResource("1_y2ut0")
 shape = SubResource("CircleShape2D_pv3vi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_l0ma2")
 hframes = 3
 
