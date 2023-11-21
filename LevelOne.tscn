@@ -1,15 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqwsrlln4gwae"]
+[gd_scene load_steps=15 format=3 uid="uid://bqwsrlln4gwae"]
 
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="1_kyujc"]
 [ext_resource type="Texture2D" uid="uid://bu5cpupyxmpfr" path="res://World/Tilesets/Room_Builder_3d_walls_16x16.png" id="2_6is8h"]
 [ext_resource type="Texture2D" uid="uid://bsmcnifmfvanj" path="res://World/Tilesets/16_Grocery_store_Shadowless.png" id="3_gcvxn"]
 [ext_resource type="Texture2D" uid="uid://dme2g035x2id2" path="res://World/Tilesets/2_LivingRoom_16x16.png" id="4_vy8bd"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="4_ycmis"]
-[ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.tscn" id="5_c56k4"]
-[ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemyPathing.gd" id="7_8pkhx"]
+[ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/Patroller.tscn" id="6_dq21c"]
 [ext_resource type="PackedScene" uid="uid://0efmts7sx4jw" path="res://World/Collectables/AppleTree.tscn" id="7_is2v0"]
 [ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
-[ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="10_3sb12"]
 [ext_resource type="PackedScene" uid="uid://cofy6y8e1bs8h" path="res://World/Collectables/PickUpCart.tscn" id="10_doe5p"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6x4w"]
@@ -8574,12 +8572,6 @@ sources/0 = SubResource("TileSetAtlasSource_dnulv")
 sources/2 = SubResource("TileSetAtlasSource_iu52j")
 sources/3 = SubResource("TileSetAtlasSource_rvxjh")
 
-[sub_resource type="Curve2D" id="Curve2D_dwnog"]
-_data = {
-"points": PackedVector2Array(10.3826, 18.4055, -10.3826, -18.4055, 274, 41, -15.5739, 14.1581, 15.5739, -14.1581, 284, -49, -22.181, -14.1581, 22.181, 14.1581, 374, -64, -2.83162, -11.7984, 2.83162, 11.7984, 400, -27, 12.7423, -35.3953, -12.7423, 35.3953, 406, 71, 20.7652, 4.71937, -20.7652, -4.71937, 343, 112, 0, 0, 0, 0, 274, 41)
-}
-point_count = 7
-
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 scale = Vector2(1, 1.00166)
@@ -8626,26 +8618,7 @@ layer_4/tile_data = PackedInt32Array(20, 262147, 29, 21, 327683, 29, 22, 393219,
 [node name="AppleTree" parent="." instance=ExtResource("7_is2v0")]
 position = Vector2(75, 63)
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(34, 5)
-curve = SubResource("Curve2D_dwnog")
-script = ExtResource("7_8pkhx")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(274, 41)
-rotation = -2.0844
-rotates = false
-
-[node name="EnemyNavigator" parent="Path2D/PathFollow2D" instance=ExtResource("5_c56k4")]
-rotation = 2.0944
-spawn_point = Vector2(274, 41)
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Path2D/PathFollow2D/EnemyNavigator"]
-path_desired_distance = 10.0
-path_max_distance = 200.0
-avoidance_enabled = true
-radius = 30.0
-debug_enabled = true
+[node name="Patroller" parent="." instance=ExtResource("6_dq21c")]
 
 [node name="TVCollectable" parent="." instance=ExtResource("9_ifdly")]
 position = Vector2(331, 223.629)
@@ -8654,19 +8627,6 @@ position = Vector2(331, 223.629)
 position = Vector2(398, 178)
 speed = 120.0
 spawn_point = Vector2(398, 178)
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-position = Vector2(0, 3)
-scale = Vector2(-6.9013, -2.56603)
-zoom = Vector2(2, 2)
-
-[node name="Timer" parent="Player" instance=ExtResource("10_3sb12")]
-z_index = 5
-texture_filter = 1
-offset_left = 124.0
-offset_top = -150.046
-offset_right = 124.0
-offset_bottom = -150.046
 
 [node name="TVCollectable2" parent="." instance=ExtResource("9_ifdly")]
 position = Vector2(233, 222.63)
@@ -8680,10 +8640,5 @@ position = Vector2(444, 189.685)
 [node name="EggCollectable3" parent="." instance=ExtResource("1_kyujc")]
 position = Vector2(441, 224.627)
 
-[connection signal="move_detection_cone" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="move_detection_cone"]
-[connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="_return_to_path"]
-[connection signal="arrived_at_path" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_return_to_path"]
-[connection signal="clear_inventory" from="Path2D/PathFollow2D/EnemyNavigator" to="Player" method="_on_enemy_navigator_clear_inventory"]
-[connection signal="player_detected" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_player_detected"]
-[connection signal="player_escaped_detection" from="Path2D/PathFollow2D/EnemyNavigator" to="Path2D" method="_on_player_escaped_detection"]
+[connection signal="move_detection_cone" from="Patroller" to="Patroller/PathFollow2D/BasicEnemy" method="move_detection_cone" flags=18]
 [connection signal="drop_off_inv_at_cart" from="PickUpCart" to="Player" method="_on_pick_up_cart_drop_off_inv_at_cart"]

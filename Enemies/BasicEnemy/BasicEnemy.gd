@@ -13,7 +13,7 @@ var player_target
 var pathfinding
 
 @export var spawn_point = Vector2(0,0)
-@onready var detection_cone = $DetectionZones/DetectionArea/DetectionCone
+@onready var detection_rays = $DetectionZones/DetectionRays
 @onready var navigation_agent = $NavigationAgent2D
 
 func _physics_process(_delta):
@@ -26,8 +26,8 @@ func _physics_process(_delta):
 			pathfinding = false
 			arrived_at_path.emit()
 
-func _process(delta):
-	for ray in $DetectionRays.get_children():
+func _process(_delta):
+	for ray in detection_rays.get_children():
 		if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
 			on_player_detection(ray.get_collider())
 
@@ -48,7 +48,7 @@ func animate_movement():
 		$AnimationPlayer.play("running_up")
 
 func move_detection_cone(input_velocity):
-	$DetectionRays.rotation = -atan2(input_velocity.x, input_velocity.y)
+	detection_rays.rotation = -atan2(input_velocity.x, input_velocity.y)
 
 func on_player_detection(player):
 	player_detected.emit()
