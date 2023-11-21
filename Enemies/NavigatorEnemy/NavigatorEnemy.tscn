@@ -140,6 +140,7 @@ shape = SubResource("CapsuleShape2D_u455q")
 shape = SubResource("CircleShape2D_ch6tb")
 
 [node name="DetectionArea" type="Area2D" parent="DetectionZones"]
+visible = false
 
 [node name="DetectionCone" type="CollisionShape2D" parent="DetectionZones/DetectionArea"]
 shape = SubResource("ConvexPolygonShape2D_duo4b")
@@ -150,7 +151,6 @@ shape = SubResource("ConvexPolygonShape2D_duo4b")
 shape = SubResource("CircleShape2D_cgdg5")
 
 [node name="DetectionRays" type="Node2D" parent="."]
-visible = false
 
 [node name="RayCast2D" type="RayCast2D" parent="DetectionRays"]
 target_position = Vector2(0, -199)
