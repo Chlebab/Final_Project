@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=12 format=3 uid="uid://clr2ermprnh3m"]
 
-[ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.gd" id="1_sxvrb"]
-[ext_resource type="Texture2D" uid="uid://dxadx2lid2bqr" path="res://Enemies/NavigatorEnemy/Assets/enemy.png" id="2_e47do"]
+[ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
+[ext_resource type="Texture2D" uid="uid://dxadx2lid2bqr" path="res://Enemies/BasicEnemy/Assets/enemy.png" id="2_bcpra"]
 
 [sub_resource type="Animation" id="Animation_qa5fw"]
 length = 0.001
@@ -103,20 +103,17 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
 radius = 100.0
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_duo4b"]
-points = PackedVector2Array(100, -200, -100, -200, 0, 0)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgdg5"]
 radius = 20.0
 
-[node name="EnemyNavigator" type="CharacterBody2D"]
+[node name="BasicEnemy" type="CharacterBody2D"]
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_sxvrb")
+script = ExtResource("1_g6vn1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_e47do")
+texture = ExtResource("2_bcpra")
 offset = Vector2(0.125, -0.45)
 hframes = 56
 vframes = 20
@@ -139,28 +136,21 @@ shape = SubResource("CapsuleShape2D_u455q")
 [node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
 shape = SubResource("CircleShape2D_ch6tb")
 
-[node name="DetectionArea" type="Area2D" parent="DetectionZones"]
-visible = false
-
-[node name="DetectionCone" type="CollisionShape2D" parent="DetectionZones/DetectionArea"]
-shape = SubResource("ConvexPolygonShape2D_duo4b")
-
 [node name="CatchArea" type="Area2D" parent="DetectionZones"]
 
 [node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
 shape = SubResource("CircleShape2D_cgdg5")
 
-[node name="DetectionRays" type="Node2D" parent="."]
+[node name="DetectionRays" type="Node2D" parent="DetectionZones"]
 
-[node name="RayCast2D" type="RayCast2D" parent="DetectionRays"]
+[node name="RayCast2D" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(0, -199)
 
-[node name="RayCast2D2" type="RayCast2D" parent="DetectionRays"]
+[node name="RayCast2D2" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(-99, -198)
 
-[node name="RayCast2D3" type="RayCast2D" parent="DetectionRays"]
+[node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(100, -199)
 
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="DetectionZones/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]

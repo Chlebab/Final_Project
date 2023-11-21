@@ -1,7 +1,7 @@
 extends Path2D
 
-@onready var patroller = $PathFollow2D/EnemyNavigator
-@onready var animation_player = $PathFollow2D/EnemyNavigator/AnimationPlayer
+@onready var patroller = $PathFollow2D/BasicEnemy
+@onready var animation_player = $PathFollow2D/BasicEnemy/AnimationPlayer
 
 signal return_to_path
 signal move_detection_cone

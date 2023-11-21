@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=10 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
 [ext_resource type="Texture2D" uid="uid://oniy0t4hf5ws" path="res://Player/Assets/lizard_f_idle_anim_f0.png" id="3_j245b"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="5_j5r8q"]
+[ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="6_hgea7"]
 [ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="11_n81kt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ia1gh"]
@@ -53,11 +54,20 @@ offset_bottom = 139.0
 zoom = Vector2(2, 2)
 
 [node name="PointsDisplay" type="Label" parent="."]
+z_index = 5
 texture_filter = 1
 offset_left = -279.0
 offset_top = -151.0
 offset_right = -239.0
 offset_bottom = -128.0
 theme_override_fonts/font = ExtResource("5_j5r8q")
+
+[node name="Timer" parent="." instance=ExtResource("6_hgea7")]
+z_index = 5
+texture_filter = 1
+offset_left = 124.0
+offset_top = -150.046
+offset_right = 124.0
+offset_bottom = -150.046
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
