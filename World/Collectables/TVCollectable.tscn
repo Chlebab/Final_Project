@@ -8,6 +8,7 @@
 script = ExtResource("2_5pp5k")
 name = "TV"
 texture = ExtResource("3_kbmmk")
+points = 100
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
 radius = 7.07107
@@ -16,6 +17,7 @@ radius = 7.07107
 size = Vector2(86, 56)
 
 [node name="TVCollectable" type="StaticBody2D"]
+scale = Vector2(0.25, 0.25)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_gcfab")
