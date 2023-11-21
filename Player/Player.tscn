@@ -23,7 +23,7 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks22v"]
 size = Vector2(10, 15)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_priority = 100.0
 script = ExtResource("1_2eumn")
 inv = ExtResource("2_ctd2c")

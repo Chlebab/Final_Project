@@ -71,8 +71,6 @@ theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("2_1k5th")
 theme_override_font_sizes/font_size = 70
 text = "LIQUIDATION DASH"
-editable = false
-scroll_smooth = true
 
 [node name="Picture" type="TextureRect" parent="."]
 z_index = -3

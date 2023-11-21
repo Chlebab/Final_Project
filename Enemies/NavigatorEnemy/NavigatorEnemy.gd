@@ -21,14 +21,15 @@ func _physics_process(_delta):
 		move_towards(player_target.global_position, chase_speed)
 	elif pathfinding:
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
+		move_detection_cone(-velocity)
 		if global_position.distance_to(navigation_agent.target_position) < 1:
 			pathfinding = false
 			arrived_at_path.emit()
 
-#func _process(delta):
-#	for ray in get_children():
-#		if ray.is_colliding and ray.get_collider.name == "Player":
-#			player_detected(player)
+func _process(delta):
+	for ray in $DetectionRays.get_children():
+		if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
+			on_player_detection(ray.get_collider())
 
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position)
@@ -47,15 +48,14 @@ func animate_movement():
 		$AnimationPlayer.play("running_up")
 
 func move_detection_cone(input_velocity):
-	detection_cone.rotation = -atan2(input_velocity.x, input_velocity.y)
+	$DetectionRays.rotation = -atan2(input_velocity.x, input_velocity.y)
 
-func _on_detection_area_body_entered(body):
-	if body.name == "Player":
-		player_detected.emit()
-		player_target = body
+func on_player_detection(player):
+	player_detected.emit()
+	player_target = player
 
 func _on_detection_area_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and player_target:
 		player_escaped_detection.emit()
 		player_target = null
 
