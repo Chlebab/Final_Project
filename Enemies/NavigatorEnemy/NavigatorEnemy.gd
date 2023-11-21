@@ -15,6 +15,7 @@ var pathfinding
 @export var spawn_point = Vector2(0,0)
 
 @onready var navigation_agent = $NavigationAgent2D
+@onready var detection_cone = $DetectionZones/DetectionArea/DetectionCone
 
 func _physics_process(_delta):
 	if player_target:
@@ -40,6 +41,9 @@ func animate_movement():
 		$AnimationPlayer.play("running_down")
 	else:
 		$AnimationPlayer.play("running_up")
+
+func move_detection_cone(input_velocity):
+	detection_cone.rotation = -atan2(input_velocity.x, input_velocity.y)
 
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
