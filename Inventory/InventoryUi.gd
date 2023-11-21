@@ -30,5 +30,5 @@ func close():
 	visible = false
 	is_open = false
 
-	
-	
+func _on_player_update_slots():
+	update_slots()

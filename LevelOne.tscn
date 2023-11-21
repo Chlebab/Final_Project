@@ -8644,7 +8644,7 @@ avoidance_enabled = true
 radius = 30.0
 
 [node name="TVCollectable" parent="." instance=ExtResource("9_ifdly")]
-position = Vector2(200, -60)
+position = Vector2(331, 223.629)
 
 [node name="Player" parent="." instance=ExtResource("4_ycmis")]
 position = Vector2(398, 178)
@@ -8657,3 +8657,4 @@ scale = Vector2(-6.9013, -2.56603)
 zoom = Vector2(2, 2)
 
 [connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="_return_to_path"]
+[connection signal="clear_inventory" from="Path2D/PathFollow2D/EnemyNavigator" to="Player" method="_on_enemy_navigator_clear_inventory"]

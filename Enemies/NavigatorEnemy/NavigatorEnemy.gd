@@ -4,6 +4,8 @@ signal player_detected
 signal player_escaped_detection
 signal arrived_at_path
 
+signal clear_inventory
+
 var chase_speed = 100
 var return_speed = 40
 var player_target
@@ -56,5 +58,6 @@ func _on_player_caught(body):
 	if body.name == "Player":
 		body.position = body.spawn_point
 		global_position = get_parent().global_position
-		player_escaped_detection.emit()
+		arrived_at_path.emit()
+		clear_inventory.emit()
 		player_target = null
