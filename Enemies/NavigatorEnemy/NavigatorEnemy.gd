@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal player_detected
 signal player_escaped_detection
 signal arrived_at_path
+signal game_over
 
 var chase_speed = 100
 var return_speed = 40
@@ -54,7 +55,8 @@ func _return_to_path(detection_position):
 
 func _on_player_caught(body):
 	if body.name == "Player":
-		body.position = body.spawn_point
-		global_position = get_parent().global_position
-		player_escaped_detection.emit()
-		player_target = null
+#		body.position = body.spawn_point
+#		global_position = get_parent().global_position
+#		player_escaped_detection.emit()
+#		player_target = null
+		game_over.emit()

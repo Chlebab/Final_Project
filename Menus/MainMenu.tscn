@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b858vyxfiifca" path="res://Menus/Assets/Still-1.jpg" id="3_dfcvi"]
 
 [node name="MainMenu" type="Control"]
+layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +62,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_1k5th")
 theme_override_font_sizes/font_size = 70
 text = "LIQUIDATION DASH"
+editable = false
 scroll_smooth = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
