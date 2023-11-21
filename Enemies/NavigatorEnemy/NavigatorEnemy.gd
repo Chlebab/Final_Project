@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal player_detected
 signal player_escaped_detection
 signal arrived_at_path
+signal game_over
 
 signal clear_inventory
 

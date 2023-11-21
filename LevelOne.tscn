@@ -8646,7 +8646,7 @@ radius = 30.0
 [node name="TVCollectable" parent="." instance=ExtResource("9_ifdly")]
 position = Vector2(331, 223.629)
 
-[node name="Player" parent="." instance=ExtResource("4_ycmis")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("4_ycmis")]
 position = Vector2(398, 178)
 speed = 120.0
 spawn_point = Vector2(398, 178)
