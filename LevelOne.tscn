@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqwsrlln4gwae"]
+[gd_scene load_steps=17 format=3 uid="uid://bqwsrlln4gwae"]
 
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="1_kyujc"]
 [ext_resource type="Texture2D" uid="uid://bu5cpupyxmpfr" path="res://World/Tilesets/Room_Builder_3d_walls_16x16.png" id="2_6is8h"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemyPathing.gd" id="7_8pkhx"]
 [ext_resource type="PackedScene" uid="uid://0efmts7sx4jw" path="res://World/Collectables/AppleTree.tscn" id="7_is2v0"]
 [ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
+[ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="10_3sb12"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6x4w"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -8583,6 +8584,7 @@ y_sort_enabled = true
 scale = Vector2(1, 1.00166)
 
 [node name="EggCollectable" parent="." instance=ExtResource("1_kyujc")]
+position = Vector2(11, -51.9138)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(1.08726, 1.02987)
@@ -8650,6 +8652,17 @@ position = Vector2(331, 223.629)
 position = Vector2(398, 178)
 speed = 120.0
 spawn_point = Vector2(398, 178)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 3)
+scale = Vector2(-6.9013, -2.56603)
+zoom = Vector2(2, 2)
+
+[node name="Timer" parent="Player" instance=ExtResource("10_3sb12")]
+offset_left = 124.0
+offset_top = -150.046
+offset_right = 124.0
+offset_bottom = -150.046
 
 [connection signal="move_detection_cone" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="move_detection_cone"]
 [connection signal="return_to_path" from="Path2D" to="Path2D/PathFollow2D/EnemyNavigator" method="_return_to_path"]
