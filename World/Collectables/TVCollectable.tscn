@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://qr1u6kcca408"]
+
+[ext_resource type="Script" path="res://World/Collectables/TVCollectable.gd" id="1_gcfab"]
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="2_5pp5k"]
+[ext_resource type="Texture2D" uid="uid://dkaegrs6xkh8c" path="res://World/Assets/TV.png" id="3_kbmmk"]
+
+[sub_resource type="Resource" id="Resource_nnjb5"]
+script = ExtResource("2_5pp5k")
+name = "TV"
+texture = ExtResource("3_kbmmk")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
+radius = 7.07107
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnnfb"]
+size = Vector2(86, 56)
+
+[node name="TVCollectable" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_gcfab")
+item = SubResource("Resource_nnjb5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_kbmmk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rjky8")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_vnnfb")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

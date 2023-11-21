@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://r0gkykvms8if"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
+[ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
+[ext_resource type="Texture2D" uid="uid://oniy0t4hf5ws" path="res://Player/Assets/lizard_f_idle_anim_f0.png" id="3_j245b"]
+[ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="11_n81kt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ia1gh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_j245b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpu6w"]
+size = Vector2(9, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks22v"]
+size = Vector2(10, 15)
+
+[node name="Player" type="CharacterBody2D"]
+collision_priority = 100.0
+script = ExtResource("1_2eumn")
+inv = ExtResource("2_ctd2c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ia1gh")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_dpu6w")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_ks22v")
+
+[node name="InventoryUi" parent="." instance=ExtResource("11_n81kt")]
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 131.0
+offset_bottom = 69.0

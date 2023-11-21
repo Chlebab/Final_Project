@@ -1,0 +1,155 @@
+[gd_scene load_steps=13 format=3 uid="uid://clr2ermprnh3m"]
+
+[ext_resource type="Script" path="res://Enemies/NavigatorEnemy/NavigatorEnemy.gd" id="1_sxvrb"]
+[ext_resource type="Texture2D" uid="uid://dxadx2lid2bqr" path="res://Enemies/NavigatorEnemy/Assets/enemy.png" id="2_e47do"]
+
+[sub_resource type="Animation" id="Animation_qa5fw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [112]
+}
+
+[sub_resource type="Animation" id="Animation_rnjak"]
+resource_name = "running_down"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [130, 131, 132, 133, 134, 135]
+}
+
+[sub_resource type="Animation" id="Animation_7fd6h"]
+resource_name = "running_left"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [124, 125, 126, 127, 128, 129]
+}
+
+[sub_resource type="Animation" id="Animation_fixh6"]
+resource_name = "running_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [112, 113, 114, 115, 116, 117]
+}
+
+[sub_resource type="Animation" id="Animation_4fual"]
+resource_name = "running_up"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [118, 119, 120, 121, 122, 123]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13yvq"]
+_data = {
+"RESET": SubResource("Animation_qa5fw"),
+"running_down": SubResource("Animation_rnjak"),
+"running_left": SubResource("Animation_7fd6h"),
+"running_right": SubResource("Animation_fixh6"),
+"running_up": SubResource("Animation_4fual")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u455q"]
+custom_solver_bias = 1.0
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
+radius = 280.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbvb7"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgdg5"]
+radius = 20.0
+
+[node name="EnemyNavigator" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_sxvrb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_e47do")
+offset = Vector2(0.125, -0.45)
+hframes = 56
+vframes = 20
+frame = 112
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_13yvq")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_u455q")
+
+[node name="DetectionZones" type="Node2D" parent="."]
+
+[node name="ChaseArea" type="Area2D" parent="DetectionZones"]
+
+[node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
+shape = SubResource("CircleShape2D_ch6tb")
+
+[node name="DetectionArea" type="Area2D" parent="DetectionZones"]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="DetectionZones/DetectionArea"]
+shape = SubResource("CircleShape2D_pbvb7")
+
+[node name="CatchArea" type="Area2D" parent="DetectionZones"]
+visible = false
+
+[node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
+visible = false
+shape = SubResource("CircleShape2D_cgdg5")
+
+[connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="DetectionZones/DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]
