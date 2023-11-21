@@ -8650,7 +8650,7 @@ debug_enabled = true
 [node name="TVCollectable" parent="." instance=ExtResource("9_ifdly")]
 position = Vector2(331, 223.629)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("4_ycmis")]
+[node name="Player" parent="." instance=ExtResource("4_ycmis")]
 position = Vector2(398, 178)
 speed = 120.0
 spawn_point = Vector2(398, 178)
@@ -8661,6 +8661,7 @@ scale = Vector2(-6.9013, -2.56603)
 zoom = Vector2(2, 2)
 
 [node name="Timer" parent="Player" instance=ExtResource("10_3sb12")]
+z_index = 5
 texture_filter = 1
 offset_left = 124.0
 offset_top = -150.046
