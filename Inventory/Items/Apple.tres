@@ -7,3 +7,4 @@
 script = ExtResource("1_6kjb8")
 name = "apple"
 texture = ExtResource("2_x2jtq")
+points = 30

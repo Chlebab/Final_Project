@@ -4,6 +4,7 @@ extends Path2D
 @onready var animation_player = $PathFollow2D/EnemyNavigator/AnimationPlayer
 
 signal return_to_path
+signal move_detection_cone
 
 var progress = 0
 var patrol_speed = 40
@@ -19,11 +20,16 @@ func _ready():
 func _physics_process(delta):
 	if patrolling:
 		$PathFollow2D.progress += delta * patrol_speed
-		animate_patrol(previous_position - patroller.global_position)
+
+		var direction = (previous_position - patroller.global_position)
+		var velocity = direction.normalized() * patroller.chase_speed
+
+		animate_patrol(velocity)
+		move_detection_cone.emit(velocity)
+
 		previous_position = patroller.global_position
 
-func animate_patrol(direction):
-	var velocity = direction.normalized() * patroller.chase_speed
+func animate_patrol(velocity):
 	if velocity.x > 33:
 		animation_player.play("running_left", -1, 0.5)
 	elif velocity.x < -33:
