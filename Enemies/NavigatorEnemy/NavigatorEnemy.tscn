@@ -144,7 +144,6 @@ shape = SubResource("CircleShape2D_ch6tb")
 [node name="DetectionArea" type="Area2D" parent="DetectionZones"]
 
 [node name="DetectionCone" type="CollisionShape2D" parent="DetectionZones/DetectionArea"]
-rotation = -1.01578
 shape = SubResource("ConvexPolygonShape2D_duo4b")
 
 [node name="CatchArea" type="Area2D" parent="DetectionZones"]
@@ -153,6 +152,18 @@ visible = false
 [node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
 visible = false
 shape = SubResource("CircleShape2D_cgdg5")
+
+[node name="DetectionRays" type="Node2D" parent="."]
+visible = false
+
+[node name="RayCast2D" type="RayCast2D" parent="DetectionRays"]
+target_position = Vector2(0, -199)
+
+[node name="RayCast2D2" type="RayCast2D" parent="DetectionRays"]
+target_position = Vector2(-99, -198)
+
+[node name="RayCast2D3" type="RayCast2D" parent="DetectionRays"]
+target_position = Vector2(100, -199)
 
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="DetectionZones/DetectionArea" to="." method="_on_detection_area_body_entered"]

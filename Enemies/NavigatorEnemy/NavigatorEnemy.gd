@@ -13,9 +13,8 @@ var player_target
 var pathfinding
 
 @export var spawn_point = Vector2(0,0)
-
-@onready var navigation_agent = $NavigationAgent2D
 @onready var detection_cone = $DetectionZones/DetectionArea/DetectionCone
+@onready var navigation_agent = $NavigationAgent2D
 
 func _physics_process(_delta):
 	if player_target:
@@ -25,6 +24,11 @@ func _physics_process(_delta):
 		if global_position.distance_to(navigation_agent.target_position) < 1:
 			pathfinding = false
 			arrived_at_path.emit()
+
+#func _process(delta):
+#	for ray in get_children():
+#		if ray.is_colliding and ray.get_collider.name == "Player":
+#			player_detected(player)
 
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position)
