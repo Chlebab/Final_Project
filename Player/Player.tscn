@@ -24,6 +24,8 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks22v"]
 size = Vector2(10, 15)
 
+[sub_resource type="LabelSettings" id="LabelSettings_iqnnq"]
+
 [sub_resource type="Gradient" id="Gradient_81oor"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
@@ -87,6 +89,21 @@ offset_left = 124.0
 offset_top = -150.046
 offset_right = 124.0
 offset_bottom = -150.046
+
+[node name="InvMsgTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="InvMsg" type="Label" parent="."]
+texture_filter = 1
+offset_left = -233.0
+offset_top = -45.0
+offset_right = 231.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("5_j5r8q")
+label_settings = SubResource("LabelSettings_iqnnq")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 modulate = Color(0.25098, 0.27451, 0.168627, 1)
