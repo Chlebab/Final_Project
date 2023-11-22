@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=11 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
@@ -23,6 +23,8 @@ size = Vector2(9, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks22v"]
 size = Vector2(10, 15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqnnq"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_priority = 100.0
@@ -69,5 +71,20 @@ offset_left = 124.0
 offset_top = -150.046
 offset_right = 124.0
 offset_bottom = -150.046
+
+[node name="InvMsgTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="InvMsg" type="Label" parent="."]
+texture_filter = 1
+offset_left = -233.0
+offset_top = -45.0
+offset_right = 231.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("5_j5r8q")
+label_settings = SubResource("LabelSettings_iqnnq")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
