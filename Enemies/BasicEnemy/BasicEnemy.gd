@@ -11,10 +11,14 @@ var chase_speed = 100
 var return_speed = 40
 var player_target
 var pathfinding
+var navigation_agent
 
-@export var spawn_point = Vector2(0,0)
+@onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
-@onready var navigation_agent = $NavigationAgent2D
+
+func ready():
+	if get_parent() == PathFollow2D:
+		navigation_agent = $NavigationAgent2D
 
 func _physics_process(_delta):
 	if player_target:
@@ -66,7 +70,7 @@ func _return_to_path(detection_position):
 func _on_player_caught(body):
 	if body.name == "Player":
 		body.position = body.spawn_point
-		global_position = get_parent().global_position
+		global_position = get_parent().global_position if navigation_agent else spawn_point
 		arrived_at_path.emit()
 		clear_inventory.emit()
 		player_target = null
