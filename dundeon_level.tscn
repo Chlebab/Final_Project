@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj8ryl2bwnwfp"]
+[gd_scene load_steps=3 format=3 uid="uid://bqt3ewbamrxyr"]
 
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="1_e5jr1"]
-[ext_resource type="PackedScene" uid="uid://bgiu8ppf754vv" path="res://World/dungeon.tscn" id="2_0k0tu"]
+[ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_0k0tu"]
 
 [node name="DundeonLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_e5jr1")]
 position = Vector2(376, 499)
+speed = 150.0
 
 [node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
-position = Vector2(-155, 15)
+position = Vector2(-147, -104)
+layer_4/z_index = 6
