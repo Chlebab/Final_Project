@@ -34,4 +34,3 @@ offset_right = 150.0
 offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("2_21sv8")
 text = "000"
-horizontal_alignment = 2

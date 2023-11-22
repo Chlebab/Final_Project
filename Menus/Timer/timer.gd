@@ -54,5 +54,5 @@ func stop() -> void:
 	set_process(false)
 	get_tree().change_scene_to_file("res://Menus/ResultPage.tscn")
 
-func get_time_formatted() -> String:
-	return "%02d:%02d.%03d" % [minutes, seconds, msecs]
+#func get_time_formatted() -> String:
+	#return "%02d:%02d.%03d" % [minutes, seconds, msecs]
