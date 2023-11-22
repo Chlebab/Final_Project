@@ -8826,3 +8826,6 @@ texture_scale = 13.34
 height = 50.0
 
 [connection signal="drop_off_inv_at_cart" from="PickUpCart" to="Player" method="_on_pick_up_cart_drop_off_inv_at_cart"]
+[connection signal="move_detection_cone" from="Enemies/PatrolPath" to="Enemies/PatrolPath/PathFollow2D/BasicEnemy" method="move_detection_cone" flags=18]
+[connection signal="move_detection_cone" from="Enemies/PatrolPath2" to="Enemies/PatrolPath2/PathFollow2D/BasicEnemy" method="move_detection_cone" flags=18]
+[connection signal="move_detection_cone" from="Enemies/PatrolPath3" to="Enemies/PatrolPath3/PathFollow2D/BasicEnemy" method="move_detection_cone" flags=18]

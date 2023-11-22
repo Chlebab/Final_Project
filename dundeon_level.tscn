@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj8ryl2bwnwfp"]
+[gd_scene load_steps=3 format=3 uid="uid://bov45sp3443o5"]
 
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="1_e5jr1"]
-[ext_resource type="PackedScene" uid="uid://bgiu8ppf754vv" path="res://World/dungeon.tscn" id="2_0k0tu"]
+[ext_resource type="PackedScene" path="res://World/dungeon.tscn" id="2_0k0tu"]
 
 [node name="DundeonLevel" type="Node2D"]
 
@@ -10,3 +10,6 @@ position = Vector2(376, 499)
 
 [node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
 position = Vector2(-155, 15)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.513726, 0.513726, 0.513726, 1)
