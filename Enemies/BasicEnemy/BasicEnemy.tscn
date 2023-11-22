@@ -152,5 +152,10 @@ target_position = Vector2(-99, -198)
 [node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(100, -199)
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_max_distance = 200.0
+radius = 30.0
+
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var inv: Inventory
-@export var speed = 80.0
+@export var speed = 120.0
 @export var spawn_point = Vector2(0,0)
 
 
