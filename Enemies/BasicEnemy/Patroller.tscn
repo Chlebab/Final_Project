@@ -12,16 +12,9 @@ rotates = false
 
 [node name="BasicEnemy" parent="PathFollow2D" instance=ExtResource("2_uihap")]
 rotation = 2.0944
-spawn_point = Vector2(274, 41)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathFollow2D/BasicEnemy"]
-path_desired_distance = 10.0
-path_max_distance = 200.0
-radius = 30.0
-debug_enabled = true
-
-[connection signal="move_detection_cone" from="." to="PathFollow2D/BasicEnemy" method="move_detection_cone"]
+[connection signal="move_detection_cone" from="." to="PathFollow2D/BasicEnemy" method="_move_detection_cone"]
 [connection signal="return_to_path" from="." to="PathFollow2D/BasicEnemy" method="_return_to_path"]
-[connection signal="arrived_at_path" from="PathFollow2D/BasicEnemy" to="." method="_on_return_to_path"]
+[connection signal="arrived_at_path" from="PathFollow2D/BasicEnemy" to="." method="_on_arrival_at_path"]
 [connection signal="player_detected" from="PathFollow2D/BasicEnemy" to="." method="_on_player_detected"]
 [connection signal="player_escaped_detection" from="PathFollow2D/BasicEnemy" to="." method="_on_player_escaped_detection"]

@@ -39,7 +39,7 @@ func animate_patrol(velocity):
 	else:
 		animation_player.play("running_down", -1, 0.5)
 
-func _on_return_to_path():
+func _on_arrival_at_path():
 	patrolling = true
 
 func _on_player_detected():

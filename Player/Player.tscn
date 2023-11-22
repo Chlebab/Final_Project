@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=14 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
@@ -25,6 +25,24 @@ size = Vector2(9, 7)
 size = Vector2(10, 15)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iqnnq"]
+
+[sub_resource type="Gradient" id="Gradient_81oor"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3a26m"]
+gradient = SubResource("Gradient_81oor")
+fill_from = Vector2(0.4, 0.4)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_i25qj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nue42"]
+gradient = SubResource("Gradient_i25qj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.761468, 0.288991)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_priority = 100.0
@@ -86,5 +104,22 @@ theme_override_fonts/font = ExtResource("5_j5r8q")
 label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+modulate = Color(0.25098, 0.27451, 0.168627, 1)
+skew = -0.733038
+range_layer_min = -512
+range_layer_max = 512
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.0509804)
+texture = SubResource("GradientTexture2D_3a26m")
+offset = Vector2(-213.753, -213.772)
+texture_scale = 6.68
+
+[node name="Torch" type="PointLight2D" parent="."]
+visible = false
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_nue42")
+texture_scale = 8.01
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
