@@ -89,6 +89,7 @@ offset_right = 124.0
 offset_bottom = -150.046
 
 [node name="Flashlight" type="PointLight2D" parent="."]
+visible = false
 modulate = Color(0.25098, 0.27451, 0.168627, 1)
 skew = -0.733038
 range_layer_min = -512
@@ -99,8 +100,16 @@ texture = SubResource("GradientTexture2D_3a26m")
 offset = Vector2(-213.753, -213.772)
 texture_scale = 6.68
 
-[node name="Torch" type="PointLight2D" parent="."]
-visible = false
+[node name="LightCaster" type="PointLight2D" parent="."]
+z_index = -1
+position = Vector2(0, 14)
+energy = 0.5
+texture = SubResource("GradientTexture2D_nue42")
+texture_scale = 8.01
+
+[node name="ShadowCaster" type="PointLight2D" parent="LightCaster"]
+z_index = -1
+energy = 0.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 8.01
