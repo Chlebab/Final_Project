@@ -12,7 +12,6 @@ rotates = false
 
 [node name="BasicEnemy" parent="PathFollow2D" instance=ExtResource("2_uihap")]
 rotation = 2.0944
-spawn_point = Vector2(274, 41)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathFollow2D/BasicEnemy"]
 path_desired_distance = 10.0
