@@ -3,9 +3,10 @@ extends CharacterBody2D
 @export var inv: Inventory
 @export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
-var points = 0
+
 
 signal update_slots
+
 
 func _ready():
 	display_points()
@@ -22,13 +23,14 @@ func player():
 	pass
 	
 func collect(item):
-	points += item.points
+	Global.points += item.points
 	inv.insert(item)
 	display_points()
 
 func display_points():
-	$PointsDisplay.text = str(points) + " points"
-
+	$PointsDisplay.text = str(Global.points) + " points"
+	pass
+	
 func _on_enemy_navigator_clear_inventory():
 	print("You have been cought. Your inventory has been taken.")
 	empty_inventory()
