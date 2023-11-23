@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqt3ewbamrxyr"]
+[gd_scene load_steps=10 format=3 uid="uid://bqt3ewbamrxyr"]
 
+[ext_resource type="Script" path="res://dundeon_level.gd" id="1_3msbq"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="1_e5jr1"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_0k0tu"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_4ocul"]
@@ -10,11 +11,43 @@ _data = {
 }
 point_count = 10
 
+[ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="3_e1olx"]
+[ext_resource type="PackedScene" uid="uid://docs7khtrm4pa" path="res://Spawns/EnemySpawn/EnemySpawnArea.tscn" id="5_71exb"]
+[ext_resource type="PackedScene" uid="uid://cpuj6pna8wql5" path="res://Spawns/KeySpawn/KeySpawnArea.tscn" id="6_edhhy"]
+[ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="7_xvll5"]
+[ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="8_21cse"]
+[ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="9_g36sl"]
+
 [node name="DundeonLevel" type="Node2D"]
+position = Vector2(-31, 16)
+script = ExtResource("1_3msbq")
 
 [node name="Player" parent="." instance=ExtResource("1_e5jr1")]
 position = Vector2(367, 507)
 speed = 150.0
+
+[node name="Pause" parent="Player" instance=ExtResource("3_e1olx")]
+visible = false
+z_index = 7
+offset_left = -567.0
+offset_top = -340.0
+offset_right = -567.0
+offset_bottom = -340.0
+
+[node name="SpawnArea" parent="." instance=ExtResource("5_71exb")]
+position = Vector2(269, -81)
+
+[node name="KeySpawnArea" parent="." instance=ExtResource("6_edhhy")]
+position = Vector2(478, -79)
+
+[node name="egg_collectible" parent="." instance=ExtResource("7_xvll5")]
+position = Vector2(282, 8)
+
+[node name="TVCollectable" parent="." instance=ExtResource("8_21cse")]
+position = Vector2(351, 45)
+
+[node name="key_collectable" parent="." instance=ExtResource("9_g36sl")]
+position = Vector2(454, -3)
 
 [node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
 position = Vector2(-147, -104)
@@ -23,3 +56,4 @@ layer_4/z_index = 6
 [node name="PatrolPath" parent="." instance=ExtResource("3_4ocul")]
 position = Vector2(292, 145)
 curve = SubResource("Curve2D_3e65e")
+layer_4/z_index = 6

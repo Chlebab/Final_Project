@@ -1,11 +1,9 @@
 extends CharacterBody2D
 
 @export var inv: Inventory
-@export var speed = 120.0
+@export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
 
-var apple = preload("res://World/Collectables/AppleCollectable.tscn")
-var egg = preload("res://World/Useables/EggUseable.tscn")
 
 #signal egg_usable_instantiated
 
@@ -16,20 +14,12 @@ func _ready():
 	display_points()
 
 func _physics_process(_delta):
-	if Input.is_action_just_released("toggle_flashlight"):
-		$Flashlight.visible = !$Flashlight.visible
-
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
-	var mouse_direction = (get_global_mouse_position() - global_position)
 	velocity.x = direction_x
 	velocity.y = direction_y
 	velocity = velocity.normalized() * speed
-	move_flashlight(mouse_direction)
 	move_and_slide()
-
-func move_flashlight(direction):
-	$Flashlight.rotation = atan2(direction.y, direction.x) + 159.8
 
 func player():
 	pass

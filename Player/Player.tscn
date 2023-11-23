@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=17 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
 [ext_resource type="Texture2D" uid="uid://oniy0t4hf5ws" path="res://Player/Assets/lizard_f_idle_anim_f0.png" id="3_j245b"]
+[ext_resource type="Script" path="res://Player/Camera2D.gd" id="5_e1ft2"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="5_j5r8q"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="6_hgea7"]
+[ext_resource type="PackedScene" uid="uid://8opg5v5kv74j" path="res://Menus/fullscreen.tscn" id="7_tao8p"]
 [ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="11_n81kt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ia1gh"]
@@ -72,6 +74,7 @@ offset_bottom = 139.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+script = ExtResource("5_e1ft2")
 
 [node name="PointsDisplay" type="Label" parent="."]
 z_index = 5
@@ -120,5 +123,11 @@ texture_scale = 6.68
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 8.01
+
+[node name="Fullscreen" parent="." instance=ExtResource("7_tao8p")]
+offset_left = -328.0
+offset_top = 68.0
+offset_right = -328.0
+offset_bottom = 68.0
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
