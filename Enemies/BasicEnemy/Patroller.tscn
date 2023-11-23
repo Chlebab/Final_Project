@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxqt3y635o61e"]
+[gd_scene load_steps=2 format=3 uid="uid://cxqt3y635o61e"]
 
-[ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemyPathing.gd" id="1_8dxyo"]
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="2_uihap"]
 
 [node name="PatrolPath" type="Path2D"]
-script = ExtResource("1_8dxyo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotation = -2.0844
@@ -12,8 +10,3 @@ rotates = false
 
 [node name="BasicEnemy" parent="PathFollow2D" instance=ExtResource("2_uihap")]
 rotation = 2.0944
-
-[connection signal="move_detection_cone" from="." to="PathFollow2D/BasicEnemy" method="_move_detection_cone"]
-[connection signal="return_to_path" from="." to="PathFollow2D/BasicEnemy" method="_return_to_path"]
-[connection signal="arrived_at_path" from="PathFollow2D/BasicEnemy" to="." method="_on_arrival_at_path"]
-[connection signal="player_escaped_detection" from="PathFollow2D/BasicEnemy" to="." method="_on_player_escaped_detection"]
