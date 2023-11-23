@@ -7,7 +7,7 @@ extends CharacterBody2D
 var apple = preload("res://World/Collectables/AppleCollectable.tscn")
 var egg = preload("res://World/Useables/EggUseable.tscn")
 
-signal egg_usable_instantiated
+#signal egg_usable_instantiated
 
 signal update_slots
 
@@ -81,6 +81,6 @@ func use_egg_item():
 		egg_instance.position = global_position
 		get_parent().add_child(egg_instance)
 		reduce_amount_by_1(egg_slot)
-		egg_usable_instantiated.emit(egg_instance.position)
+#		egg_usable_instantiated.emit(egg_instance.position)
 	else:
 		print("No egg found in the inventory")

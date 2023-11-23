@@ -77,8 +77,9 @@ func seek_egg(egg_position):
 		pathfinding = true
 
 func _return_to_path(detection_position):
-	navigation_agent.set_target_position(detection_position)
-	pathfinding = true
+	if !player_target:
+		navigation_agent.set_target_position(detection_position)
+		pathfinding = true
 
 func _on_player_caught(body):
 	if body.name == "Player":
