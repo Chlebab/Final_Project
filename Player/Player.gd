@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var spawn_point = Vector2(0,0)
 
 
+#signal egg_usable_instantiated
+
 signal update_slots
 
 
@@ -44,4 +46,31 @@ func empty_inventory():
 func _on_pick_up_cart_drop_off_inv_at_cart():
 	print("You have reached the drop off point. Your inventory has been packed to the cart.")
 	empty_inventory()
-	
+
+func _process(_delta):
+	if Input.is_action_just_pressed("r"):
+		use_egg_item()
+
+func reduce_amount_by_1(i):
+	if inv.slots[i].amount > 1:
+		inv.slots[i].amount -= 1
+	else:
+		inv.slots[i].item = null
+	update_slots.emit()
+
+func use_egg_item():
+	var egg_slot = -1
+	print("r pressed, use egg function triggered")
+	for i in inv.slots.size():
+		if inv.slots[i].item and str(inv.slots[i].item.name) == "Egg":
+			egg_slot = i
+			break
+	if egg_slot != -1:
+		print("You got yourself an egg in slot ", inv.slots[egg_slot].item)
+		var egg_instance = egg.instantiate()
+		egg_instance.position = global_position
+		get_parent().add_child(egg_instance)
+		reduce_amount_by_1(egg_slot)
+#		egg_usable_instantiated.emit(egg_instance.position)
+	else:
+		print("No egg found in the inventory")

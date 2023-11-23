@@ -120,7 +120,6 @@ offset = Vector2(-213.753, -213.772)
 texture_scale = 6.68
 
 [node name="Torch" type="PointLight2D" parent="."]
-visible = false
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 8.01

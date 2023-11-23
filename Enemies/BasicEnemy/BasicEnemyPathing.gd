@@ -42,7 +42,7 @@ func animate_patrol(velocity):
 func _on_arrival_at_path():
 	patrolling = true
 
-func _on_player_detected():
+func _on_target_detected():
 	if patrolling:
 		patrolling = false
 		detection_position = patroller.global_position
@@ -51,3 +51,5 @@ func _on_player_detected():
 
 func _on_player_escaped_detection():
 	return_to_path.emit(detection_position)
+
+
