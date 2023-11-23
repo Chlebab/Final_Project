@@ -1,15 +1,11 @@
 extends CharacterBody2D
 
-signal target_detected
-signal player_escaped_detection
-signal arrived_at_path
 signal game_over
-
 signal clear_inventory
 
 var chase_speed = 50
 var return_speed = 40
-var patrol_speed = 1
+var patrol_speed = 40
 var previous_frame_position
 var detection_position
 var patroller
@@ -30,19 +26,20 @@ func _ready():
 func _physics_process(delta):
 	if player_target:
 		move_towards(player_target.global_position, chase_speed)
-	elif pathfinding:
+	if pathfinding:
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
-		move_detection_cone(velocity)
-		if global_position.distance_to(navigation_agent.target_position) < 1:
-			print("reached <1 pixel to the egg")
+		move_detection_cone(-velocity)
+		if global_position.distance_to(navigation_agent.target_position) < 10:
+			print("reached <10 pixels to the egg")
 			pathfinding = false
 			if patroller: patrolling = true
-	elif patrolling:
-		get_parent().progress += 1
-		var direction = (previous_frame_position - global_position)
-		direction = direction.normalized() * chase_speed
+	if patrolling:
+		get_parent().progress += delta * patrol_speed
+		var direction = (global_position - previous_frame_position)
+		direction = direction.normalized()
 		animate_movement(direction)
-		move_detection_cone(velocity)
+		move_detection_cone(-direction)
+		previous_frame_position = global_position
 
 func _process(_delta):
 	for ray in detection_rays.get_children():
@@ -50,15 +47,15 @@ func _process(_delta):
 			on_player_detection(ray.get_collider())
 
 func move_towards(target_vector, speed):
-	var direction = (target_vector - global_position)
-	velocity = direction.normalized() * speed
-	animate_movement(velocity)
+	var direction = (target_vector - global_position).normalized()
+	animate_movement(direction)
+	velocity = direction * speed
 	move_and_slide()
 
 func animate_movement(velocity):
-	if velocity.x > 33:
+	if velocity.x > 0.7:
 		$AnimationPlayer.play("running_right")
-	elif velocity.x < -33:
+	elif velocity.x < -0.7:
 		$AnimationPlayer.play("running_left")
 	elif velocity.y > 0:
 		$AnimationPlayer.play("running_down")
@@ -89,8 +86,8 @@ func seek_egg(egg_position):
 	print("egg has been detected")
 	if !player_target:
 		if patroller: 
-      patrolling = false
-      detection_position = global_position
+			patrolling = false
+			detection_position = global_position
 		navigation_agent.set_target_position(egg_position)
 		pathfinding = true
 

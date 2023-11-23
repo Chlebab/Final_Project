@@ -1,14 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqt3ewbamrxyr"]
+[gd_scene load_steps=5 format=3 uid="uid://bqt3ewbamrxyr"]
 
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="1_e5jr1"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_0k0tu"]
+[ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_4ocul"]
+
+[sub_resource type="Curve2D" id="Curve2D_3e65e"]
+_data = {
+"points": PackedVector2Array(0.707109, 29.6986, -0.707109, -29.6986, -13, -32, -26.8701, 30.4057, 26.8701, -30.4057, -25, -111, -65.054, -13.4351, 65.054, 13.4351, 117, -155, -30.4057, -50.9118, 30.4057, 50.9118, 213, -78, 16.9706, -7.07109, -16.9706, 7.07109, 190, 72, 39.5981, 38.891, -39.5981, -38.891, 121, 80, 63.6398, -9.89952, -63.6398, 9.89952, 88, -46, 12.0208, -14.8493, -12.0208, 14.8493, 56, 80, 10.6066, 38.1839, -10.6066, -38.1839, -7, 76, 7.77819, 27.5772, -7.77819, -27.5772, -13, -32)
+}
+point_count = 10
 
 [node name="DundeonLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_e5jr1")]
-position = Vector2(376, 499)
+position = Vector2(367, 507)
 speed = 150.0
 
 [node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
 position = Vector2(-147, -104)
 layer_4/z_index = 6
+
+[node name="PatrolPath" parent="." instance=ExtResource("3_4ocul")]
+position = Vector2(292, 145)
+curve = SubResource("Curve2D_3e65e")
