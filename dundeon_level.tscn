@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bqt3ewbamrxyr"]
 
-[ext_resource type="Script" path="res://dundeon_level.gd" id="1_3msbq"]
+[ext_resource type="Script" path="res://DungeonLevel.gd" id="1_3msbq"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="1_e5jr1"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_0k0tu"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_4ocul"]

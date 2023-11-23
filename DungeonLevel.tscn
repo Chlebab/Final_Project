@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://scv8prq38wyf"]
+
+[ext_resource type="Script" path="res://DungeonLevel.gd" id="1_ak5or"]
+[ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_oasjr"]
+[ext_resource type="PackedScene" uid="uid://docs7khtrm4pa" path="res://Spawns/EnemySpawn/EnemySpawnArea.tscn" id="3_hfrir"]
+[ext_resource type="PackedScene" uid="uid://cpuj6pna8wql5" path="res://Spawns/KeySpawn/KeySpawnArea.tscn" id="4_cvlpm"]
+[ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="5_20ukx"]
+[ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="6_o76rf"]
+
+[sub_resource type="Curve2D" id="Curve2D_83nt8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -14, 8, 0, 0, 0, 0, -46, -74, 0, 0, 0, 0, 5, -107, 0, 0, 0, 0, 136, -111, 0, 0, 0, 0, 149, 44, 0, 0, 0, 0, 56, 107, 0, 0, 0, 0, -15, 74, 0, 0, 0, 0, -14, 8)
+}
+point_count = 8
+
+[node name="DungeonLevel" type="Node2D"]
+script = ExtResource("1_ak5or")
+
+[node name="Dungeon" parent="." instance=ExtResource("2_oasjr")]
+position = Vector2(-323, 263)
+
+[node name="SpawnArea" parent="." instance=ExtResource("3_hfrir")]
+position = Vector2(94, 307)
+
+[node name="KeySpawnArea" parent="." instance=ExtResource("4_cvlpm")]
+position = Vector2(315, 307)
+
+[node name="Player" parent="." instance=ExtResource("5_20ukx")]
+position = Vector2(209, 741)
+
+[node name="PatrolPath" parent="." instance=ExtResource("6_o76rf")]
+position = Vector2(141, 515)
+curve = SubResource("Curve2D_83nt8")

@@ -1,12 +1,7 @@
 extends Control
 
-
-
 func _ready():
 	pass 
-
-
-
 
 func _on_check_button_toggled(button_pressed):
 	if button_pressed == true:

@@ -67,6 +67,7 @@ position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_ks22v")
 
 [node name="InventoryUi" parent="." instance=ExtResource("11_n81kt")]
+z_index = 50
 offset_left = 163.0
 offset_top = 99.0
 offset_right = 265.0
@@ -77,7 +78,7 @@ zoom = Vector2(2, 2)
 script = ExtResource("5_e1ft2")
 
 [node name="PointsDisplay" type="Label" parent="."]
-z_index = 5
+z_index = 50
 texture_filter = 1
 offset_left = -279.0
 offset_top = -151.0
@@ -86,7 +87,7 @@ offset_bottom = -128.0
 theme_override_fonts/font = ExtResource("5_j5r8q")
 
 [node name="Timer" parent="." instance=ExtResource("6_hgea7")]
-z_index = 5
+z_index = 50
 texture_filter = 1
 offset_left = 124.0
 offset_top = -150.046
@@ -109,6 +110,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Flashlight" type="PointLight2D" parent="."]
+visible = false
 modulate = Color(0.25098, 0.27451, 0.168627, 1)
 skew = -0.733038
 range_layer_min = -512
@@ -125,6 +127,7 @@ texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 8.01
 
 [node name="Fullscreen" parent="." instance=ExtResource("7_tao8p")]
+z_index = 100
 offset_left = -328.0
 offset_top = 68.0
 offset_right = -328.0
