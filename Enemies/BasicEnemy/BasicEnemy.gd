@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal player_detected
+signal target_detected
 signal player_escaped_detection
 signal arrived_at_path
 signal game_over
@@ -34,6 +34,7 @@ func _physics_process(delta):
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
 		move_detection_cone(velocity)
 		if global_position.distance_to(navigation_agent.target_position) < 1:
+			print("reached <1 pixel to the egg")
 			pathfinding = false
 			if patroller: patrolling = true
 	elif patrolling:
@@ -83,6 +84,20 @@ func _on_detection_area_body_exited(body):
 			navigation_agent.set_target_position(spawn_point)
 		pathfinding = true
 		player_target = null
+
+func seek_egg(egg_position):
+	print("egg has been detected")
+	if !player_target:
+		if patroller: 
+      patrolling = false
+      detection_position = global_position
+		navigation_agent.set_target_position(egg_position)
+		pathfinding = true
+
+func _return_to_path(detection_position):
+	if !player_target:
+		navigation_agent.set_target_position(detection_position)
+		pathfinding = true
 
 func _on_player_caught(body):
 	if body.name == "Player":

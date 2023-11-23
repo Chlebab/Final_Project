@@ -7,7 +7,7 @@
 radius = 7.07107
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pv3vi"]
-radius = 18.0
+radius = 253.237
 
 [node name="EggUseable" type="StaticBody2D"]
 collision_layer = 2

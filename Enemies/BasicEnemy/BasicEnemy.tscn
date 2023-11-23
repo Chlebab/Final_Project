@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=13 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://dxadx2lid2bqr" path="res://Enemies/BasicEnemy/Assets/enemy.png" id="2_bcpra"]
@@ -106,6 +106,9 @@ radius = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgdg5"]
 radius = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6ass"]
+radius = 9.05539
+
 [node name="BasicEnemy" type="CharacterBody2D"]
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -151,6 +154,11 @@ target_position = Vector2(-99, -198)
 
 [node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(100, -199)
+
+[node name="LureArea" type="Area2D" parent="DetectionZones"]
+
+[node name="LureRadius" type="CollisionShape2D" parent="DetectionZones/LureArea"]
+shape = SubResource("CircleShape2D_h6ass")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
