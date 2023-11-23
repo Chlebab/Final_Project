@@ -14,9 +14,6 @@
 position = Vector2(-31, 16)
 script = ExtResource("1_3msbq")
 
-[node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
-position = Vector2(-163, -103)
-
 [node name="Player" parent="." instance=ExtResource("1_e5jr1")]
 position = Vector2(376, 499)
 speed = 150.0
@@ -43,3 +40,7 @@ position = Vector2(351, 45)
 
 [node name="key_collectable" parent="." instance=ExtResource("9_g36sl")]
 position = Vector2(454, -3)
+
+[node name="Dungeon" parent="." instance=ExtResource("2_0k0tu")]
+position = Vector2(-147, -104)
+layer_4/z_index = 6
