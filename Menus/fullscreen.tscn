@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://8opg5v5kv74j"]
+
+[ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="1_2b4q4"]
+[ext_resource type="Script" path="res://Menus/fullscreen.gd" id="1_gk1y8"]
+
+[node name="Fullscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gk1y8")
+metadata/_edit_group_ = true
+
+[node name="FullscreenText" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 77.0
+offset_right = 207.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("1_2b4q4")
+theme_override_font_sizes/font_size = 10
+text = "FULLSCREEN"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 142.0
+offset_top = 71.0
+offset_right = 186.0
+offset_bottom = 95.0
+
+[connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

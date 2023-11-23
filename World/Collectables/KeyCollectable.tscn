@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv375sbdpabws"]
+
+[ext_resource type="Script" path="res://World/Collectables/KeyCollectable.gd" id="1_pm4ms"]
+[ext_resource type="Texture2D" uid="uid://br237eht14qgg" path="res://World/Assets/grey-key.png" id="2_ke286"]
+[ext_resource type="Resource" uid="uid://gnf0rfb4kf28" path="res://Inventory/Items/Key.tres" id="2_qk3wo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggpu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kt02"]
+size = Vector2(56, 18)
+
+[node name="key_collectable" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_pm4ms")
+item = ExtResource("2_qk3wo")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.28882e-05, -7.62939e-06)
+rotation = 3.14159
+scale = Vector2(0.0438813, -0.0399991)
+texture = ExtResource("2_ke286")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ggpu0")
+
+[node name="interaction_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+shape = SubResource("RectangleShape2D_6kt02")
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
