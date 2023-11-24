@@ -12,9 +12,11 @@ var direction_facing = Direction.DOWN
 
 signal update_slots
 
+
 func _ready():
 	display_points()
-
+	$BarrelSprite.visible = false
+	
 func _physics_process(_delta):
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
@@ -27,7 +29,7 @@ func _physics_process(_delta):
 func _process(_delta):
 	if Input.is_action_just_pressed("r"):
 		use_egg_item()
-  elif Input.is_action_just_pressed("f"):
+	elif Input.is_action_just_pressed("f"):
 		use_crossword_item()	
 	elif Input.is_action_just_pressed("b"):
 		use_barrel_item()	
@@ -137,11 +139,17 @@ func use_barrel_item():
 	if barrel_slot != -1:
 		print("You got yourself a barrel in slot ", inv.slots[barrel_slot].item)
 		reduce_amount_by_1(barrel_slot)
+		$Sprite2D.visible = false
+		$BarrelSprite.visible = true
 		$InvMsg.text = "Barrel used!"
 		$InvMsgTimer.start()
-		$CollisionShape2D.disabled = true
+#		set_collision_layer_value(9, true)
+#		set_collision_mask_value(9, true)
 		await get_tree().create_timer(15.0).timeout
-		$CollisionShape2D.disabled = false
+#		set_collision_layer_value(1, true)
+#		set_collision_mask_value(1, true)
+		$Sprite2D.visible = true
+		$BarrelSprite.visible = false
 	else:
 		print("No barrel found in the inventory")
 		$InvMsg.text = "No barrel found in the inventory"
