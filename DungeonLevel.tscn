@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bxhich5rynnbb" path="res://World/Collectables/BarrelCollectable.tscn" id="11_p4exu"]
 [ext_resource type="Resource" uid="uid://djap6qyjm3kpf" path="res://Inventory/Items/Barrel.tres" id="12_e77tg"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="7_cgt78"]
+[ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="8_jpcbj"]
+[ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://Button.tscn" id="9_oxikp"]
 [ext_resource type="PackedScene" path="res://World/door.tscn" id="8_jpcbj"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
@@ -62,3 +64,11 @@ item = ExtResource("12_e77tg")
 
 [node name="Door" parent="." instance=ExtResource("8_jpcbj")]
 position = Vector2(214, 269)
+
+[node name="Button" parent="." instance=ExtResource("9_oxikp")]
+position = Vector2(136, 81)
+
+[node name="Door2" parent="." instance=ExtResource("8_jpcbj")]
+position = Vector2(438, 62)
+
+[connection signal="open_door" from="Button" to="Door2" method="open_door"]
