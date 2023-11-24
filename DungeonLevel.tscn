@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://scv8prq38wyf"]
+[gd_scene load_steps=11 format=3 uid="uid://scv8prq38wyf"]
 
 [ext_resource type="Script" path="res://DungeonLevel.gd" id="1_ak5or"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_oasjr"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="6_o76rf"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="7_cgt78"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="8_jpcbj"]
+[ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://Button.tscn" id="9_oxikp"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
@@ -30,7 +31,7 @@ position = Vector2(315, 307)
 [node name="Player" parent="." instance=ExtResource("5_20ukx")]
 position = Vector2(209, 741)
 
-[node name="Pause" parent="Player" instance=ExtResource("7_cgt78")]
+[node name="Pause2" parent="Player" instance=ExtResource("7_cgt78")]
 visible = false
 z_index = 7
 offset_left = -582.0
@@ -44,3 +45,11 @@ curve = SubResource("Curve2D_83nt8")
 
 [node name="Door" parent="." instance=ExtResource("8_jpcbj")]
 position = Vector2(214, 269)
+
+[node name="Button" parent="." instance=ExtResource("9_oxikp")]
+position = Vector2(136, 81)
+
+[node name="Door2" parent="." instance=ExtResource("8_jpcbj")]
+position = Vector2(438, 62)
+
+[connection signal="open_door" from="Button" to="Door2" method="open_door"]
