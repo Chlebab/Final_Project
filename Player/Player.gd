@@ -27,7 +27,7 @@ func _physics_process(_delta):
 func _process(_delta):
 	if Input.is_action_just_pressed("r"):
 		use_egg_item()
-  elif Input.is_action_just_pressed("f"):
+	elif Input.is_action_just_pressed("f"):
 		use_crossword_item()	
 	elif Input.is_action_just_pressed("b"):
 		use_barrel_item()	
@@ -147,6 +147,8 @@ func use_barrel_item():
 		$InvMsg.text = "No barrel found in the inventory"
 		$InvMsgTimer.start()
 
-
 func _on_inv_msg_timer_timeout():
 	$InvMsg.text = ""
+
+func take_hit():
+	pass

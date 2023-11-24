@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://qr1u6kcca408" path="res://World/Collectables/TVCollectable.tscn" id="9_ifdly"]
 [ext_resource type="PackedScene" uid="uid://cofy6y8e1bs8h" path="res://World/Collectables/PickUpCart.tscn" id="10_doe5p"]
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="10_xm6yt"]
-[ext_resource type="PackedScene" uid="uid://bpd0uag66yheq" path="res://World/Collectables/CrossowrdCollectable.tscn" id="11_3kktc"]
+[ext_resource type="PackedScene" path="res://World/Collectables/CrossowrdCollectable.tscn" id="11_3kktc"]
 [ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="12_451wf"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0ofkk"]

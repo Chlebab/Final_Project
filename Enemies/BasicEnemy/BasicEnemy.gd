@@ -6,6 +6,7 @@ signal clear_inventory
 var chase_speed = 50
 var return_speed = 40
 var patrol_speed = 40
+var health = 60
 
 var previous_frame_position
 var detection_position
@@ -121,6 +122,17 @@ func return_to_path():
 	else:
 		navigation_agent.set_target_position(spawn_point)
 	pathfinding = true
+
+func take_hit():
+	health -= 20
+	if health <= 0:
+		die()
+
+func die():
+	$AnimationPlayer.play("death_down")
+	await get_tree().create_timer(0.3).timeout
+	$AnimationPlayer.play("death_fade")
+	queue_free()
 
 func _on_player_caught(body):
 	if body.name == "Player":

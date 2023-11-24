@@ -9,8 +9,10 @@ func _physics_process(_delta):
 	if target:
 		if global_position.distance_to(target.global_position) > 20:
 			move_towards(target.global_position)
-#		else: 
-#			attack(target)
+		else: 
+			attack()
+			if target.health <= 0:
+				target = null
 
 func _process(_delta):
 	if !target:
@@ -42,3 +44,7 @@ func move_detection_cone(input_velocity):
 
 func on_target_detection(body):
 	target = body
+
+func attack():
+#	$AnimationPlayer.play("attack")
+	target.take_hit()
