@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=15 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://dxadx2lid2bqr" path="res://Enemies/BasicEnemy/Assets/enemy.png" id="2_bcpra"]
+[ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/AlertSound.mp3" id="3_t77cy"]
+[ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="4_w1v81"]
 
 [sub_resource type="Animation" id="Animation_qa5fw"]
 length = 0.001
@@ -164,6 +166,22 @@ shape = SubResource("CircleShape2D_h6ass")
 path_desired_distance = 10.0
 path_max_distance = 200.0
 radius = 30.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_t77cy")
+volume_db = -10.0
+
+[node name="DetectionLabel" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -6.0
+offset_top = -36.0
+offset_right = 10.0
+offset_bottom = -13.0
+theme_override_fonts/font = ExtResource("4_w1v81")
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]
