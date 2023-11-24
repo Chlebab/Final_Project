@@ -12,6 +12,7 @@ var patroller
 var patrolling
 var player_target
 var pathfinding
+var eggseeking
 
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
@@ -28,11 +29,16 @@ func _physics_process(delta):
 		move_towards(player_target.global_position, chase_speed)
 	if pathfinding:
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
-		move_detection_cone(-velocity)
-		if global_position.distance_to(navigation_agent.target_position) < 10:
-			print("reached <10 pixels to the egg")
+		if global_position.distance_to(navigation_agent.target_position) < 1:
 			pathfinding = false
 			if patroller: patrolling = true
+	if eggseeking:
+		move_towards(navigation_agent.get_next_path_position(), chase_speed)
+		if global_position.distance_to(navigation_agent.target_position) < 30:
+			eggseeking = false
+			await get_tree().create_timer(10.0).timeout
+			# include idle animation here at some point
+			return_to_path()
 	if patrolling:
 		get_parent().progress += delta * patrol_speed
 		var direction = (global_position - previous_frame_position)
@@ -50,6 +56,7 @@ func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position).normalized()
 	animate_movement(direction)
 	velocity = direction * speed
+	move_detection_cone(-velocity)
 	move_and_slide()
 
 func animate_movement(velocity):
@@ -71,30 +78,28 @@ func on_player_detection(player):
 		detection_position = global_position
 	elif pathfinding:
 		pathfinding = false
+	eggseeking = false
 	player_target = player
 
-func _on_detection_area_body_exited(body):
-	if body.name == "Player" and player_target:
-		if patroller: 
-			navigation_agent.set_target_position(detection_position)
-		else:
-			navigation_agent.set_target_position(spawn_point)
-		pathfinding = true
-		player_target = null
-
-func seek_egg(egg_position):
-	print("egg has been detected")
+func on_egg_detection(egg_position):
 	if !player_target:
 		if patroller: 
 			patrolling = false
 			detection_position = global_position
 		navigation_agent.set_target_position(egg_position)
-		pathfinding = true
+		eggseeking = true
 
-func _return_to_path(detection_position):
-	if !player_target:
+func _on_detection_area_body_exited(body):
+	if body.name == "Player" and player_target:
+		return_to_path()
+		player_target = null
+
+func return_to_path():
+	if patroller: 
 		navigation_agent.set_target_position(detection_position)
-		pathfinding = true
+	else:
+		navigation_agent.set_target_position(spawn_point)
+	pathfinding = true
 
 func _on_player_caught(body):
 	if body.name == "Player":

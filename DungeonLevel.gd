@@ -9,8 +9,6 @@ func _process(delta):
 		pauseMenu()
 	
 func pauseMenu():
-	
-	
 	if paused:
 		pause_menu.hide()
 		Engine.time_scale = 1
