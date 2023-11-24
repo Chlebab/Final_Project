@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var inv: Inventory
 @export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
-var egg = preload("res://World/Collectables/EggCollectable.tscn")
+var egg = preload("res://World/Useables/EggUseable.tscn")
 
 signal update_slots
 
@@ -66,6 +66,11 @@ func use_egg_item():
 		egg_instance.position = global_position
 		get_parent().add_child(egg_instance)
 		reduce_amount_by_1(egg_slot)
-#		egg_usable_instantiated.emit(egg_instance.position)
+		$InvMsg.text = "Egg used!"
+		_on_inv_msg_timer_timeout()
 	else:
 		print("No egg found in the inventory")
+
+
+func _on_inv_msg_timer_timeout():
+	$InvMsg.text = ""

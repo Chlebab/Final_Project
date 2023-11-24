@@ -106,6 +106,8 @@ offset_top = -45.0
 offset_right = 231.0
 offset_bottom = -19.0
 theme_override_fonts/font = ExtResource("5_j5r8q")
+text = "Hello
+"
 label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -143,3 +145,4 @@ offset_right = -567.0
 offset_bottom = -339.0
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
+[connection signal="timeout" from="InvMsgTimer" to="." method="_on_inv_msg_timer_timeout"]
