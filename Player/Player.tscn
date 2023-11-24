@@ -256,6 +256,7 @@ speed = 120.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_h8d6j")
 hframes = 4
 vframes = 11
@@ -266,18 +267,15 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_dpu6w")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_ks22v")
 
 [node name="InventoryUi" parent="." instance=ExtResource("11_n81kt")]
-visible = false
 z_index = 50
 offset_left = 163.0
 offset_top = 99.0
@@ -333,7 +331,6 @@ offset = Vector2(-213.753, -213.772)
 texture_scale = 6.68
 
 [node name="Torch" type="PointLight2D" parent="."]
-visible = false
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 8.01
