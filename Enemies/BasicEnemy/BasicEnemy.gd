@@ -65,14 +65,15 @@ func move_towards(target_vector, speed):
 	move_and_slide()
 
 func animate_movement(direction):
-	if direction.x > 0.7:
-		$AnimationPlayer.play("running_right")
-	elif direction.x < -0.7:
-		$AnimationPlayer.play("running_left")
-	elif direction.y > 0:
-		$AnimationPlayer.play("running_down")
-	else:
-		$AnimationPlayer.play("running_up")
+#	if direction.x > 0.7:
+#		$AnimationPlayer.play("running_right")
+#	elif direction.x < -0.7:
+#		$AnimationPlayer.play("running_left")
+#	elif direction.y > 0:
+#		$AnimationPlayer.play("running_down")
+#	else:
+#		$AnimationPlayer.play("running_up")
+	pass
 
 func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)

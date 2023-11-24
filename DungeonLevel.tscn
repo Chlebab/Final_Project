@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="5_20ukx"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="6_o76rf"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="7_cgt78"]
-[ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="8_jpcbj"]
+[ext_resource type="PackedScene" path="res://World/door.tscn" id="8_jpcbj"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
@@ -30,7 +30,7 @@ position = Vector2(315, 307)
 [node name="Player" parent="." instance=ExtResource("5_20ukx")]
 position = Vector2(209, 741)
 
-[node name="Pause" parent="Player" instance=ExtResource("7_cgt78")]
+[node name="Pause2" parent="Player" instance=ExtResource("7_cgt78")]
 visible = false
 z_index = 7
 offset_left = -582.0
