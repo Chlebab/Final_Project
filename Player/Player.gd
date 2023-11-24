@@ -67,9 +67,11 @@ func use_egg_item():
 		get_parent().add_child(egg_instance)
 		reduce_amount_by_1(egg_slot)
 		$InvMsg.text = "Egg used!"
-		_on_inv_msg_timer_timeout()
+		$InvMsgTimer.start()
 	else:
 		print("No egg found in the inventory")
+		$InvMsg.text = "No egg found in the inventory"
+		$InvMsgTimer.start()
 
 
 func _on_inv_msg_timer_timeout():
