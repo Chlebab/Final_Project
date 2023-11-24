@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oniy0t4hf5ws"
-path="res://.godot/imported/lizard_f_idle_anim_f0.png-261a84981043464fb64eb3f153c24901.ctex"
+uid="uid://dub65ij3m67cp"
+path="res://.godot/imported/Shadow.png-aecddc0d095cd63b5c1b975f6ef4c554.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/lizard_f_idle_anim_f0.png"
-dest_files=["res://.godot/imported/lizard_f_idle_anim_f0.png-261a84981043464fb64eb3f153c24901.ctex"]
+source_file="res://Enemies/BasicEnemy/Assets/Extras/Shadow.png"
+dest_files=["res://.godot/imported/Shadow.png-aecddc0d095cd63b5c1b975f6ef4c554.ctex"]
 
 [params]
 

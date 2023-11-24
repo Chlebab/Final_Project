@@ -5,7 +5,7 @@ extends StaticBody2D
 func _ready():
 	pass 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_door_area_body_entered(body):
@@ -15,12 +15,12 @@ func _on_door_area_body_entered(body):
 			if body.inv.slots[i].item and str(body.inv.slots[i].item.name) == "Key":
 				$Close.hide()
 				$Open.show()
-				$Open.play
+				$Open.play()
 	
 func _on_door_area_body_exited(body):
 	print("Player exited")
 	if body.get_name() == "Player":
 		$Open.hide()
 		$Close.show()
-		$Close.play
+		$Close.play()
 	
