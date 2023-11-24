@@ -10,6 +10,8 @@ var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 enum Direction{UP, DOWN, LEFT, RIGHT}
 var direction_facing = Direction.DOWN
 
+var health = 1000
+
 signal update_slots
 
 

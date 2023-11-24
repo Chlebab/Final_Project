@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Liquidation Dash"
-run/main_scene="res://DungeonLevel.tscn"
+run/main_scene="res://Levels/DungeonLevel.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 
 [autoload]
