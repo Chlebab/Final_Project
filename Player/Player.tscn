@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=18 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="5_j5r8q"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="6_hgea7"]
 [ext_resource type="PackedScene" uid="uid://8opg5v5kv74j" path="res://Menus/fullscreen.tscn" id="7_tao8p"]
+[ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="9_a6rfy"]
 [ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="11_n81kt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ia1gh"]
@@ -134,6 +135,14 @@ offset_left = -328.0
 offset_top = 68.0
 offset_right = -328.0
 offset_bottom = 68.0
+
+[node name="Pause" parent="." instance=ExtResource("9_a6rfy")]
+visible = false
+z_index = 50
+offset_left = -567.0
+offset_top = -339.0
+offset_right = -567.0
+offset_bottom = -339.0
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
 [connection signal="timeout" from="InvMsgTimer" to="." method="_on_inv_msg_timer_timeout"]
