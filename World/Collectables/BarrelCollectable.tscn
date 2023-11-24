@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxhich5rynnbb"]
+
+[ext_resource type="Script" path="res://World/Collectables/BarrelCollectable.gd" id="1_xahna"]
+[ext_resource type="Texture2D" uid="uid://cggq1xtsggk48" path="res://World/Assets/barrel.png" id="2_1jnlu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgy5l"]
+radius = 52.1536
+
+[node name="BarrelCollectable" type="StaticBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_xahna")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(4.05556, 3.77273)
+texture = ExtResource("2_1jnlu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rjky8")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_tgy5l")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

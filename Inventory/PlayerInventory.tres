@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=14 format=3 uid="uid://b0dqrlb77yc41"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=15 format=3 uid="uid://b0dqrlb77yc41"]
 
 [ext_resource type="Resource" uid="uid://tusbw6pgmqj3" path="res://Inventory/Items/Egg.tres" id="2_cpbxt"]
 [ext_resource type="Script" path="res://Inventory/InventorySlot.gd" id="2_jnbwq"]
 [ext_resource type="Script" path="res://Inventory/Inventory.gd" id="2_rx7jd"]
+[ext_resource type="Resource" uid="uid://hnkgm231lhyr" path="res://Inventory/Items/Crossword.tres" id="4_lyihr"]
 
 [sub_resource type="Resource" id="Resource_yle1t"]
 script = ExtResource("2_jnbwq")
@@ -11,7 +12,8 @@ amount = 5
 
 [sub_resource type="Resource" id="Resource_qm2op"]
 script = ExtResource("2_jnbwq")
-amount = 0
+item = ExtResource("4_lyihr")
+amount = 2
 
 [sub_resource type="Resource" id="Resource_m26bn"]
 script = ExtResource("2_jnbwq")
