@@ -11,7 +11,6 @@ func _on_area_2d_body_entered(body):
 
 func spawn_key():
 	var instance = key.instantiate()
-	instance
 	add_child(instance)
 	#print(instance.points)
 

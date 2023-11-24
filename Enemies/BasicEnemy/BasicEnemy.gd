@@ -48,9 +48,14 @@ func _physics_process(delta):
 		previous_frame_position = global_position
 
 func _process(_delta):
-	for ray in detection_rays.get_children():
-		if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
-			on_player_detection(ray.get_collider())
+	if !player_target:
+		for ray in detection_rays.get_children():
+			if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
+				on_player_detection(ray.get_collider())
+				$AudioStreamPlayer2D.play()
+				$DetectionLabel.visible = true
+				await get_tree().create_timer(0.7).timeout
+				$DetectionLabel.visible = false
 
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position).normalized()
@@ -59,12 +64,12 @@ func move_towards(target_vector, speed):
 	move_detection_cone(-velocity)
 	move_and_slide()
 
-func animate_movement(velocity):
-	if velocity.x > 0.7:
+func animate_movement(direction):
+	if direction.x > 0.7:
 		$AnimationPlayer.play("running_right")
-	elif velocity.x < -0.7:
+	elif direction.x < -0.7:
 		$AnimationPlayer.play("running_left")
-	elif velocity.y > 0:
+	elif direction.y > 0:
 		$AnimationPlayer.play("running_down")
 	else:
 		$AnimationPlayer.play("running_up")
