@@ -36,6 +36,8 @@ func _physics_process(delta):
 		move_towards(navigation_agent.get_next_path_position(), chase_speed)
 		if global_position.distance_to(navigation_agent.target_position) < 30:
 			eggseeking = false
+			await get_tree().create_timer(10.0).timeout
+			# include idle animation here at some point
 			return_to_path()
 	if patrolling:
 		get_parent().progress += delta * patrol_speed
@@ -76,6 +78,7 @@ func on_player_detection(player):
 		detection_position = global_position
 	elif pathfinding:
 		pathfinding = false
+	eggseeking = false
 	player_target = player
 
 func on_egg_detection(egg_position):
