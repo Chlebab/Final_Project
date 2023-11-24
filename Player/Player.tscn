@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=32 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="6_hgea7"]
 [ext_resource type="PackedScene" uid="uid://8opg5v5kv74j" path="res://Menus/fullscreen.tscn" id="7_tao8p"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="9_a6rfy"]
+[ext_resource type="Texture2D" uid="uid://cggq1xtsggk48" path="res://World/Assets/barrel.png" id="10_e38mq"]
 [ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="11_n81kt"]
 
 [sub_resource type="Animation" id="Animation_78g3i"]
@@ -206,9 +207,25 @@ tracks/0/keys = {
 "values": [20, 21, 22, 23]
 }
 
+[sub_resource type="Animation" id="Animation_mflgi"]
+resource_name = "barrel"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ci4bt"]
 _data = {
 "RESET": SubResource("Animation_78g3i"),
+"barrel": SubResource("Animation_mflgi"),
 "die_right": SubResource("Animation_maywh"),
 "die_up": SubResource("Animation_sndk0"),
 "hit_down": SubResource("Animation_dy2tl"),
@@ -268,12 +285,10 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_dpu6w")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_ks22v")
@@ -355,6 +370,9 @@ offset_bottom = -339.0
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="BarrelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("10_e38mq")
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
 [connection signal="timeout" from="InvMsgTimer" to="." method="_on_inv_msg_timer_timeout"]
