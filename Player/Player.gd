@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var spawn_point = Vector2(0,0)
 
 var egg = preload("res://World/Useables/EggUseable.tscn")
+var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
 enum Direction{UP, DOWN, LEFT, RIGHT}
 var direction_facing = Direction.DOWN
@@ -26,6 +27,10 @@ func _physics_process(_delta):
 func _process(_delta):
 	if Input.is_action_just_pressed("r"):
 		use_egg_item()
+  elif Input.is_action_just_pressed("f"):
+		use_crossword_item()	
+	elif Input.is_action_just_pressed("b"):
+		use_barrel_item()	
 	animate_movement()
 
 func adjust_direction(direction):
@@ -101,6 +106,45 @@ func use_egg_item():
 	else:
 		print("No egg found in the inventory")
 		$InvMsg.text = "No egg found in the inventory"
+		$InvMsgTimer.start()
+
+func use_crossword_item():
+	var crossword_slot = -1
+	print("f pressed, use crossword function triggered")
+	for i in inv.slots.size():
+		if inv.slots[i].item and str(inv.slots[i].item.name) == "Crossword":
+			crossword_slot = i
+			break
+	if crossword_slot != -1:
+		print("You got yourself a crossword in slot ", inv.slots[crossword_slot].item)
+		var crossword_instance = crossword.instantiate()
+		crossword_instance.position = global_position
+		get_parent().add_child(crossword_instance)
+		reduce_amount_by_1(crossword_slot)
+		$InvMsg.text = "Crossword used!"
+		$InvMsgTimer.start()
+	else:
+		print("No crossword found in the inventory")
+		$InvMsg.text = "No crossword found in the inventory"
+
+func use_barrel_item():
+	var barrel_slot = -1
+	print("b pressed, use barrel function triggered")
+	for i in inv.slots.size():
+		if inv.slots[i].item and str(inv.slots[i].item.name) == "Barrel":
+			barrel_slot = i
+			break
+	if barrel_slot != -1:
+		print("You got yourself a barrel in slot ", inv.slots[barrel_slot].item)
+		reduce_amount_by_1(barrel_slot)
+		$InvMsg.text = "Barrel used!"
+		$InvMsgTimer.start()
+		$CollisionShape2D.disabled = true
+		await get_tree().create_timer(15.0).timeout
+		$CollisionShape2D.disabled = false
+	else:
+		print("No barrel found in the inventory")
+		$InvMsg.text = "No barrel found in the inventory"
 		$InvMsgTimer.start()
 
 

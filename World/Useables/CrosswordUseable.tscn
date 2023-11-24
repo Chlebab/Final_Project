@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=3 uid="uid://b4d1mvis0aoau"]
+
+[ext_resource type="Script" path="res://World/Useables/CrosswordUseable.gd" id="1_subii"]
+[ext_resource type="Texture2D" uid="uid://byow5knikvow4" path="res://World/Assets/animated_Christmas_jack_in_the_box_48x48.png" id="2_c4gih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iijfd"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(0, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dva2"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(48, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfxx4"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(96, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16bg8"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(144, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1brsu"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(192, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ublpu"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(240, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayw7l"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(288, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhqp2"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(336, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxnxh"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(384, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hynq"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(432, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt7en"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(480, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc8oc"]
+atlas = ExtResource("2_c4gih")
+region = Rect2(528, 0, 48, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ae4oi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iijfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dva2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfxx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16bg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1brsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ublpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayw7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhqp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxnxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hynq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt7en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc8oc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pv3vi"]
+radius = 17.2627
+
+[node name="CrosswordUseable" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_subii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.5, -4)
+scale = Vector2(0.4375, 0.333333)
+sprite_frames = SubResource("SpriteFrames_ae4oi")
+frame_progress = 0.962379
+speed_scale = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rjky8")
+
+[node name="interaction_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+shape = SubResource("CircleShape2D_pv3vi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

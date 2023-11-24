@@ -102,7 +102,14 @@ func on_egg_detection(egg_position):
 			detection_position = global_position
 		navigation_agent.set_target_position(egg_position)
 		eggseeking = true
-
+	
+func on_crossword_detection():
+	if !player_target:
+		if patroller:
+			patrolling = false
+		await get_tree().create_timer(15.0).timeout
+		patrolling = true
+	
 func _on_detection_area_body_exited(body):
 	if body.name == "Player" and player_target:
 		return_to_path()
