@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt58u2bh8d2pn"]
+
+[ext_resource type="Script" path="res://Menus/intro.gd" id="1_fiqes"]
+[ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_nocqk"]
+
+[sub_resource type="Animation" id="Animation_qjw0n"]
+resource_name = "fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mro3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_opuwe"]
+resource_name = "fadeout"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_niyj2"]
+_data = {
+"RESET": SubResource("Animation_mro3v"),
+"fade": SubResource("Animation_qjw0n"),
+"fadeout": SubResource("Animation_opuwe")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_fiqes")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1153.0
+offset_bottom = 645.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Label" parent="ColorRect"]
+offset_left = 164.0
+offset_top = 306.0
+offset_right = 1004.0
+offset_bottom = 339.0
+theme_override_fonts/font = ExtResource("2_nocqk")
+theme_override_font_sizes/font_size = 30
+text = "MBN GAMES PRESENTS...."
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -13.0
+offset_right = 1170.0
+offset_bottom = 669.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_niyj2")
+}
