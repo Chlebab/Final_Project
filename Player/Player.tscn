@@ -106,8 +106,6 @@ offset_top = -45.0
 offset_right = 231.0
 offset_bottom = -19.0
 theme_override_fonts/font = ExtResource("5_j5r8q")
-text = "Hello
-"
 label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
