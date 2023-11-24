@@ -155,6 +155,8 @@ func use_barrel_item():
 		$InvMsg.text = "No barrel found in the inventory"
 		$InvMsgTimer.start()
 
-
 func _on_inv_msg_timer_timeout():
 	$InvMsg.text = ""
+
+func take_hit():
+	pass

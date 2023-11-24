@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpuj6pna8wql5" path="res://Spawns/KeySpawn/KeySpawnArea.tscn" id="4_cvlpm"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="5_20ukx"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="6_o76rf"]
+[ext_resource type="PackedScene" path="res://World/Collectables/CrossowrdCollectable.tscn" id="7_4bu5o"]
 [ext_resource type="PackedScene" uid="uid://bpd0uag66yheq" path="res://World/Collectables/CrossowrdCollectable.tscn" id="7_4bu5o"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="7_cgt78"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="8_jpcbj"]
@@ -18,6 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="8_jpcbj"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://Button.tscn" id="9_oxikp"]
 [ext_resource type="PackedScene" path="res://World/door.tscn" id="8_jpcbj"]
+[ext_resource type="Resource" uid="uid://tusbw6pgmqj3" path="res://Inventory/Items/Egg.tres" id="8_vpqts"]
+[ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="9_1n6pv"]
+[ext_resource type="Resource" path="res://Inventory/Items/Crossword.tres" id="10_mm4de"]
+[ext_resource type="PackedScene" path="res://World/Collectables/BarrelCollectable.tscn" id="11_p4exu"]
+[ext_resource type="Resource" path="res://Inventory/Items/Barrel.tres" id="12_e77tg"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
