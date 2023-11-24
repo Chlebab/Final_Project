@@ -1,3 +1,50 @@
-[gd_scene format=3 uid="uid://cpch7j6nx7wg4"]
+[gd_scene load_steps=5 format=3 uid="uid://cpch7j6nx7wg4"]
+
+[ext_resource type="Script" path="res://Enemies/Skeleton/Skeleton.gd" id="1_b7a5b"]
+[ext_resource type="Texture2D" uid="uid://h3ns5q7o36kg" path="res://Enemies/Skeleton/Assets/Skeleton_Warrior.png" id="1_frj5f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gci3s"]
+custom_solver_bias = 1.0
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08g0e"]
+radius = 242.297
 
 [node name="Skeleton" type="CharacterBody2D"]
+script = ExtResource("1_b7a5b")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_frj5f")
+hframes = 4
+vframes = 18
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_gci3s")
+
+[node name="DetectionZones" type="Node2D" parent="."]
+visible = false
+
+[node name="ChaseArea" type="Area2D" parent="DetectionZones"]
+
+[node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
+shape = SubResource("CircleShape2D_08g0e")
+
+[node name="DetectionRays" type="Node2D" parent="DetectionZones" groups=["Living"]]
+rotation = -3.14159
+
+[node name="RayCast2D" type="RayCast2D" parent="DetectionZones/DetectionRays"]
+target_position = Vector2(0, -199)
+
+[node name="RayCast2D2" type="RayCast2D" parent="DetectionZones/DetectionRays"]
+target_position = Vector2(-99, -198)
+
+[node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
+target_position = Vector2(100, -199)

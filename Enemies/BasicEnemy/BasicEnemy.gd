@@ -6,13 +6,21 @@ signal clear_inventory
 var chase_speed = 50
 var return_speed = 40
 var patrol_speed = 40
+
 var previous_frame_position
 var detection_position
+
 var patroller
 var patrolling
+
 var player_target
 var pathfinding
 var eggseeking
+
+var facing_up
+var facing_down
+var facing_right
+var facing_left
 
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
@@ -65,15 +73,15 @@ func move_towards(target_vector, speed):
 	move_and_slide()
 
 func animate_movement(direction):
-#	if direction.x > 0.7:
-#		$AnimationPlayer.play("running_right")
-#	elif direction.x < -0.7:
-#		$AnimationPlayer.play("running_left")
-#	elif direction.y > 0:
-#		$AnimationPlayer.play("running_down")
-#	else:
-#		$AnimationPlayer.play("running_up")
-	pass
+	if direction.x > 0.7:
+		$AnimationPlayer.play("run_right")
+	elif direction.x < -0.7:
+		$Sprite2D.flip_h = true
+		$AnimationPlayer.play("run_right")
+	elif direction.y > 0:
+		$AnimationPlayer.play("run_down")
+	else:
+		$AnimationPlayer.play("run_up")
 
 func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
