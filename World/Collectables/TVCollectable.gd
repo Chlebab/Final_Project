@@ -12,3 +12,6 @@ func _on_interaction_area_body_entered(body):
 
 func playercollect():
 	player.collect(item)
+	
+	
+

@@ -6,13 +6,21 @@ signal clear_inventory
 var chase_speed = 50
 var return_speed = 40
 var patrol_speed = 40
+
 var previous_frame_position
 var detection_position
+
 var patroller
 var patrolling
+
 var player_target
 var pathfinding
 var eggseeking
+
+var facing_up
+var facing_down
+var facing_right
+var facing_left
 
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
@@ -48,9 +56,14 @@ func _physics_process(delta):
 		previous_frame_position = global_position
 
 func _process(_delta):
-	for ray in detection_rays.get_children():
-		if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
-			on_player_detection(ray.get_collider())
+	if !player_target:
+		for ray in detection_rays.get_children():
+			if ray.is_colliding() and ray.get_collider().is_in_group("Player"):
+				on_player_detection(ray.get_collider())
+				$AudioStreamPlayer2D.play()
+				$DetectionLabel.visible = true
+				await get_tree().create_timer(0.7).timeout
+				$DetectionLabel.visible = false
 
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position).normalized()
@@ -59,15 +72,16 @@ func move_towards(target_vector, speed):
 	move_detection_cone(-velocity)
 	move_and_slide()
 
-func animate_movement(velocity):
-	if velocity.x > 0.7:
-		$AnimationPlayer.play("running_right")
-	elif velocity.x < -0.7:
-		$AnimationPlayer.play("running_left")
-	elif velocity.y > 0:
-		$AnimationPlayer.play("running_down")
+func animate_movement(direction):
+	if direction.x > 0.7:
+		$AnimationPlayer.play("run_right")
+	elif direction.x < -0.7:
+		$Sprite2D.flip_h = true
+		$AnimationPlayer.play("run_right")
+	elif direction.y > 0:
+		$AnimationPlayer.play("run_down")
 	else:
-		$AnimationPlayer.play("running_up")
+		$AnimationPlayer.play("run_up")
 
 func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
