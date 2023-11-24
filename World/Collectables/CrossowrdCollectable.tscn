@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpd0uag66yheq"]
+
+[ext_resource type="Script" path="res://World/Collectables/CrossowrdCollectable.gd" id="1_1sst3"]
+[ext_resource type="Texture2D" uid="uid://btttksgq7nq3l" path="res://World/Assets/Jack_invSlot.png" id="2_roxy8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjky8"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgy5l"]
+radius = 80.0999
+
+[node name="CrosswordCollectable" type="StaticBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_1sst3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_roxy8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rjky8")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_tgy5l")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

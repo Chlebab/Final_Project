@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://hnkgm231lhyr"]
+
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="1_meutm"]
+[ext_resource type="Texture2D" uid="uid://cewsf2dub7co4" path="res://World/Assets/CrosswordSlotPNG.png" id="2_yo3d7"]
+
+[resource]
+script = ExtResource("1_meutm")
+name = "Crossword"
+texture = ExtResource("2_yo3d7")
+points = 55

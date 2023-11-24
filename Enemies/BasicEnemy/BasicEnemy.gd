@@ -6,13 +6,21 @@ signal clear_inventory
 var chase_speed = 50
 var return_speed = 40
 var patrol_speed = 40
+
 var previous_frame_position
 var detection_position
+
 var patroller
 var patrolling
+
 var player_target
 var pathfinding
 var eggseeking
+
+var facing_up
+var facing_down
+var facing_right
+var facing_left
 
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
@@ -66,13 +74,14 @@ func move_towards(target_vector, speed):
 
 func animate_movement(direction):
 	if direction.x > 0.7:
-		$AnimationPlayer.play("running_right")
+		$AnimationPlayer.play("run_right")
 	elif direction.x < -0.7:
-		$AnimationPlayer.play("running_left")
+		$Sprite2D.flip_h = true
+		$AnimationPlayer.play("run_right")
 	elif direction.y > 0:
-		$AnimationPlayer.play("running_down")
+		$AnimationPlayer.play("run_down")
 	else:
-		$AnimationPlayer.play("running_up")
+		$AnimationPlayer.play("run_up")
 
 func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
@@ -93,7 +102,14 @@ func on_egg_detection(egg_position):
 			detection_position = global_position
 		navigation_agent.set_target_position(egg_position)
 		eggseeking = true
-
+	
+func on_crossword_detection():
+	if !player_target:
+		if patroller:
+			patrolling = false
+		await get_tree().create_timer(15.0).timeout
+		patrolling = true
+	
 func _on_detection_area_body_exited(body):
 	if body.name == "Player" and player_target:
 		return_to_path()

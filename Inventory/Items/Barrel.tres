@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://djap6qyjm3kpf"]
+
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="1_cg6df"]
+[ext_resource type="Texture2D" uid="uid://cggq1xtsggk48" path="res://World/Assets/barrel.png" id="2_jsh5r"]
+
+[resource]
+script = ExtResource("1_cg6df")
+name = "Barrel"
+texture = ExtResource("2_jsh5r")
+points = 120
