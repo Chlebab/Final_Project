@@ -1,7 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt58u2bh8d2pn"]
+[gd_scene load_steps=20 format=3 uid="uid://bt58u2bh8d2pn"]
 
 [ext_resource type="Script" path="res://Menus/intro.gd" id="1_fiqes"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_nocqk"]
+[ext_resource type="Texture2D" uid="uid://c06w25gljupyj" path="res://Player/Assets/PlayerSpriteSheet.png" id="3_5btre"]
+[ext_resource type="Texture2D" uid="uid://h3ns5q7o36kg" path="res://Enemies/Skeleton/Assets/Skeleton_Warrior.png" id="4_w24g0"]
+
+[sub_resource type="Animation" id="Animation_mro3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qjw0n"]
 resource_name = "fade"
@@ -17,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mro3v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_opuwe"]
@@ -50,12 +52,88 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_3y46d"]
+resource_name = "player"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_niyj2"]
 _data = {
 "RESET": SubResource("Animation_mro3v"),
 "fade": SubResource("Animation_qjw0n"),
-"fadeout": SubResource("Animation_opuwe")
+"fadeout": SubResource("Animation_opuwe"),
+"player": SubResource("Animation_3y46d")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnglq"]
+atlas = ExtResource("3_5btre")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bwxp"]
+atlas = ExtResource("3_5btre")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr8n3"]
+atlas = ExtResource("3_5btre")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jky8"]
+atlas = ExtResource("3_5btre")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hpixq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnglq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bwxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr8n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jky8")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1rbr"]
+atlas = ExtResource("4_w24g0")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff081"]
+atlas = ExtResource("4_w24g0")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_637v1"]
+atlas = ExtResource("4_w24g0")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny6td"]
+atlas = ExtResource("4_w24g0")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bf2dk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1rbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff081")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_637v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny6td")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_fiqes")
@@ -68,14 +146,45 @@ offset_right = 1153.0
 offset_bottom = 645.0
 color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Label" parent="ColorRect"]
-offset_left = 164.0
-offset_top = 306.0
-offset_right = 1004.0
-offset_bottom = 339.0
+[node name="Text" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 190.0
+offset_right = 980.0
+offset_bottom = 452.0
 theme_override_fonts/font = ExtResource("2_nocqk")
 theme_override_font_sizes/font_size = 30
-text = "MBN GAMES PRESENTS...."
+text = "   
+
+
+    MBN GAMES PRESENTS...."
+
+[node name="Text2" type="Label" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 140.0
+offset_top = 190.0
+offset_right = 980.0
+offset_bottom = 452.0
+theme_override_fonts/font = ExtResource("2_nocqk")
+theme_override_font_sizes/font_size = 30
+text = "From the makers of
+'The Recipe app' 
+& 
+'The Weather app'..."
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="ColorRect"]
+visible = false
+custom_minimum_size = Vector2(900, 200)
+layout_mode = 0
+offset_left = 228.0
+offset_top = 218.0
+offset_right = 1128.0
+offset_bottom = 418.0
+theme_override_fonts/font = ExtResource("2_nocqk")
+theme_override_font_sizes/font_size = 60
+text = "DUNGEON RUN"
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 layout_mode = 0
@@ -89,3 +198,16 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_niyj2")
 }
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-43, 358)
+scale = Vector2(7.46875, 6.46875)
+sprite_frames = SubResource("SpriteFrames_hpixq")
+animation = &"Run"
+
+[node name="Enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(-181, 350)
+scale = Vector2(8.34375, 7.88281)
+sprite_frames = SubResource("SpriteFrames_bf2dk")
+animation = &"Run"
