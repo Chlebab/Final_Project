@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=26 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://3r02ctfsuix4" path="res://Enemies/BasicEnemy/Assets/GoblinRogue.png" id="2_pb3nx"]
@@ -34,22 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [48, 49, 50, 51]
-}
-
-[sub_resource type="Animation" id="Animation_sxpmt"]
-resource_name = "attack_left"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [52, 53, 54, 55]
 }
 
 [sub_resource type="Animation" id="Animation_4yrnc"]
@@ -116,22 +100,6 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1rbrv"]
-resource_name = "death_left"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [40, 41, 42]
-}
-
 [sub_resource type="Animation" id="Animation_72847"]
 resource_name = "death_right"
 length = 0.8
@@ -178,22 +146,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [24, 25]
-}
-
-[sub_resource type="Animation" id="Animation_bl4b6"]
-resource_name = "hit_left"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [28, 29]
 }
 
 [sub_resource type="Animation" id="Animation_3xkxw"]
@@ -243,23 +195,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_vpwyk"]
-resource_name = "idle_left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_4joom"]
@@ -312,25 +247,9 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_5m2q5"]
-resource_name = "run_left"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [16, 17, 18, 19]
-}
-
 [sub_resource type="Animation" id="Animation_vjhpo"]
 resource_name = "run_right"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -365,24 +284,19 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_ojffr"),
 "attack_down": SubResource("Animation_02sm1"),
-"attack_left": SubResource("Animation_sxpmt"),
 "attack_right": SubResource("Animation_4yrnc"),
 "attack_up": SubResource("Animation_ic1ih"),
 "death_down": SubResource("Animation_of40e"),
 "death_fade": SubResource("Animation_oi04a"),
-"death_left": SubResource("Animation_1rbrv"),
 "death_right": SubResource("Animation_72847"),
 "death_up": SubResource("Animation_7i8pc"),
 "hit_down": SubResource("Animation_afa7c"),
-"hit_left": SubResource("Animation_bl4b6"),
 "hit_right": SubResource("Animation_3xkxw"),
 "hit_up": SubResource("Animation_w3wj0"),
 "idle_down": SubResource("Animation_a8l27"),
-"idle_left": SubResource("Animation_vpwyk"),
 "idle_right": SubResource("Animation_4joom"),
 "idle_up": SubResource("Animation_wevvn"),
 "run_down": SubResource("Animation_ikfkf"),
-"run_left": SubResource("Animation_5m2q5"),
 "run_right": SubResource("Animation_vjhpo"),
 "run_up": SubResource("Animation_lole7")
 }
@@ -395,9 +309,6 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
 radius = 236.104
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cgdg5"]
-radius = 20.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_h6ass"]
 radius = 9.05539
 
@@ -407,7 +318,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_g6vn1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 2
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_pb3nx")
@@ -430,11 +341,6 @@ shape = SubResource("CapsuleShape2D_u455q")
 [node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
 position = Vector2(-5, 3)
 shape = SubResource("CircleShape2D_ch6tb")
-
-[node name="CatchArea" type="Area2D" parent="DetectionZones"]
-
-[node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
-shape = SubResource("CircleShape2D_cgdg5")
 
 [node name="DetectionRays" type="Node2D" parent="DetectionZones"]
 
@@ -474,4 +380,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]

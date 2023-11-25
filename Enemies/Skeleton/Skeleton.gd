@@ -1,50 +1,86 @@
 extends CharacterBody2D
 
-var target
 var speed = 80
 
-@onready var detection_rays = $DetectionZones/DetectionRays
+var attack_damage = 20
+var attacking
+var animating_action = false
+
+var target
+
+enum Direction {UP, DOWN, LEFT, RIGHT}
+var facing = Direction.DOWN
 
 func _physics_process(_delta):
 	if target:
 		if global_position.distance_to(target.global_position) > 20:
 			move_towards(target.global_position)
 		else: 
-			attack()
-			if target.health <= 0:
-				target = null
-
-func _process(_delta):
-	if !target:
-		for ray in detection_rays.get_children():
-			if ray.is_colliding() and ray.get_collider().is_in_group("Living"):
-				on_target_detection(ray.get_collider())
+			if !attacking:
+				attacking = true
+				attack()
+				if target.health <= 0:
+					target = null
+					velocity = Vector2(0,0)
+				await get_tree().create_timer(1.0).timeout
+				attacking = false
+	if !animating_action:
+		if velocity:
+			animate_movement("run")
+		else:
+			animate_movement("idle")
 
 func move_towards(target_vector):
 	var direction = (target_vector - global_position).normalized()
-	animate_movement(direction)
 	velocity = direction * speed
-	move_detection_cone(-velocity)
+	adjust_direction(direction)
 	move_and_slide()
 
-func animate_movement(direction):
-#	if direction.x > 0.7:
-#		$AnimationPlayer.play("running_right")
-#	elif direction.x < -0.7:
-#		$AnimationPlayer.play("running_left")
-#	elif direction.y > 0:
-#		$AnimationPlayer.play("running_down")
-#	else:
-#		$AnimationPlayer.play("running_up")
-	pass
+func adjust_direction(direction):
+	if direction.x > 0.7:
+		facing = Direction.RIGHT
+	if direction.x < -0.7:
+		facing = Direction.LEFT
+	if direction.y < -0.7:
+		facing = Direction.UP
+	if direction.y > 0.7:
+		facing = Direction.DOWN
 
-func move_detection_cone(input_velocity):
-#	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
-	pass
+func animate_movement(state):
+	if facing == Direction.RIGHT:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(state + "_right")
+	if facing == Direction.LEFT:
+		$Sprite2D.flip_h = true
+		$AnimationPlayer.play(state + "_right")
+	if facing == Direction.DOWN:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(state + "_down")
+	if facing == Direction.UP:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(state + "_up")
 
-func on_target_detection(body):
-	target = body
+func animate_action(action):
+	animating_action = true
+	if facing == Direction.RIGHT:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(action + "_right")
+	if facing == Direction.LEFT:
+		$Sprite2D.flip_h = true
+		$AnimationPlayer.play(action + "_left")
+	if facing == Direction.DOWN:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(action + "_down")
+	if facing == Direction.UP:
+		$Sprite2D.flip_h = false
+		$AnimationPlayer.play(action + "_up")
+	await $AnimationPlayer.animation_finished
+	animating_action = false
+
+func _on_target_detection(body):
+	if body.is_in_group("Living"):
+		target = body
 
 func attack():
-#	$AnimationPlayer.play("attack")
-	target.take_hit()
+	animate_action("attack")
+	target.take_hit(attack_damage, self)

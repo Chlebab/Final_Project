@@ -7,18 +7,18 @@ extends CharacterBody2D
 var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
-enum Direction{UP, DOWN, LEFT, RIGHT}
-var direction_facing = Direction.DOWN
+enum Direction {UP, DOWN, LEFT, RIGHT}
+var facing = Direction.UP
 
-var health = 1000
+var alive = true
+var health = 20
 
 signal update_slots
-
 
 func _ready():
 	display_points()
 	$BarrelSprite.visible = false
-	
+
 func _physics_process(_delta):
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
@@ -32,34 +32,38 @@ func _process(_delta):
 	if Input.is_action_just_pressed("r"):
 		use_egg_item()
 	elif Input.is_action_just_pressed("f"):
-		use_crossword_item()	
+		use_crossword_item()
 	elif Input.is_action_just_pressed("b"):
-		use_barrel_item()	
-	animate_movement()
+		use_barrel_item()
+	if alive:
+		if velocity:
+			animate("run")
+		else:
+			animate("idle")
 
 func adjust_direction(direction):
 	if direction.x > 0.7:
-		direction_facing = Direction.RIGHT
+		facing = Direction.RIGHT
 	if direction.x < -0.7:
-		direction_facing = Direction.LEFT
+		facing = Direction.LEFT
 	if direction.y < -0.7:
-		direction_facing = Direction.UP
+		facing = Direction.UP
 	if direction.y > 0.7:
-		direction_facing = Direction.DOWN
+		facing = Direction.DOWN
 
-func animate_movement():
-	if direction_facing == Direction.RIGHT:
+func animate(state):
+	if facing == Direction.RIGHT:
 		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_right")
-	if direction_facing == Direction.LEFT:
+		$AnimationPlayer.play(state + "_right")
+	if facing == Direction.LEFT:
 		$Sprite2D.flip_h = true
-		$AnimationPlayer.play("run_right")
-	if direction_facing == Direction.DOWN:
+		$AnimationPlayer.play(state + "_right")
+	if facing == Direction.DOWN:
 		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_down")
-	if direction_facing == Direction.UP:
+		$AnimationPlayer.play(state + "_down")
+	if facing == Direction.UP:
 		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_up")
+		$AnimationPlayer.play(state + "_up")
 
 func player():
 	pass
@@ -160,5 +164,8 @@ func use_barrel_item():
 func _on_inv_msg_timer_timeout():
 	$InvMsg.text = ""
 
-func take_hit():
-	pass
+func take_hit(damage, _attacker):
+	health -= damage
+	if health <= 0:
+		alive = false
+		animate("die")
