@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://scv8prq38wyf"]
+[gd_scene load_steps=18 format=3 uid="uid://scv8prq38wyf"]
 
 [ext_resource type="Script" path="res://Levels/DungeonLevel.gd" id="1_l2nxt"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_8j332"]
 [ext_resource type="PackedScene" uid="uid://docs7khtrm4pa" path="res://Spawns/EnemySpawn/EnemySpawnArea.tscn" id="3_4tsks"]
+[ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="3_qyd6i"]
 [ext_resource type="PackedScene" uid="uid://cpuj6pna8wql5" path="res://Spawns/KeySpawn/KeySpawnArea.tscn" id="4_3cstr"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="5_lq1ac"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="6_14ac0"]
@@ -27,6 +28,7 @@ script = ExtResource("1_l2nxt")
 
 [node name="Dungeon" parent="." instance=ExtResource("2_8j332")]
 position = Vector2(-323, 263)
+tile_set = ExtResource("3_qyd6i")
 
 [node name="SpawnArea" parent="." instance=ExtResource("3_4tsks")]
 position = Vector2(94, 307)

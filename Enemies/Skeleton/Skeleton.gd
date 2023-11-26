@@ -13,11 +13,11 @@ var facing = Direction.DOWN
 @onready var animate = $AnimationPlayer
 
 func _physics_process(_delta):
-	if target:
+	if target and !attacking:
 		if global_position.distance_to(target.global_position) > 20:
 			move_towards(target.global_position)
-		if !attacking:
-			attack()
+#		else:
+#			attack()
 		animate.movement("run")
 	else:
 		animate.movement("idle")
@@ -50,7 +50,8 @@ func attack():
 	attacking = false
 
 func die():
-	animate.action("death")
+	animate.action("die")
+	$CollisionShape2D.disabled = true
 	await get_tree().create_timer(1.0).timeout
 	$AnimationPlayer.play("death_fade")
 	queue_free()

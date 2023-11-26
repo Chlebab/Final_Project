@@ -32,10 +32,10 @@ func _ready():
 		previous_frame_position = global_position
 
 func _physics_process(delta):
-	if target:
+	if target and !attacking:
 		if global_position.distance_to(target.global_position) > 20:
 			move_towards(target.global_position, chase_speed)
-		elif !attacking:
+		else:
 			attack()
 	if pathfinding:
 		move_towards(navigation_agent.get_next_path_position(), return_speed)
@@ -124,6 +124,7 @@ func attack():
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
 		target = null
+		return_to_path()
 	await get_tree().create_timer(1.0).timeout
 	attacking = false
 
@@ -136,16 +137,7 @@ func take_hit(damage, attacker):
 
 func die():
 	animate.action("death")
+	$CollisionShape2D.disabled = true
 	await get_tree().create_timer(1.0).timeout
 	$AnimationPlayer.play("death_fade")
 	queue_free()
-
-#func _on_player_caught(body):
-#	if body.name == "Player":
-#		body.position = body.spawn_point
-#		player_target = null
-#		if patroller:
-#			spawn_point = get_parent().global_position
-#			patrolling = true
-#		global_position = spawn_point
-#		clear_inventory.emit()

@@ -47,4 +47,5 @@ func action(action):
 		sprite.flip_h = false
 		play(action + "_up")
 	await animation_finished
-	animating_action = false
+	if action != "die":
+		animating_action = false

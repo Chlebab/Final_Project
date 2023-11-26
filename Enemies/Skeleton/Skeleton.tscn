@@ -365,7 +365,6 @@ libraries = {
 script = ExtResource("3_xssxy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_gci3s")
 
 [node name="DetectionZones" type="Node2D" parent="."]

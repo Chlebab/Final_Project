@@ -142,5 +142,9 @@ func _on_inv_msg_timer_timeout():
 func take_hit(damage, _attacker):
 	health -= damage
 	if health <= 0:
-		alive = false
-		animate.action("die")
+		die()
+
+func die():
+	alive = false
+	$CollisionShape2D.disabled = true
+	animate.action("die")
