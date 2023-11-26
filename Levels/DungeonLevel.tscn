@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://scv8prq38wyf"]
+[gd_scene load_steps=17 format=3 uid="uid://scv8prq38wyf"]
 
 [ext_resource type="Script" path="res://Levels/DungeonLevel.gd" id="1_l2nxt"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_8j332"]
@@ -13,9 +13,8 @@
 [ext_resource type="Resource" uid="uid://hnkgm231lhyr" path="res://Inventory/Items/Crossword.tres" id="11_figyh"]
 [ext_resource type="PackedScene" uid="uid://bxhich5rynnbb" path="res://World/Collectables/BarrelCollectable.tscn" id="12_ibwva"]
 [ext_resource type="Resource" uid="uid://djap6qyjm3kpf" path="res://Inventory/Items/Barrel.tres" id="13_uyb2b"]
-[ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="14_joeva"]
+[ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="14_joeva"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://World/Interactables/Button.tscn" id="15_tqwa1"]
-[ext_resource type="PackedScene" uid="uid://b870y5m2pcfpr" path="res://World/ButtonedDoor.tscn" id="16_i2t53"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
@@ -71,11 +70,5 @@ position = Vector2(136, 81)
 [node name="Door2" parent="." instance=ExtResource("14_joeva")]
 position = Vector2(438, 62)
 
-[node name="Node2D" parent="." instance=ExtResource("15_tqwa1")]
-position = Vector2(188, 792)
-
-[node name="Door3" parent="." instance=ExtResource("16_i2t53")]
-position = Vector2(217, 875)
-
 [connection signal="open_door" from="Button" to="Door2" method="open_door"]
-[connection signal="open_door" from="Node2D" to="Door3" method="open_door"]
+[connection signal="toggle_door" from="Button" to="Door2" method="toggle_door"]

@@ -31,4 +31,10 @@ func close_door():
 		self.collision_layer = 1
 		self.collision_mask = 1
 		open = false
+		
+func toggle_door():
+	if $Open.visible:
+		close_door()
+	else:
+		open_door()
 
