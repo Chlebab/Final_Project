@@ -11,7 +11,7 @@ var attack_damage = 20
 var alive = true
 
 var previous_frame_position # these two variables are to record the direction of 
-var detection_position # movement while patrolling in order to adjust the enemy's vision
+var detection_position      # movement while patrolling in order to adjust the direction of vision
 
 var patroller
 var patrolling
@@ -36,8 +36,7 @@ func _ready():
 func _physics_process(delta):
 	if alive:
 		if pursuing_target and !attacking:
-			if target.global_position.distance_to(navigator.target_position) > 40:
-				navigator.set_target_position(target.global_position)
+			update_path_to_target()
 			if global_position.distance_to(target.global_position) > 20:
 				move_towards(navigator.get_next_path_position(), chase_speed)
 			else:
@@ -79,6 +78,10 @@ func alert():
 	$DetectionLabel.visible = true
 	await get_tree().create_timer(0.7).timeout
 	$DetectionLabel.visible = false
+
+func update_path_to_target():
+	if navigator.target_position.distance_to(target.global_position) > 40:
+		navigator.set_target_position(target.global_position)
 
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position).normalized()
@@ -130,6 +133,7 @@ func return_to_path():
 
 func attack():
 	attacking = true
+	animate.adjust_direction(target.global_position - global_position)
 	animate.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)

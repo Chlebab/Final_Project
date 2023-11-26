@@ -10,7 +10,9 @@ var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
 var alive = true
+var lives_remaining = 3
 var health = 40
+var previous_checkpoint
 
 signal update_slots
 
@@ -27,6 +29,10 @@ func _physics_process(_delta):
 		velocity = velocity.normalized() * speed
 		animate.adjust_direction(velocity)
 		move_and_slide()
+	elif lives_remaining > 0:
+		respawn()
+#	else:
+#		game_over()
 
 func _process(_delta):
 	if alive:
@@ -151,4 +157,12 @@ func take_hit(damage, _attacker):
 func die():
 	alive = false
 	$CollisionShape2D.disabled = true
+	lives_remaining -= 1
 	animate.action("die")
+
+func respawn():
+	await get_tree().create_timer(3.0).timeout
+	global_position = previous_checkpoint
+	alive = true
+	$CollisionShape2D.disabled = false
+	animate.animating_action = false

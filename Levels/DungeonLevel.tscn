@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://scv8prq38wyf"]
+[gd_scene load_steps=19 format=3 uid="uid://scv8prq38wyf"]
 
 [ext_resource type="Script" path="res://Levels/DungeonLevel.gd" id="1_l2nxt"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_8j332"]
@@ -15,6 +15,8 @@
 [ext_resource type="Resource" path="res://Inventory/Items/Barrel.tres" id="13_uyb2b"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="14_joeva"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://World/Interactables/Button.tscn" id="15_tqwa1"]
+[ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="16_5osfe"]
+[ext_resource type="AudioStream" uid="uid://q5ql16ow6084" path="res://World/Assets/Sounds/Music/Music.wav" id="17_wpu2r"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
@@ -26,6 +28,7 @@ point_count = 8
 script = ExtResource("1_l2nxt")
 
 [node name="Dungeon" parent="." instance=ExtResource("2_8j332")]
+texture_filter = 1
 position = Vector2(-323, 263)
 
 [node name="SpawnArea" parent="." instance=ExtResource("3_4tsks")]
@@ -35,7 +38,7 @@ position = Vector2(94, 307)
 position = Vector2(315, 307)
 
 [node name="Player" parent="." instance=ExtResource("5_lq1ac")]
-position = Vector2(209, 741)
+position = Vector2(208, 849)
 
 [node name="Pause2" parent="Player" instance=ExtResource("6_14ac0")]
 visible = false
@@ -62,6 +65,7 @@ position = Vector2(218, 716)
 item = ExtResource("13_uyb2b")
 
 [node name="Door" parent="." instance=ExtResource("14_joeva")]
+z_index = -1
 position = Vector2(214, 269)
 
 [node name="Button" parent="." instance=ExtResource("15_tqwa1")]
@@ -69,5 +73,11 @@ position = Vector2(136, 81)
 
 [node name="Door2" parent="." instance=ExtResource("14_joeva")]
 position = Vector2(438, 62)
+
+[node name="Checkpoint" parent="." instance=ExtResource("16_5osfe")]
+position = Vector2(202, 727)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_wpu2r")
 
 [connection signal="open_door" from="Button" to="Door2" method="open_door"]

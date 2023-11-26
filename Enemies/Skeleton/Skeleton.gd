@@ -48,13 +48,14 @@ func take_hit(damage, attacker):
 
 func attack():
 	attacking = true
+	animate.adjust_direction(target.global_position - global_position)
 	animate.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
 		target = false
 		velocity = Vector2(0,0)
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.8).timeout
 	attacking = false
 
 func die():

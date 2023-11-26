@@ -281,15 +281,6 @@ size = Vector2(10, 15)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iqnnq"]
 
-[sub_resource type="Gradient" id="Gradient_81oor"]
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3a26m"]
-gradient = SubResource("Gradient_81oor")
-fill_from = Vector2(0.4, 0.4)
-fill_to = Vector2(1, 1)
-metadata/_snap_enabled = true
-
 [sub_resource type="Gradient" id="Gradient_i25qj"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -298,6 +289,15 @@ gradient = SubResource("Gradient_i25qj")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.761468, 0.288991)
+
+[sub_resource type="Gradient" id="Gradient_b8w5u"]
+offsets = PackedFloat32Array(0, 0.693069)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fidbd"]
+gradient = SubResource("Gradient_b8w5u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D" groups=["Enemy of Goblins", "Living", "Player"]]
 collision_layer = 2
@@ -378,22 +378,17 @@ label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Flashlight" type="PointLight2D" parent="."]
-visible = false
-modulate = Color(0.25098, 0.27451, 0.168627, 1)
-skew = -0.733038
-range_layer_min = -512
-range_layer_max = 512
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.0509804)
-texture = SubResource("GradientTexture2D_3a26m")
-offset = Vector2(-213.753, -213.772)
-texture_scale = 6.68
-
 [node name="Torch" type="PointLight2D" parent="."]
-shadow_enabled = true
+energy = 0.8
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 10.0
+
+[node name="ShadowCaster" type="PointLight2D" parent="."]
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.733333)
+texture = SubResource("GradientTexture2D_fidbd")
+texture_scale = 20.23
 
 [node name="Fullscreen" parent="." instance=ExtResource("7_tao8p")]
 z_index = 100
