@@ -157,7 +157,7 @@ theme_override_font_sizes/font_size = 30
 text = "   
 
 
-    MBN GAMES PRESENTS...."
+    CODECLAN GAMES PRESENTS...."
 
 [node name="Text2" type="Label" parent="ColorRect"]
 visible = false
@@ -169,9 +169,9 @@ offset_bottom = 452.0
 theme_override_fonts/font = ExtResource("2_nocqk")
 theme_override_font_sizes/font_size = 30
 text = "From the makers of
-'The Recipe app' 
+'THE RECIPE APP' 
 & 
-'The Weather app'..."
+'THE WEATHER APP'..."
 horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="ColorRect"]
