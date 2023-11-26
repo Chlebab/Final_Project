@@ -10,8 +10,8 @@
 size = Vector2(56, 18)
 
 [node name="key_collectable" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_pm4ms")
 item = ExtResource("2_qk3wo")
 metadata/_edit_group_ = true
@@ -26,6 +26,8 @@ texture = ExtResource("2_ke286")
 shape = SubResource("RectangleShape2D_ggpu0")
 
 [node name="interaction_area" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
 shape = SubResource("RectangleShape2D_6kt02")

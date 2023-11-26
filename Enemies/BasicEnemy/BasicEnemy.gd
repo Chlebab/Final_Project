@@ -19,11 +19,12 @@ var patrolling
 var target
 var pathfinding
 var eggseeking
+var pursuing_target
 var attacking
 
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
-@onready var navigation_agent = $NavigationAgent2D
+@onready var navigator = $NavigationAgent2D
 @onready var animate = $AnimationPlayer
 
 func _ready():
@@ -34,19 +35,21 @@ func _ready():
 
 func _physics_process(delta):
 	if alive:
-		if target and !attacking:
+		if pursuing_target and !attacking:
+			if target.global_position.distance_to(navigator.target_position) > 40:
+				navigator.set_target_position(target.global_position)
 			if global_position.distance_to(target.global_position) > 20:
-				move_towards(target.global_position, chase_speed)
+				move_towards(navigator.get_next_path_position(), chase_speed)
 			else:
 				attack()
 		if pathfinding:
-			move_towards(navigation_agent.get_next_path_position(), return_speed)
-			if global_position.distance_to(navigation_agent.target_position) < 1:
+			move_towards(navigator.get_next_path_position(), return_speed)
+			if global_position.distance_to(navigator.target_position) < 1:
 				pathfinding = false
 				if patroller: patrolling = true
 		if eggseeking:
-			move_towards(navigation_agent.get_next_path_position(), chase_speed)
-			if global_position.distance_to(navigation_agent.target_position) < 30:
+			move_towards(navigator.get_next_path_position(), chase_speed)
+			if global_position.distance_to(navigator.target_position) < 30:
 				eggseeking = false
 				await get_tree().create_timer(10.0).timeout
 				return_to_path()
@@ -94,14 +97,15 @@ func on_target_detection(new_target):
 	pathfinding = false
 	eggseeking = false
 	target = new_target
-	print(target)
+	navigator.set_target_position(target.global_position)
+	pursuing_target = true
 
 func on_egg_detection(egg_position):
 	if !target:
 		if patroller: 
 			patrolling = false
 			detection_position = global_position
-		navigation_agent.set_target_position(egg_position)
+		navigator.set_target_position(egg_position)
 		eggseeking = true
 	
 func on_crossword_detection():
@@ -115,12 +119,13 @@ func _on_detection_area_body_exited(body):
 	if body == target:
 		return_to_path()
 		target = null
+		pursuing_target = false
 
 func return_to_path():
 	if patroller: 
-		navigation_agent.set_target_position(detection_position)
+		navigator.set_target_position(detection_position)
 	else:
-		navigation_agent.set_target_position(spawn_point)
+		navigator.set_target_position(spawn_point)
 	pathfinding = true
 
 func attack():
@@ -130,6 +135,7 @@ func attack():
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
 		target = null
+		pursuing_target = false
 		return_to_path()
 	await get_tree().create_timer(1.0).timeout
 	attacking = false

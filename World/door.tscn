@@ -104,6 +104,7 @@ physics_material_override = SubResource("PhysicsMaterial_8u5lt")
 script = ExtResource("1_jverq")
 
 [node name="DoorArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
 scale = Vector2(1.36, 1.76)

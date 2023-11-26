@@ -403,4 +403,6 @@ shape = SubResource("CircleShape2D_08g0e")
 [node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1en2o")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="body_entered" from="DetectionZones/DetectionArea" to="." method="_on_target_detection"]

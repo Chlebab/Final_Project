@@ -3,20 +3,22 @@ extends CharacterBody2D
 var speed = 80
 var health = 60
 var attack_damage = 20
-var attacking
 var alive = true
 
 var target
+var attacking
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
 var facing = Direction.DOWN
 
 @onready var animate = $AnimationPlayer
-@onready var dead_skeleton = preload("res://Enemies/Skeleton/SkeletonDead.tscn")
+@onready var navigator = $NavigationAgent2D
 
 func _physics_process(_delta):
 	if alive:
 		if target and !attacking:
+			if target.global_position.distance_to(navigator.target_position) > 40:
+				navigator.set_target_position(target.global_position)
 			if global_position.distance_to(target.global_position) > 20:
 				move_towards(target.global_position)
 			else:
@@ -34,6 +36,7 @@ func move_towards(target_vector):
 func _on_target_detection(body):
 	if body.is_in_group("Living") and body.alive:
 		target = body
+		navigator.set_target_position(target.global_position)
 
 func take_hit(damage, attacker):
 	health -= damage
@@ -58,7 +61,5 @@ func die():
 	animate.action("die")
 	alive = false
 	$CollisionShape2D.disabled = true
-	velocity = Vector2(0, 0)
 	await get_tree().create_timer(1.0).timeout
-	$AnimationPlayer.play("death_fade")
-
+#	$AnimationPlayer.play("death_fade") TO-DO
