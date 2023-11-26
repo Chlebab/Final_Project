@@ -71,11 +71,11 @@ position = Vector2(136, 81)
 [node name="Door2" parent="." instance=ExtResource("14_joeva")]
 position = Vector2(438, 62)
 
-[node name="Door3" parent="." instance=ExtResource("16_i2t53")]
-position = Vector2(79, 641)
-
 [node name="Node2D" parent="." instance=ExtResource("15_tqwa1")]
-position = Vector2(335, 645)
+position = Vector2(188, 792)
+
+[node name="Door3" parent="." instance=ExtResource("16_i2t53")]
+position = Vector2(217, 875)
 
 [connection signal="open_door" from="Button" to="Door2" method="open_door"]
 [connection signal="open_door" from="Node2D" to="Door3" method="open_door"]

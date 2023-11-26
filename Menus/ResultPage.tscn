@@ -26,12 +26,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_6o5ad")
 
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 126.0
+offset_right = 962.0
+offset_bottom = 197.0
+theme_override_fonts/font = ExtResource("1_8bbca")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+
 [node name="Points" type="Label" parent="."]
 layout_mode = 0
-offset_left = 487.0
-offset_top = 239.0
-offset_right = 691.0
-offset_bottom = 310.0
+offset_left = 493.0
+offset_top = 240.0
+offset_right = 697.0
+offset_bottom = 311.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "POINTS"
