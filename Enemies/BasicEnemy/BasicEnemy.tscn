@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=27 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://3r02ctfsuix4" path="res://Enemies/BasicEnemy/Assets/GoblinRogue.png" id="2_pb3nx"]
 [ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/AlertSound.mp3" id="3_t77cy"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="3_uh50b"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="4_w1v81"]
 
 [sub_resource type="Animation" id="Animation_ojffr"]
@@ -330,6 +331,7 @@ speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_vfdim")
 }
+script = ExtResource("3_uh50b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_u455q")

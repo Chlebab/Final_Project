@@ -4,11 +4,10 @@ extends CharacterBody2D
 @export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
 
+@onready var animate = $AnimationPlayer
+
 var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
-
-enum Direction {UP, DOWN, LEFT, RIGHT}
-var facing = Direction.UP
 
 var alive = true
 var health = 20
@@ -25,7 +24,7 @@ func _physics_process(_delta):
 	velocity.x = direction_x
 	velocity.y = direction_y
 	velocity = velocity.normalized() * speed
-	adjust_direction(velocity)
+	animate.adjust_direction(velocity)
 	move_and_slide()
 
 func _process(_delta):
@@ -37,33 +36,9 @@ func _process(_delta):
 		use_barrel_item()
 	if alive:
 		if velocity:
-			animate("run")
+			animate.movement("run")
 		else:
-			animate("idle")
-
-func adjust_direction(direction):
-	if direction.x > 0.7:
-		facing = Direction.RIGHT
-	if direction.x < -0.7:
-		facing = Direction.LEFT
-	if direction.y < -0.7:
-		facing = Direction.UP
-	if direction.y > 0.7:
-		facing = Direction.DOWN
-
-func animate(state):
-	if facing == Direction.RIGHT:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play(state + "_right")
-	if facing == Direction.LEFT:
-		$Sprite2D.flip_h = true
-		$AnimationPlayer.play(state + "_right")
-	if facing == Direction.DOWN:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play(state + "_down")
-	if facing == Direction.UP:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play(state + "_up")
+			animate.movement("idle")
 
 func player():
 	pass
@@ -168,4 +143,4 @@ func take_hit(damage, _attacker):
 	health -= damage
 	if health <= 0:
 		alive = false
-		animate("die")
+		animate.action("die")
