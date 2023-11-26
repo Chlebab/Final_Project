@@ -32,20 +32,20 @@ func movement(state):
 			sprite.flip_h = false
 			play(state + "_up")
 
-func action(action):
+func action(command):
 	animating_action = true
 	if facing == Direction.RIGHT:
 		sprite.flip_h = false
-		play(action + "_right")
+		play(command + "_right")
 	if facing == Direction.LEFT:
 		sprite.flip_h = true
-		play(action + "_right")
+		play(command + "_right")
 	if facing == Direction.DOWN:
 		sprite.flip_h = false
-		play(action + "_down")
+		play(command + "_down")
 	if facing == Direction.UP:
 		sprite.flip_h = false
-		play(action + "_up")
+		play(command + "_up")
 	await animation_finished
-	if action != "die":
+	if command != "die":
 		animating_action = false

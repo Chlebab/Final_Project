@@ -16,8 +16,8 @@ func _physics_process(_delta):
 	if target and !attacking:
 		if global_position.distance_to(target.global_position) > 20:
 			move_towards(target.global_position)
-#		else:
-#			attack()
+		else:
+			attack()
 		animate.movement("run")
 	else:
 		animate.movement("idle")
@@ -34,9 +34,10 @@ func _on_target_detection(body):
 
 func take_hit(damage, attacker):
 	health -= damage
-	animate.action("hit")
-	target = attacker
-	if health <= 0:
+	if health > 0:
+		animate.action("hit")
+		target = attacker
+	else:
 		die()
 
 func attack():

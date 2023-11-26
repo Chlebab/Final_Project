@@ -61,7 +61,7 @@ func _process(_delta):
 		for ray in detection_rays.get_children():
 			if ray.is_colliding() and ray.get_collider().is_in_group("Enemy of Goblins"):
 				on_target_detection(ray.get_collider())
-				alert()
+				if ray.get_collider().is_in_group("Player"): alert()
 	if velocity or patrolling:
 		animate.movement("run")
 	else: 
@@ -90,6 +90,7 @@ func on_target_detection(new_target):
 	pathfinding = false
 	eggseeking = false
 	target = new_target
+	print(target)
 
 func on_egg_detection(egg_position):
 	if !target:
@@ -130,9 +131,10 @@ func attack():
 
 func take_hit(damage, attacker):
 	health -= damage
-	animate.action("hit")
-	on_target_detection(attacker)
-	if health <= 0:
+	if health > 0:
+		animate.action("hit")
+		if target != attacker: on_target_detection(attacker)
+	else: 
 		die()
 
 func die():

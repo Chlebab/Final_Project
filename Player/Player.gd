@@ -141,6 +141,8 @@ func _on_inv_msg_timer_timeout():
 
 func take_hit(damage, _attacker):
 	health -= damage
+	if health > 0:
+		animate.action("hit")
 	if health <= 0:
 		die()
 

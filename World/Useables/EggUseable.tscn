@@ -10,8 +10,8 @@ radius = 7.07107
 radius = 253.237
 
 [node name="EggUseable" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 32
+collision_mask = 32
 script = ExtResource("1_qt7er")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,6 +22,8 @@ texture = ExtResource("3_frnyv")
 shape = SubResource("CircleShape2D_rjky8")
 
 [node name="interaction_area" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
 shape = SubResource("CircleShape2D_pv3vi")
