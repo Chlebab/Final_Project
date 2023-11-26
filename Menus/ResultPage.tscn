@@ -23,36 +23,43 @@ theme_override_font_sizes/font_size = 40
 text = "GAME OVER"
 
 [node name="Points" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 493.0
-offset_top = 240.0
-offset_right = 697.0
-offset_bottom = 311.0
+offset_left = 438.0
+offset_top = 229.0
+offset_right = 642.0
+offset_bottom = 300.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "POINTS"
+horizontal_alignment = 1
 
 [node name="Time" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 487.0
+offset_left = 395.0
 offset_top = 314.0
-offset_right = 697.0
+offset_right = 605.0
 offset_bottom = 347.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "TIME"
+horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 492.0
-offset_top = 392.0
-offset_right = 642.0
-offset_bottom = 425.0
+offset_left = 445.0
+offset_top = 388.0
+offset_right = 595.0
+offset_bottom = 421.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "SCORE"
+horizontal_alignment = 1
 
 [node name="PlayAgain" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 0
 offset_left = 64.0
@@ -64,6 +71,7 @@ theme_override_font_sizes/font_size = 40
 text = "PLAY AGAIN"
 
 [node name="Quit" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 0
 offset_left = 596.0
