@@ -1,13 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3cxq7tpl556e"]
 
-[sub_resource type="TileSet" id="TileSet_f76me"]
-occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
-navigation_layer_0/layers = 1
+[ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="1_3lgwr"]
 
 [node name="Dungeon" type="TileMap"]
 position = Vector2(-415, 250)
-tile_set = SubResource("TileSet_f76me")
+tile_set = ExtResource("1_3lgwr")
 format = 2
 layer_0/name = "Floor"
 layer_0/z_index = -5

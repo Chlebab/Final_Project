@@ -1,8 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://cpch7j6nx7wg4"]
+[gd_scene load_steps=31 format=3 uid="uid://cpch7j6nx7wg4"]
 
 [ext_resource type="Script" path="res://Enemies/Skeleton/Skeleton.gd" id="1_b7a5b"]
 [ext_resource type="Texture2D" uid="uid://h3ns5q7o36kg" path="res://Enemies/Skeleton/Assets/Skeleton_Warrior.png" id="1_frj5f"]
 [ext_resource type="Script" path="res://AnimationPlayer.gd" id="3_xssxy"]
+[ext_resource type="AudioStream" uid="uid://xbsreh1ts26y" path="res://Enemies/Skeleton/Assets/SFX/17_orc_atk_sword_2.wav" id="4_hejxw"]
+[ext_resource type="AudioStream" uid="uid://jtlepykfa6ai" path="res://Enemies/Skeleton/Assets/SFX/17_orc_atk_sword_3.wav" id="5_o1wvb"]
+[ext_resource type="AudioStream" uid="uid://btk521hdrdnyh" path="res://Enemies/Skeleton/Assets/SFX/21_orc_damage_3.wav" id="6_1g4x3"]
 
 [sub_resource type="Animation" id="Animation_4jr1j"]
 length = 0.001
@@ -347,6 +350,16 @@ radius = 200.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_08g0e"]
 radius = 100.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1en2o"]
+streams_count = 3
+random_pitch = 1.2
+stream_0/stream = ExtResource("4_hejxw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_o1wvb")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_1g4x3")
+stream_2/weight = 1.0
+
 [node name="Skeleton" type="CharacterBody2D" groups=["Enemy of Goblins"]]
 collision_layer = 4
 collision_mask = 11
@@ -361,6 +374,7 @@ hframes = 4
 vframes = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 0.75
 libraries = {
 "": SubResource("AnimationLibrary_fegkt")
 }
@@ -372,18 +386,21 @@ shape = SubResource("CapsuleShape2D_gci3s")
 [node name="DetectionZones" type="Node2D" parent="."]
 
 [node name="ChaseArea" type="Area2D" parent="DetectionZones"]
-collision_layer = 4
-collision_mask = 12
+collision_layer = 8
+collision_mask = 6
 
 [node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
 shape = SubResource("CircleShape2D_i0wto")
 
 [node name="DetectionArea" type="Area2D" parent="DetectionZones"]
-collision_layer = 4
-collision_mask = 12
+collision_layer = 8
+collision_mask = 6
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="DetectionZones/DetectionArea"]
 scale = Vector2(0.991524, 1)
 shape = SubResource("CircleShape2D_08g0e")
+
+[node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1en2o")
 
 [connection signal="body_entered" from="DetectionZones/DetectionArea" to="." method="_on_target_detection"]

@@ -8,6 +8,7 @@ var return_speed = 40
 var patrol_speed = 40
 var health = 60
 var attack_damage = 20
+var alive = true
 
 var previous_frame_position # these two variables are to record the direction of 
 var detection_position # movement while patrolling in order to adjust the enemy's vision
@@ -32,43 +33,46 @@ func _ready():
 		previous_frame_position = global_position
 
 func _physics_process(delta):
-	if target and !attacking:
-		if global_position.distance_to(target.global_position) > 20:
-			move_towards(target.global_position, chase_speed)
-		else:
-			attack()
-	if pathfinding:
-		move_towards(navigation_agent.get_next_path_position(), return_speed)
-		if global_position.distance_to(navigation_agent.target_position) < 1:
-			pathfinding = false
-			if patroller: patrolling = true
-	if eggseeking:
-		move_towards(navigation_agent.get_next_path_position(), chase_speed)
-		if global_position.distance_to(navigation_agent.target_position) < 30:
-			eggseeking = false
-			await get_tree().create_timer(10.0).timeout
-			return_to_path()
-	if patrolling:
-		get_parent().progress += delta * patrol_speed
-		var direction = (global_position - previous_frame_position)
-		direction = direction.normalized()
-		animate.adjust_direction(direction)
-		move_detection_cone(-direction)
-		previous_frame_position = global_position
+	if alive:
+		if target and !attacking:
+			if global_position.distance_to(target.global_position) > 20:
+				move_towards(target.global_position, chase_speed)
+			else:
+				attack()
+		if pathfinding:
+			move_towards(navigation_agent.get_next_path_position(), return_speed)
+			if global_position.distance_to(navigation_agent.target_position) < 1:
+				pathfinding = false
+				if patroller: patrolling = true
+		if eggseeking:
+			move_towards(navigation_agent.get_next_path_position(), chase_speed)
+			if global_position.distance_to(navigation_agent.target_position) < 30:
+				eggseeking = false
+				await get_tree().create_timer(10.0).timeout
+				return_to_path()
+		if patrolling:
+			get_parent().progress += delta * patrol_speed
+			var direction = (global_position - previous_frame_position)
+			direction = direction.normalized()
+			animate.adjust_direction(direction)
+			move_detection_cone(-direction)
+			previous_frame_position = global_position	
 
 func _process(_delta):
-	if !target:
-		for ray in detection_rays.get_children():
-			if ray.is_colliding() and ray.get_collider().is_in_group("Enemy of Goblins"):
-				on_target_detection(ray.get_collider())
-				if ray.get_collider().is_in_group("Player"): alert()
-	if velocity or patrolling:
-		animate.movement("run")
-	else: 
-		animate.movement("idle")
+	if alive:
+		if !target:
+			for ray in detection_rays.get_children():
+				if ray.is_colliding() and ray.get_collider().is_in_group("Enemy of Goblins"):
+					var body = ray.get_collider()
+					if body.alive: on_target_detection(ray.get_collider())
+					if body.is_in_group("Player"): alert()
+		if velocity or patrolling:
+			animate.movement("run")
+		else: 
+			animate.movement("idle")
 
 func alert():
-	$AudioStreamPlayer2D.play()
+	$AlertSound.play()
 	$DetectionLabel.visible = true
 	await get_tree().create_timer(0.7).timeout
 	$DetectionLabel.visible = false
@@ -122,6 +126,7 @@ func return_to_path():
 func attack():
 	attacking = true
 	animate.action("attack")
+	$SwordSound.play()
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
 		target = null
@@ -132,14 +137,12 @@ func attack():
 func take_hit(damage, attacker):
 	health -= damage
 	if health > 0:
-		animate.action("hit")
+		if !attacking: animate.action("hit")
 		if target != attacker: on_target_detection(attacker)
 	else: 
 		die()
 
 func die():
 	animate.action("death")
+	alive = false
 	$CollisionShape2D.disabled = true
-	await get_tree().create_timer(1.0).timeout
-	$AnimationPlayer.play("death_fade")
-	queue_free()

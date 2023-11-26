@@ -17,8 +17,8 @@ radius = 7.07107
 radius = 18.0
 
 [node name="egg_collectible" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_ykx2i")
 item = SubResource("Resource_jnliq")
 

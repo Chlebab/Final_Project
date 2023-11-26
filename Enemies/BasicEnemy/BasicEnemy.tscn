@@ -1,10 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=31 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://3r02ctfsuix4" path="res://Enemies/BasicEnemy/Assets/GoblinRogue.png" id="2_pb3nx"]
-[ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/AlertSound.mp3" id="3_t77cy"]
 [ext_resource type="Script" path="res://AnimationPlayer.gd" id="3_uh50b"]
+[ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/SFX/AlertSound.mp3" id="4_7h8o2"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="4_w1v81"]
+[ext_resource type="AudioStream" uid="uid://bwqwq8xcp5cdm" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_1.wav" id="6_eedrg"]
+[ext_resource type="AudioStream" uid="uid://dl1nq7xfh7gd2" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_2.wav" id="7_m5hk6"]
+[ext_resource type="AudioStream" uid="uid://c41iftruddf5s" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_3.wav" id="8_vvd8j"]
 
 [sub_resource type="Animation" id="Animation_ojffr"]
 length = 0.001
@@ -250,6 +253,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vjhpo"]
 resource_name = "run_right"
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -313,6 +317,16 @@ radius = 236.104
 [sub_resource type="CircleShape2D" id="CircleShape2D_h6ass"]
 radius = 9.05539
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pn5nu"]
+streams_count = 3
+random_pitch = 1.2
+stream_0/stream = ExtResource("6_eedrg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_m5hk6")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_vvd8j")
+stream_2/weight = 1.0
+
 [node name="BasicEnemy" type="CharacterBody2D" groups=["Living"]]
 collision_layer = 4
 collision_mask = 11
@@ -375,8 +389,8 @@ path_max_distance = 200.0
 radius = 30.0
 debug_enabled = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_t77cy")
+[node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7h8o2")
 volume_db = -10.0
 
 [node name="DetectionLabel" type="Label" parent="."]
@@ -390,5 +404,8 @@ theme_override_fonts/font = ExtResource("4_w1v81")
 text = "!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pn5nu")
 
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
