@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsf5njmiskjxi"]
+[gd_scene load_steps=12 format=3 uid="uid://bsf5njmiskjxi"]
 
 [ext_resource type="Script" path="res://Levels/CombatTest.gd" id="1_c0a2d"]
 [ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="1_km75v"]
@@ -32,6 +32,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 12, -27, -22.0003, 9.51366, 22.0003, -9.51366, 57, -70, -6.24334, -2.08111, 6.24334, 2.08111, 110, -67, -2.97302, -6.54064, 2.97302, 6.54064, 164, -32, -23.4868, -4.75683, 23.4868, 4.75683, 199, -5, 0, 16.6489, 0, -16.6489, 260, -38, 13.9732, 14.8651, -13.9732, -14.8651, 255, -73, 20.5138, -3.86492, -20.5138, 3.86492, 179, -76, 17.8381, -11.5948, -17.8381, 11.5948, 141, -39, 38.6492, 10.1083, -38.6492, -10.1083, 89, -6, 19.0273, 10.4056, -19.0273, -10.4056, 20, -65, 11.5948, -13.0813, -11.5948, 13.0813, -32, -53, -17.8381, -1.48651, 17.8381, 1.48651, -38, -8, 0, 0, 0, 0, 12, -27)
 }
 point_count = 14
+
+[sub_resource type="Curve2D" id="Curve2D_4lole"]
+_data = {
+"points": PackedVector2Array(-15, 0.5, 15, -0.5, 39, -3, -6.5, 13.5, 6.5, -13.5, 153, -7, 19.5, 3.5, -19.5, -3.5, 86, -87, 6.5, -17, -6.5, 17, -93, -49, 0, 0, 0, 0, 39, -3)
+}
+point_count = 5
 
 [node name="CombatTest" type="Node2D"]
 script = ExtResource("1_c0a2d")
@@ -116,3 +122,7 @@ curve = SubResource("Curve2D_ac7fm")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2w4n8")
+
+[node name="PatrolPath4" parent="." instance=ExtResource("3_kg6hk")]
+position = Vector2(179, 80)
+curve = SubResource("Curve2D_4lole")
