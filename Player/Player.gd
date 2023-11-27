@@ -10,6 +10,7 @@ var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
 var alive = true
+var falling = false
 var lives_remaining = 3
 var health = 40
 var previous_checkpoint
@@ -21,7 +22,11 @@ func _ready():
 	$BarrelSprite.visible = false
 
 func _physics_process(_delta):
-	if alive:
+	if falling:
+		$Sprite2D.apply_scale(Vector2(.96, .96))
+		velocity = Vector2(0, 1) * 16
+		move_and_slide()
+	elif alive:
 		var direction_x = Input.get_axis("move_left", "move_right")
 		var direction_y = Input.get_axis("move_up", "move_down")
 		velocity.x = direction_x
@@ -157,11 +162,19 @@ func take_hit(damage, _attacker):
 func die():
 	alive = false
 	$CollisionShape2D.disabled = true
-	lives_remaining -= 1
 	animate.action("die")
+
+func fall_into_hole():
+	falling = true
+	animate.action("die")
+	await get_tree().create_timer(1.0).timeout
+	falling = false
+	alive = false
 
 func respawn():
 	await get_tree().create_timer(3.0).timeout
+	$Sprite2D.scale = Vector2(1.5, 1.5)
+	lives_remaining -= 1
 	global_position = previous_checkpoint
 	alive = true
 	$CollisionShape2D.disabled = false

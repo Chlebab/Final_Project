@@ -326,12 +326,11 @@ libraries = {
 script = ExtResource("4_i1dh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0.5, 3.5)
+position = Vector2(0, 9)
+scale = Vector2(1.32158, 0.374263)
 shape = SubResource("RectangleShape2D_dpu6w")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_ks22v")
@@ -378,18 +377,6 @@ label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Torch" type="PointLight2D" parent="."]
-energy = 0.8
-texture = SubResource("GradientTexture2D_nue42")
-texture_scale = 10.0
-
-[node name="ShadowCaster" type="PointLight2D" parent="."]
-energy = 0.2
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.733333)
-texture = SubResource("GradientTexture2D_fidbd")
-texture_scale = 20.23
-
 [node name="Fullscreen" parent="." instance=ExtResource("7_tao8p")]
 z_index = 100
 offset_left = -328.0
@@ -407,6 +394,20 @@ offset_bottom = -339.0
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="Light" type="Node" parent="."]
+
+[node name="Torch" type="PointLight2D" parent="Light"]
+energy = 0.8
+texture = SubResource("GradientTexture2D_nue42")
+texture_scale = 10.0
+
+[node name="ShadowCaster" type="PointLight2D" parent="Light"]
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.733333)
+texture = SubResource("GradientTexture2D_fidbd")
+texture_scale = 20.23
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
 [connection signal="timeout" from="InvMsgTimer" to="." method="_on_inv_msg_timer_timeout"]

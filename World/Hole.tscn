@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://xholj2ekvbng"]
+
+[ext_resource type="Script" path="res://World/Hole.gd" id="1_hvmyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u43lt"]
+size = Vector2(63, 25.75)
+
+[node name="Hole" type="Node2D"]
+script = ExtResource("1_hvmyn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_u43lt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_someone_falls_in"]
