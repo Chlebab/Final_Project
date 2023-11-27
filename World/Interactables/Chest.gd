@@ -4,7 +4,7 @@ var player_in_chest_area = false
 var chest_open = false
 var money_in_chest = true
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("open"):
 		open_chest()
 	elif Input.is_action_just_pressed("pickup"):

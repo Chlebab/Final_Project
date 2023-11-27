@@ -2289,7 +2289,8 @@ texture = ExtResource("2_21fnd")
 27:10/0 = 0
 27:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_scjkp")
 27:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-27:10/0/physics_layer_0/angular_velocity = 0.0
+27:10/0/physics_layer_0/angular_velocity = 0.0    git push --set-upstream origin feature/level_3
+
 27:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 29:10/0 = 0
 29:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_pb0i3")
@@ -5386,7 +5387,7 @@ texture = ExtResource("2_21fnd")
 14:33/0/physics_layer_0/angular_velocity = 0.0
 14:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_q7tya"]
+[sub_resource type="TileSet" id="TileSet_5hkdd"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
