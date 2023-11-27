@@ -366,15 +366,15 @@ shape = SubResource("CircleShape2D_ch6tb")
 
 [node name="RayCast2D" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(0, -199)
-collision_mask = 6
+collision_mask = 7
 
 [node name="RayCast2D2" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(-99, -198)
-collision_mask = 6
+collision_mask = 7
 
 [node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(100, -199)
-collision_mask = 6
+collision_mask = 7
 
 [node name="LureArea" type="Area2D" parent="DetectionZones"]
 collision_layer = 8
