@@ -132,11 +132,11 @@ func use_barrel_item():
 		$BarrelSprite.visible = true
 		$InvMsg.text = "Barrel used!"
 		$InvMsgTimer.start()
-#		set_collision_layer_value(9, true)
-#		set_collision_mask_value(9, true)
+		self.remove_from_group("Enemy of Goblins")
+		self.remove_from_group("Living")
 		await get_tree().create_timer(15.0).timeout
-#		set_collision_layer_value(1, true)
-#		set_collision_mask_value(1, true)
+		self.add_to_group("Enemy of Goblins")
+		self.add_to_group("Living")
 		$Sprite2D.visible = true
 		$BarrelSprite.visible = false
 	else:

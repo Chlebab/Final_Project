@@ -4,8 +4,6 @@ extends StaticBody2D
 signal door_opened
 var open = false
 
-
-
 func _ready():
 	pass 
 
