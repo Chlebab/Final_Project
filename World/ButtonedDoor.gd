@@ -19,8 +19,8 @@ func open_door():
 		$Close.hide()
 		$Open.show()
 		$Open.play()
-		self.collision_layer = 2
-		self.collision_mask = 2
+		self.collision_layer = 8
+		self.collision_mask = 8
 		open = true
 	
 func close_door():

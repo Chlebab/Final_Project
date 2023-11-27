@@ -2289,8 +2289,7 @@ texture = ExtResource("2_21fnd")
 27:10/0 = 0
 27:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_scjkp")
 27:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-27:10/0/physics_layer_0/angular_velocity = 0.0    git push --set-upstream origin feature/level_3
-
+27:10/0/physics_layer_0/angular_velocity = 0.0
 27:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 29:10/0 = 0
 29:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_pb0i3")
@@ -5387,7 +5386,7 @@ texture = ExtResource("2_21fnd")
 14:33/0/physics_layer_0/angular_velocity = 0.0
 14:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_5hkdd"]
+[sub_resource type="TileSet" id="TileSet_q7tya"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 15
@@ -5408,11 +5407,10 @@ layer_4/z_index = -4
 layer_4/tile_data = PackedInt32Array(-1179701, 2031616, 12, -1114165, 2031616, 13, -1048629, 2031616, 14, -983093, 2031616, 15, -917557, 2031616, 16, -852021, 2031616, 17, -1179700, 2097152, 12, -1114164, 2097152, 13, -1048628, 2097152, 14, -983092, 2097152, 15, -917556, 2097152, 16, -852020, 2097152, 17, -1179699, 2162688, 12, -1114163, 2162688, 13, -1048627, 2162688, 14, -983091, 2162688, 15, -917555, 2162688, 16, -852019, 2162688, 17, -1179698, 2228224, 12, -1114162, 2228224, 13, -1048626, 2228224, 14, -983090, 2228224, 15, -917554, 2228224, 16, -852018, 2228224, 17, -1179697, 2228224, 12, -1114161, 2228224, 13, -1048625, 2228224, 14, -983089, 2228224, 15, -917553, 2228224, 16, -852017, 2228224, 17, -1179696, 2293760, 12, -1114160, 2293760, 13, -1048624, 2293760, 14, -983088, 2293760, 15, -917552, 2293760, 16, -852016, 2293760, 17, -1179702, 1966080, 12, -1114166, 1966080, 13, -1048630, 1966080, 14, -983094, 1966080, 15, -917558, 1966080, 16, -852022, 1966080, 17)
 
 [node name="Player" parent="." instance=ExtResource("3_bxrwd")]
-visible = false
 position = Vector2(-8, 163)
 
 [node name="Door" parent="." instance=ExtResource("4_3x4bq")]
-position = Vector2(193, -87)
+position = Vector2(183, -70)
 
 [node name="key_collectable" parent="." instance=ExtResource("5_wjij3")]
 position = Vector2(262, 406)
