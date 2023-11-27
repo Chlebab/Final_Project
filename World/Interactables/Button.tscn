@@ -11,7 +11,8 @@ script = ExtResource("1_dcvlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 3.8147e-06)
-scale = Vector2(-0.00221474, 0.00248014)
+rotation = -3.14159
+scale = Vector2(0.00221474, -0.00248014)
 texture = ExtResource("1_ev1xp")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -20,3 +21,4 @@ texture = ExtResource("1_ev1xp")
 shape = SubResource("CircleShape2D_u5xc5")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

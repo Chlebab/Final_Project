@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://f42box3ir8pp"]
+
+[ext_resource type="Texture2D" uid="uid://lb7urrjjwjd6" path="res://World/Assets/chest_gold.png" id="1_1bdfb"]
+[ext_resource type="Script" path="res://World/Interactables/Chest.gd" id="1_j6t4o"]
+[ext_resource type="Texture2D" uid="uid://c6r5veuxbq5ep" path="res://World/Assets/chest_gold_no_coins.png" id="3_8kjie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3838"]
+atlas = ExtResource("1_1bdfb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm5ey"]
+atlas = ExtResource("1_1bdfb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdwfu"]
+atlas = ExtResource("1_1bdfb")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ceyp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3838")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm5ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdwfu")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxiiv"]
+atlas = ExtResource("3_8kjie")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qov4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxiiv")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0wkrj"]
+radius = 46.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03eih"]
+size = Vector2(30, 21)
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_j6t4o")
+metadata/_edit_group_ = true
+
+[node name="GoldChest" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.125, -8.5)
+scale = Vector2(0.588542, 0.5625)
+sprite_frames = SubResource("SpriteFrames_6ceyp")
+animation = &"Open"
+
+[node name="EmptyChest" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-3, -8.5)
+scale = Vector2(0.583333, 0.5625)
+sprite_frames = SubResource("SpriteFrames_5qov4")
+animation = &"Empty"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_0wkrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-5, 0.5)
+shape = SubResource("RectangleShape2D_03eih")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
