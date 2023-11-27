@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=3 uid="uid://ceexjcfeqc27e"]
+[gd_scene load_steps=242 format=3 uid="uid://ceexjcfeqc27e"]
 
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_55sex"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="2_myv2h"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="6_itml1"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="7_d3pi7"]
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="8_k7mxc"]
+[ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_jcwn4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ey3rx"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5429,12 +5430,7 @@ position = Vector2(288, 25)
 [node name="key_collectable" parent="." instance=ExtResource("8_k7mxc")]
 position = Vector2(-49, 331)
 
-[node name="Node2D2" parent="." instance=ExtResource("5_g8b4a")]
-position = Vector2(35, 155)
-
-[node name="Door3" parent="." instance=ExtResource("4_b0d35")]
-material = ExtResource("5_2ftqg")
-position = Vector2(74, 26)
+[node name="EndLevel" parent="." instance=ExtResource("10_jcwn4")]
+position = Vector2(263, 238)
 
 [connection signal="toggle_door" from="Node2D" to="Door" method="toggle_door"]
-[connection signal="toggle_door" from="Node2D2" to="Door3" method="toggle_door"]

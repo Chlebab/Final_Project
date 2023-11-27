@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://wdm6wasuby3q"]
+
+[ext_resource type="Script" path="res://Levels/EndLevel.gd" id="1_rdp7n"]
+[ext_resource type="Texture2D" uid="uid://bi71it1y412n1" path="res://Enemies/Skeleton/Assets/Extras/Shadow.png" id="2_nh1vo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_porj2"]
+size = Vector2(96, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4akgg"]
+
+[node name="EndLevel" type="StaticBody2D"]
+script = ExtResource("1_rdp7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nh1vo")
+
+[node name="EndLevelArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndLevelArea"]
+shape = SubResource("RectangleShape2D_porj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4akgg")
+
+[connection signal="body_entered" from="EndLevelArea" to="." method="_on_end_level_area_body_entered"]
