@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4d1mvis0aoau"]
+[gd_scene load_steps=18 format=3 uid="uid://bc1mggflme2ha"]
 
 [ext_resource type="Script" path="res://World/Useables/CrosswordUseable.gd" id="1_subii"]
 [ext_resource type="Texture2D" uid="uid://byow5knikvow4" path="res://World/Assets/animated_Christmas_jack_in_the_box_48x48.png" id="2_c4gih"]
@@ -102,7 +102,7 @@ radius = 7.07107
 radius = 17.2627
 
 [node name="CrosswordUseable" type="StaticBody2D"]
-collision_layer = 2
+collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_subii")
 
@@ -118,6 +118,8 @@ speed_scale = 0.2
 shape = SubResource("CircleShape2D_rjky8")
 
 [node name="interaction_area" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
 shape = SubResource("CircleShape2D_pv3vi")

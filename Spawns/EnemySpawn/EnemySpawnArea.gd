@@ -10,7 +10,7 @@ func _on_area_2d_body_entered(body):
 
 func spawn_enemy():
 	var instance = skeleton.instantiate()
-	add_child(instance)
+	call_deferred("add_child", instance)
 
 
 

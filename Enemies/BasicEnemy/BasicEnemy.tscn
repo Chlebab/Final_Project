@@ -1,9 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=31 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://3r02ctfsuix4" path="res://Enemies/BasicEnemy/Assets/GoblinRogue.png" id="2_pb3nx"]
-[ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/AlertSound.mp3" id="3_t77cy"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="3_uh50b"]
+[ext_resource type="AudioStream" uid="uid://u8cwyj7jx4tc" path="res://Enemies/BasicEnemy/Assets/SFX/AlertSound.mp3" id="4_7h8o2"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="4_w1v81"]
+[ext_resource type="AudioStream" uid="uid://bwqwq8xcp5cdm" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_1.wav" id="6_eedrg"]
+[ext_resource type="AudioStream" uid="uid://dl1nq7xfh7gd2" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_2.wav" id="7_m5hk6"]
+[ext_resource type="AudioStream" uid="uid://c41iftruddf5s" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_3.wav" id="8_vvd8j"]
 
 [sub_resource type="Animation" id="Animation_ojffr"]
 length = 0.001
@@ -34,22 +38,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [48, 49, 50, 51]
-}
-
-[sub_resource type="Animation" id="Animation_sxpmt"]
-resource_name = "attack_left"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [52, 53, 54, 55]
 }
 
 [sub_resource type="Animation" id="Animation_4yrnc"]
@@ -116,22 +104,6 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1rbrv"]
-resource_name = "death_left"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [40, 41, 42]
-}
-
 [sub_resource type="Animation" id="Animation_72847"]
 resource_name = "death_right"
 length = 0.8
@@ -178,22 +150,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [24, 25]
-}
-
-[sub_resource type="Animation" id="Animation_bl4b6"]
-resource_name = "hit_left"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [28, 29]
 }
 
 [sub_resource type="Animation" id="Animation_3xkxw"]
@@ -243,23 +199,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_vpwyk"]
-resource_name = "idle_left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_4joom"]
@@ -312,25 +251,10 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_5m2q5"]
-resource_name = "run_left"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [16, 17, 18, 19]
-}
-
 [sub_resource type="Animation" id="Animation_vjhpo"]
 resource_name = "run_right"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -365,24 +289,19 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_ojffr"),
 "attack_down": SubResource("Animation_02sm1"),
-"attack_left": SubResource("Animation_sxpmt"),
 "attack_right": SubResource("Animation_4yrnc"),
 "attack_up": SubResource("Animation_ic1ih"),
 "death_down": SubResource("Animation_of40e"),
 "death_fade": SubResource("Animation_oi04a"),
-"death_left": SubResource("Animation_1rbrv"),
 "death_right": SubResource("Animation_72847"),
 "death_up": SubResource("Animation_7i8pc"),
 "hit_down": SubResource("Animation_afa7c"),
-"hit_left": SubResource("Animation_bl4b6"),
 "hit_right": SubResource("Animation_3xkxw"),
 "hit_up": SubResource("Animation_w3wj0"),
 "idle_down": SubResource("Animation_a8l27"),
-"idle_left": SubResource("Animation_vpwyk"),
 "idle_right": SubResource("Animation_4joom"),
 "idle_up": SubResource("Animation_wevvn"),
 "run_down": SubResource("Animation_ikfkf"),
-"run_left": SubResource("Animation_5m2q5"),
 "run_right": SubResource("Animation_vjhpo"),
 "run_up": SubResource("Animation_lole7")
 }
@@ -395,19 +314,28 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
 radius = 236.104
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cgdg5"]
-radius = 20.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_h6ass"]
 radius = 9.05539
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pn5nu"]
+streams_count = 3
+random_pitch = 1.2
+stream_0/stream = ExtResource("6_eedrg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_m5hk6")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_vvd8j")
+stream_2/weight = 1.0
+
 [node name="BasicEnemy" type="CharacterBody2D" groups=["Living"]]
+collision_layer = 4
+collision_mask = 11
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_g6vn1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 2
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_pb3nx")
@@ -419,6 +347,7 @@ speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_vfdim")
 }
+script = ExtResource("3_uh50b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_u455q")
@@ -426,28 +355,30 @@ shape = SubResource("CapsuleShape2D_u455q")
 [node name="DetectionZones" type="Node2D" parent="."]
 
 [node name="ChaseArea" type="Area2D" parent="DetectionZones"]
+collision_layer = 8
+collision_mask = 6
 
 [node name="ChaseRadius" type="CollisionShape2D" parent="DetectionZones/ChaseArea"]
 position = Vector2(-5, 3)
 shape = SubResource("CircleShape2D_ch6tb")
 
-[node name="CatchArea" type="Area2D" parent="DetectionZones"]
-
-[node name="CatchRadius" type="CollisionShape2D" parent="DetectionZones/CatchArea"]
-shape = SubResource("CircleShape2D_cgdg5")
-
 [node name="DetectionRays" type="Node2D" parent="DetectionZones"]
 
 [node name="RayCast2D" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(0, -199)
+collision_mask = 6
 
 [node name="RayCast2D2" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(-99, -198)
+collision_mask = 6
 
 [node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
 target_position = Vector2(100, -199)
+collision_mask = 6
 
 [node name="LureArea" type="Area2D" parent="DetectionZones"]
+collision_layer = 8
+collision_mask = 32
 
 [node name="LureRadius" type="CollisionShape2D" parent="DetectionZones/LureArea"]
 shape = SubResource("CircleShape2D_h6ass")
@@ -457,8 +388,8 @@ path_desired_distance = 10.0
 path_max_distance = 200.0
 radius = 30.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_t77cy")
+[node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7h8o2")
 volume_db = -10.0
 
 [node name="DetectionLabel" type="Label" parent="."]
@@ -473,5 +404,7 @@ text = "!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pn5nu")
+
 [connection signal="body_exited" from="DetectionZones/ChaseArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="DetectionZones/CatchArea" to="." method="_on_player_caught"]

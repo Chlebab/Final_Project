@@ -1,9 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://r0gkykvms8if"]
+[gd_scene load_steps=34 format=3 uid="uid://r0gkykvms8if"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2eumn"]
 [ext_resource type="Resource" uid="uid://b0dqrlb77yc41" path="res://Inventory/PlayerInventory.tres" id="2_ctd2c"]
 [ext_resource type="Texture2D" uid="uid://c06w25gljupyj" path="res://Player/Assets/PlayerSpriteSheet.png" id="3_h8d6j"]
-[ext_resource type="Script" path="res://Player/Camera2D.gd" id="5_e1ft2"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="4_i1dh3"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="5_j5r8q"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="6_hgea7"]
 [ext_resource type="PackedScene" uid="uid://8opg5v5kv74j" path="res://Menus/fullscreen.tscn" id="7_tao8p"]
@@ -39,6 +39,38 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(),
 "update": 1,
 "values": []
+}
+
+[sub_resource type="Animation" id="Animation_xymfc"]
+resource_name = "die_down"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [36, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_kelx4"]
+resource_name = "die_left"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [36, 37, 38]
 }
 
 [sub_resource type="Animation" id="Animation_maywh"]
@@ -226,6 +258,8 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_78g3i"),
 "barrel": SubResource("Animation_mflgi"),
+"die_down": SubResource("Animation_xymfc"),
+"die_left": SubResource("Animation_kelx4"),
 "die_right": SubResource("Animation_maywh"),
 "die_up": SubResource("Animation_sndk0"),
 "hit_down": SubResource("Animation_dy2tl"),
@@ -247,15 +281,6 @@ size = Vector2(10, 15)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iqnnq"]
 
-[sub_resource type="Gradient" id="Gradient_81oor"]
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3a26m"]
-gradient = SubResource("Gradient_81oor")
-fill_from = Vector2(0.4, 0.4)
-fill_to = Vector2(1, 1)
-metadata/_snap_enabled = true
-
 [sub_resource type="Gradient" id="Gradient_i25qj"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -265,14 +290,29 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.761468, 0.288991)
 
-[node name="Player" type="CharacterBody2D" groups=["Living", "Player"]]
+[sub_resource type="Gradient" id="Gradient_b8w5u"]
+offsets = PackedFloat32Array(0, 0.693069)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fidbd"]
+gradient = SubResource("Gradient_b8w5u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Player" type="CharacterBody2D" groups=["Enemy of Goblins", "Living", "Player"]]
+collision_layer = 2
+collision_mask = 7
 collision_priority = 100.0
 script = ExtResource("1_2eumn")
 inv = ExtResource("2_ctd2c")
 speed = 120.0
 
+[node name="BarrelSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("10_e38mq")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 2
+modulate = Color(0.427451, 0.427451, 0.427451, 1)
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_h8d6j")
@@ -283,12 +323,15 @@ vframes = 11
 libraries = {
 "": SubResource("AnimationLibrary_ci4bt")
 }
+script = ExtResource("4_i1dh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_dpu6w")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_ks22v")
@@ -302,7 +345,6 @@ offset_bottom = 139.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-script = ExtResource("5_e1ft2")
 
 [node name="PointsDisplay" type="Label" parent="."]
 z_index = 50
@@ -336,22 +378,17 @@ label_settings = SubResource("LabelSettings_iqnnq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Flashlight" type="PointLight2D" parent="."]
-visible = false
-modulate = Color(0.25098, 0.27451, 0.168627, 1)
-skew = -0.733038
-range_layer_min = -512
-range_layer_max = 512
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.0509804)
-texture = SubResource("GradientTexture2D_3a26m")
-offset = Vector2(-213.753, -213.772)
-texture_scale = 6.68
-
 [node name="Torch" type="PointLight2D" parent="."]
-shadow_enabled = true
+energy = 0.8
 texture = SubResource("GradientTexture2D_nue42")
 texture_scale = 10.0
+
+[node name="ShadowCaster" type="PointLight2D" parent="."]
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.733333)
+texture = SubResource("GradientTexture2D_fidbd")
+texture_scale = 20.23
 
 [node name="Fullscreen" parent="." instance=ExtResource("7_tao8p")]
 z_index = 100
@@ -370,9 +407,6 @@ offset_bottom = -339.0
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
-
-[node name="BarrelSprite" type="Sprite2D" parent="."]
-texture = ExtResource("10_e38mq")
 
 [connection signal="update_slots" from="." to="InventoryUi" method="_on_player_update_slots"]
 [connection signal="timeout" from="InvMsgTimer" to="." method="_on_inv_msg_timer_timeout"]

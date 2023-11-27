@@ -4,62 +4,49 @@ extends CharacterBody2D
 @export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
 
+@onready var animate = $AnimationPlayer
+
 var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
-enum Direction{UP, DOWN, LEFT, RIGHT}
-var direction_facing = Direction.DOWN
-
-var health = 1000
+var alive = true
+var lives_remaining = 3
+var health = 40
+var previous_checkpoint
 
 signal update_slots
-
 
 func _ready():
 	display_points()
 	$BarrelSprite.visible = false
-	
+
 func _physics_process(_delta):
-	var direction_x = Input.get_axis("move_left", "move_right")
-	var direction_y = Input.get_axis("move_up", "move_down")
-	velocity.x = direction_x
-	velocity.y = direction_y
-	velocity = velocity.normalized() * speed
-	adjust_direction(velocity)
-	move_and_slide()
+	if alive:
+		var direction_x = Input.get_axis("move_left", "move_right")
+		var direction_y = Input.get_axis("move_up", "move_down")
+		velocity.x = direction_x
+		velocity.y = direction_y
+		velocity = velocity.normalized() * speed
+		animate.adjust_direction(velocity)
+		move_and_slide()
+	elif lives_remaining > 0:
+		respawn()
+#	else:
+#		game_over()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("r"):
-		use_egg_item()
-	elif Input.is_action_just_pressed("f"):
-		use_crossword_item()	
-	elif Input.is_action_just_pressed("b"):
-		use_barrel_item()	
-	animate_movement()
+	if alive:
+		if Input.is_action_just_pressed("r"):
+			use_egg_item()
+		elif Input.is_action_just_pressed("f"):
+			use_crossword_item()
+		elif Input.is_action_just_pressed("b"):
+			use_barrel_item()
 
-func adjust_direction(direction):
-	if direction.x > 0.7:
-		direction_facing = Direction.RIGHT
-	if direction.x < -0.7:
-		direction_facing = Direction.LEFT
-	if direction.y < -0.7:
-		direction_facing = Direction.UP
-	if direction.y > 0.7:
-		direction_facing = Direction.DOWN
-
-func animate_movement():
-	if direction_facing == Direction.RIGHT:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_right")
-	if direction_facing == Direction.LEFT:
-		$Sprite2D.flip_h = true
-		$AnimationPlayer.play("run_right")
-	if direction_facing == Direction.DOWN:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_down")
-	if direction_facing == Direction.UP:
-		$Sprite2D.flip_h = false
-		$AnimationPlayer.play("run_up")
+		if velocity:
+			animate.movement("run")
+		else:
+			animate.movement("idle")
 
 func player():
 	pass
@@ -160,5 +147,22 @@ func use_barrel_item():
 func _on_inv_msg_timer_timeout():
 	$InvMsg.text = ""
 
-func take_hit():
-	pass
+func take_hit(damage, _attacker):
+	health -= damage
+	if health > 0:
+		animate.action("hit")
+	if health <= 0:
+		die()
+
+func die():
+	alive = false
+	$CollisionShape2D.disabled = true
+	lives_remaining -= 1
+	animate.action("die")
+
+func respawn():
+	await get_tree().create_timer(3.0).timeout
+	global_position = previous_checkpoint
+	alive = true
+	$CollisionShape2D.disabled = false
+	animate.animating_action = false

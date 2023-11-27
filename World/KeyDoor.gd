@@ -25,13 +25,12 @@ func _on_door_area_body_exited(body):
 		close_door()
 		
 func open_door():
-	if open == false:
-		$Close.hide()
-		$Open.show()
-		$Open.play()
-		self.collision_layer = 2
-		self.collision_mask = 2
-		open = true	
+	$Close.hide()
+	$Open.show()
+	$Open.play()
+	self.collision_layer = 8
+	self.collision_mask = 8
+	open = true
 	
 func close_door():
 	if open == true:
