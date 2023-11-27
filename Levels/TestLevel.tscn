@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=5 format=3 uid="uid://b3rck6xyqkv3p"]
 
 [ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="1_2b5yg"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_rnpvy"]

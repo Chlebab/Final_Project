@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Levels/EndLevel.gd" id="1_rdp7n"]
 [ext_resource type="Texture2D" uid="uid://bi71it1y412n1" path="res://Enemies/Skeleton/Assets/Extras/Shadow.png" id="2_nh1vo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_porj2"]
-size = Vector2(96, 40)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqrko"]
+radius = 29.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4akgg"]
 
@@ -17,7 +17,7 @@ texture = ExtResource("2_nh1vo")
 [node name="EndLevelArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndLevelArea"]
-shape = SubResource("RectangleShape2D_porj2")
+shape = SubResource("CircleShape2D_pqrko")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4akgg")
