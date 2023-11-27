@@ -1,57 +1,86 @@
 [gd_scene load_steps=3 format=3 uid="uid://bna7yvb6pjt8p"]
 
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="1_8bbca"]
+[ext_resource type="Script" path="res://Menus/ResultPage.gd" id="1_t5g14"]
 
-[sub_resource type="GDScript" id="GDScript_6o5ad"]
-script/source = "extends Control
-
-var score = 0
-var time_taken = 120-Global.time
-
-func _process(delta):
-	score = Global.points + (10*Global.time)
-	
-	$Points.text = str(\"POINTS  \", Global.points)
-	$Time.text = str(\"TIME  \", time_taken, \"secs\")
-	$Score.text = str(\"SCORE  \", score)
-
-"
-
-[node name="Control" type="Control"]
+[node name="Results" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_6o5ad")
+script = ExtResource("1_t5g14")
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 96.0
+offset_right = 761.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("1_8bbca")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
 
 [node name="Points" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 487.0
-offset_top = 239.0
-offset_right = 691.0
-offset_bottom = 310.0
+offset_left = 438.0
+offset_top = 229.0
+offset_right = 642.0
+offset_bottom = 300.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "POINTS"
+horizontal_alignment = 1
 
 [node name="Time" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 487.0
+offset_left = 395.0
 offset_top = 314.0
-offset_right = 697.0
+offset_right = 605.0
 offset_bottom = 347.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "TIME"
+horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 492.0
-offset_top = 392.0
-offset_right = 642.0
-offset_bottom = 425.0
+offset_left = 445.0
+offset_top = 388.0
+offset_right = 595.0
+offset_bottom = 421.0
 theme_override_fonts/font = ExtResource("1_8bbca")
 theme_override_font_sizes/font_size = 30
 text = "SCORE"
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 0
+offset_left = 64.0
+offset_top = 494.0
+offset_right = 564.0
+offset_bottom = 574.0
+theme_override_fonts/font = ExtResource("1_8bbca")
+theme_override_font_sizes/font_size = 40
+text = "PLAY AGAIN"
+
+[node name="Quit" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 0
+offset_left = 596.0
+offset_top = 494.0
+offset_right = 1096.0
+offset_bottom = 574.0
+theme_override_fonts/font = ExtResource("1_8bbca")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

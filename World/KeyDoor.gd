@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @export var inv: Inventory
 signal door_opened
+var open = false
 
 
 
@@ -29,10 +30,19 @@ func open_door():
 	$Open.play()
 	self.collision_layer = 8
 	self.collision_mask = 8
+	open = true
 	
 func close_door():
-	$Open.hide()
-	$Close.show()
-	$Close.play()
-	self.collision_layer = 1
-	self.collision_mask = 1
+	if open == true:
+		$Open.hide()
+		$Close.show()
+		$Close.play()
+		self.collision_layer = 1
+		self.collision_mask = 1
+		open = false
+
+func toggle_door():
+	if $Open.visible:
+		close_door()
+	else:
+		open_door()

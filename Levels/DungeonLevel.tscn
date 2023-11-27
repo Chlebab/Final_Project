@@ -14,9 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://b6ne77pr8p6vb" path="res://World/Collectables/BarrelCollectable.tscn" id="12_ibwva"]
 [ext_resource type="Resource" path="res://Inventory/Items/Barrel.tres" id="13_uyb2b"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/door.tscn" id="14_joeva"]
+[ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="14_joeva"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://World/Interactables/Button.tscn" id="15_tqwa1"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="16_5osfe"]
 [ext_resource type="AudioStream" uid="uid://q5ql16ow6084" path="res://World/Assets/Sounds/Music/Music.wav" id="17_wpu2r"]
+[ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="16_m3f2g"]
 
 [sub_resource type="Curve2D" id="Curve2D_83nt8"]
 _data = {
@@ -79,5 +81,8 @@ position = Vector2(202, 727)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_wpu2r")
+[node name="Chest" parent="." instance=ExtResource("16_m3f2g")]
+position = Vector2(208, 791)
 
 [connection signal="open_door" from="Button" to="Door2" method="open_door"]
+[connection signal="toggle_door" from="Button" to="Door2" method="toggle_door"]

@@ -101,7 +101,7 @@ size = Vector2(45.2381, 91.9271)
 
 [node name="Door" type="StaticBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_8u5lt")
-script = ExtResource("1_jverq")
+script = ExtResource("1_ws6mf")
 
 [node name="DoorArea" type="Area2D" parent="."]
 collision_mask = 2

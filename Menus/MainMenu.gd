@@ -6,7 +6,7 @@ func _ready():
 	$VBoxContainer/StartButton.grab_focus()
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://LevelOne.tscn")
+	get_tree().change_scene_to_file("res://Levels/DungeonLevel.tscn")
 
 func _on_options_pressed():
 	get_tree().change_scene_to_file("res://Menus/Options.tscn")
