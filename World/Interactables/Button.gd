@@ -6,7 +6,7 @@ signal open_door
 var open = false
 var player_in_area = false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("open"):
 		press_button()
 
@@ -19,23 +19,12 @@ func _on_area_2d_body_entered(body):
 		inv_msg_timer.start()
 		player_in_area = true
 		print("player in button")
-		
-		
 
-		
-		
-		
-		
-		
-func _on_area_2d_body_exited(body):
+func _on_area_2d_body_exited():
 	player_in_area = false
 	print("player left button")
-		
+
 func press_button():
 	if player_in_area: 	
 		toggle_door.emit()
-		
-		
 		print("player pressed button")	
-		
-
