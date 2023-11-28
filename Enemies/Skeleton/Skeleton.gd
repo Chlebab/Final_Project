@@ -30,8 +30,18 @@ func _physics_process(_delta):
 func move_towards(target_vector):
 	var direction = (target_vector - global_position).normalized()
 	velocity = direction * speed
-	animate.adjust_direction(direction)
+	adjust_direction(direction)
 	move_and_slide()
+
+func adjust_direction(direction):
+	if direction.x > 0.7:
+		facing = Direction.RIGHT
+	if direction.x < -0.7:
+		facing = Direction.LEFT
+	if direction.y < -0.7:
+		facing = Direction.UP
+	if direction.y > 0.7:
+		facing = Direction.DOWN
 
 func _on_target_detection(body):
 	if body.is_in_group("Living") and body.alive:
@@ -48,7 +58,7 @@ func take_hit(damage, attacker):
 
 func attack():
 	attacking = true
-	animate.adjust_direction(target.global_position - global_position)
+	adjust_direction(target.global_position - global_position)
 	animate.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)

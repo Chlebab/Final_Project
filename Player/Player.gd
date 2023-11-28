@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+enum Direction {UP, DOWN, LEFT, RIGHT}
+@export var facing = Direction.UP
 @export var inv: Inventory
 @export var speed = 80.0
 @export var spawn_point = Vector2(0,0)
@@ -32,7 +34,7 @@ func _physics_process(_delta):
 		velocity.x = direction_x
 		velocity.y = direction_y
 		velocity = velocity.normalized() * speed
-		animate.adjust_direction(velocity)
+		adjust_direction(velocity)
 		move_and_slide()
 	elif lives_remaining > 0:
 		respawn()
@@ -52,6 +54,16 @@ func _process(_delta):
 			animate.movement("run")
 		else:
 			animate.movement("idle")
+
+func adjust_direction(direction):
+	if direction.x > 0.7:
+		facing = Direction.RIGHT
+	if direction.x < -0.7:
+		facing = Direction.LEFT
+	if direction.y < -0.7:
+		facing = Direction.UP
+	if direction.y > 0.7:
+		facing = Direction.DOWN
 
 func player():
 	pass
