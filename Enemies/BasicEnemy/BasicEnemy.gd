@@ -22,11 +22,13 @@ var eggseeking
 var pursuing_target
 var attacking
 
+enum Direction {UP, DOWN, LEFT, RIGHT}
+@export var facing = Direction.UP
+
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
 @onready var navigator = $NavigationAgent2D
 @onready var animate = $AnimationPlayer
-
 
 func _ready():
 	if get_parent() is PathFollow2D:
@@ -57,7 +59,7 @@ func _physics_process(delta):
 			get_parent().progress += delta * patrol_speed
 			var direction = (global_position - previous_frame_position)
 			direction = direction.normalized()
-			animate.adjust_direction(direction)
+			adjust_direction(direction)
 			move_detection_cone(-direction)
 			previous_frame_position = global_position	
 
@@ -73,6 +75,7 @@ func _process(_delta):
 			animate.movement("run")
 		else: 
 			animate.movement("idle")
+			move_vision_while_idle()
 
 func alert():
 	$AlertSound.play()
@@ -87,9 +90,29 @@ func update_path_to_target():
 func move_towards(target_vector, speed):
 	var direction = (target_vector - global_position).normalized()
 	velocity = direction * speed
-	animate.adjust_direction(direction)
+	adjust_direction(direction)
 	move_detection_cone(-velocity)
 	move_and_slide()
+
+func adjust_direction(direction):
+	if direction.x > 0.7:
+		facing = Direction.RIGHT
+	if direction.x < -0.7:
+		facing = Direction.LEFT
+	if direction.y < -0.7:
+		facing = Direction.UP
+	if direction.y > 0.7:
+		facing = Direction.DOWN
+
+func move_vision_while_idle():
+	if facing == Direction.RIGHT:
+		move_detection_cone(Vector2(-1, 0))
+	if facing == Direction.LEFT:
+		move_detection_cone(Vector2(1, 0))
+	if facing == Direction.DOWN:
+		move_detection_cone(Vector2(0, -1))
+	if facing == Direction.UP:
+		move_detection_cone(Vector2(0, 1))
 
 func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
@@ -111,14 +134,14 @@ func on_egg_detection(egg_position):
 			detection_position = global_position
 		navigator.set_target_position(egg_position)
 		eggseeking = true
-	
+
 func on_crossword_detection():
 	if !target:
 		if patroller:
 			patrolling = false
 		await get_tree().create_timer(15.0).timeout
 		patrolling = true
-	
+
 func _on_detection_area_body_exited(body):
 	if body == target:
 		return_to_path()
@@ -134,7 +157,7 @@ func return_to_path():
 
 func attack():
 	attacking = true
-	animate.adjust_direction(target.global_position - global_position)
+	adjust_direction(target.global_position - global_position)
 	animate.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)

@@ -9,6 +9,11 @@
 [ext_resource type="AudioStream" uid="uid://dl1nq7xfh7gd2" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_2.wav" id="7_m5hk6"]
 [ext_resource type="AudioStream" uid="uid://c41iftruddf5s" path="res://Enemies/BasicEnemy/Assets/SFX/11_human_damage_3.wav" id="8_vvd8j"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u455q"]
+custom_solver_bias = 1.0
+radius = 6.0
+height = 20.0
+
 [sub_resource type="Animation" id="Animation_ojffr"]
 length = 0.001
 tracks/0/type = "value"
@@ -306,11 +311,6 @@ _data = {
 "run_up": SubResource("Animation_lole7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u455q"]
-custom_solver_bias = 1.0
-radius = 6.0
-height = 20.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
 radius = 236.104
 
@@ -334,6 +334,9 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_g6vn1")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u455q")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.517647, 0.517647, 0.517647, 1)
 texture_filter = 1
@@ -348,9 +351,6 @@ libraries = {
 "": SubResource("AnimationLibrary_vfdim")
 }
 script = ExtResource("3_uh50b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_u455q")
 
 [node name="DetectionZones" type="Node2D" parent="."]
 
@@ -387,7 +387,6 @@ shape = SubResource("CircleShape2D_h6ass")
 path_desired_distance = 10.0
 path_max_distance = 200.0
 radius = 30.0
-debug_enabled = true
 
 [node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_7h8o2")
