@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn058bb22rfsu"]
+
+[ext_resource type="Texture2D" uid="uid://ctg04esye4fr0" path="res://World/Assets/RogueCatacombs/AlteredCandles/torch_01.png" id="1_n5hu6"]
+[ext_resource type="Texture2D" uid="uid://dksiwwx6g52te" path="res://World/Assets/RogueCatacombs/AlteredCandles/torch_02.png" id="2_j4brx"]
+[ext_resource type="Texture2D" uid="uid://blkwrbjk6voko" path="res://World/Assets/RogueCatacombs/AlteredCandles/torch_03.png" id="3_f584e"]
+[ext_resource type="Texture2D" uid="uid://pdc4acjim8qd" path="res://World/Assets/RogueCatacombs/AlteredCandles/torch_04.png" id="4_pan75"]
+[ext_resource type="Script" path="res://World/FlickeringLight.gd" id="5_nuqu0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wusid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n5hu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j4brx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f584e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pan75")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_rjso2"]
+offsets = PackedFloat32Array(0, 0.712871)
+colors = PackedColorArray(1, 0.898039, 0.427451, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ow87h"]
+gradient = SubResource("Gradient_rjso2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Torch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wusid")
+frame_progress = 0.319878
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -5)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ow87h")
+script = ExtResource("5_nuqu0")
