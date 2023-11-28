@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs3ltst2g15qh"]
+[gd_scene load_steps=19 format=3 uid="uid://q7t1uri3tbas"]
 
-[ext_resource type="Script" path="res://World/KeyDoorSideways.gd" id="1_1g0jg"]
-[ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="1_3dia8"]
-[ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="2_7cude"]
+[ext_resource type="Script" path="res://World/KeyDoorSideways.gd" id="1_xdqs6"]
+[ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="2_xnsrf"]
+[ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="3_fm47n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8u5lt"]
 
@@ -10,23 +10,23 @@
 radius = 38.0526
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uh8gh"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(0, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xd6xd"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(48, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npxkk"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(96, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iscns"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(144, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8oi7q"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(192, 0, 48, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1kij1"]
@@ -53,23 +53,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8wh8"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(192, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ap327"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(240, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2sqs"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(288, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_esjqs"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(336, 0, 48, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqchv"]
-atlas = ExtResource("1_3dia8")
+atlas = ExtResource("3_fm47n")
 region = Rect2(0, 0, 48, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5llc3"]
@@ -99,40 +99,43 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vle5e"]
 size = Vector2(45.2381, 91.9271)
 
-[node name="Door" type="StaticBody2D"]
+[node name="KeyDoorSideways" type="StaticBody2D"]
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_8u5lt")
-script = ExtResource("1_1g0jg")
+script = ExtResource("1_xdqs6")
 
 [node name="DoorArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
+visible = false
 scale = Vector2(1.36, 1.76)
 shape = SubResource("CircleShape2D_5y0mf")
 
-[node name="Open" type="AnimatedSprite2D" parent="."]
+[node name="Close" type="AnimatedSprite2D" parent="."]
+visible = false
 texture_filter = 1
-material = ExtResource("2_7cude")
+material = ExtResource("2_xnsrf")
 position = Vector2(0, -14)
 scale = Vector2(0.88, 0.64)
 sprite_frames = SubResource("SpriteFrames_1kij1")
 frame = 4
 frame_progress = 1.0
 
-[node name="Close" type="AnimatedSprite2D" parent="."]
+[node name="Open" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-material = ExtResource("2_7cude")
+material = ExtResource("2_xnsrf")
 position = Vector2(-1, -13)
 scale = Vector2(0.84, 0.630935)
 sprite_frames = SubResource("SpriteFrames_5llc3")
 frame = 4
 frame_progress = 1.0
 
-[node name="Area2D" type="Area2D" parent="Close"]
+[node name="Area2D" type="Area2D" parent="Open"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 0.999999)
 scale = Vector2(0.84, 0.630935)
 shape = SubResource("RectangleShape2D_vle5e")

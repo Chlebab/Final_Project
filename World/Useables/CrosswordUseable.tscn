@@ -102,11 +102,13 @@ radius = 7.07107
 radius = 17.2627
 
 [node name="CrosswordUseable" type="StaticBody2D"]
+z_index = 1
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_subii")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(-1.5, -4)
 scale = Vector2(0.4375, 0.333333)
