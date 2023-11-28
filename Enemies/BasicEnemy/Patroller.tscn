@@ -10,3 +10,4 @@ rotates = false
 
 [node name="BasicEnemy" parent="PathFollow2D" instance=ExtResource("2_uihap")]
 rotation = 2.0944
+collision_mask = 10
