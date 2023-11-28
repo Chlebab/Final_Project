@@ -1,7 +1,7 @@
 extends AnimationPlayer
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
-var facing = Direction.UP
+@export var facing = Direction.UP
 
 var animating_action = false
 
