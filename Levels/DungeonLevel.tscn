@@ -10,15 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="8_cvcxm"]
 [ext_resource type="Resource" uid="uid://tusbw6pgmqj3" path="res://Inventory/Items/Egg.tres" id="9_ut8lu"]
 [ext_resource type="PackedScene" uid="uid://c0d01e4pp2ww4" path="res://World/Collectables/CrossowrdCollectable.tscn" id="10_r8nuq"]
-[ext_resource type="Resource" path="res://Inventory/Items/Crossword.tres" id="11_figyh"]
+[ext_resource type="Resource" uid="uid://hnkgm231lhyr" path="res://Inventory/Items/Crossword.tres" id="11_figyh"]
 [ext_resource type="PackedScene" uid="uid://b6ne77pr8p6vb" path="res://World/Collectables/BarrelCollectable.tscn" id="12_ibwva"]
-[ext_resource type="Resource" path="res://Inventory/Items/Barrel.tres" id="13_uyb2b"]
+[ext_resource type="Resource" uid="uid://djap6qyjm3kpf" path="res://Inventory/Items/Barrel.tres" id="13_uyb2b"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="14_joeva"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://World/Interactables/Button.tscn" id="15_tqwa1"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="16_5osfe"]
 [ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="16_m3f2g"]
 [ext_resource type="AudioStream" uid="uid://q5ql16ow6084" path="res://World/Assets/Sounds/Music/Music.wav" id="17_wpu2r"]
-[ext_resource type="PackedScene" uid="uid://xholj2ekvbng" path="res://World/Hole.tscn" id="20_xnptc"]
+[ext_resource type="PackedScene" path="res://World/Hole.tscn" id="20_xnptc"]
 
 [sub_resource type="GDScript" id="GDScript_bxr27"]
 script/source = "extends TileMap
