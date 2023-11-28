@@ -359,7 +359,6 @@ script = ExtResource("3_uh50b")
 [node name="DetectionZones" type="Node2D" parent="."]
 
 [node name="ChaseArea" type="Area2D" parent="DetectionZones"]
-visible = false
 collision_layer = 8
 collision_mask = 6
 
@@ -424,7 +423,6 @@ target_position = Vector2(-69, -40)
 collision_mask = 7
 
 [node name="LureArea" type="Area2D" parent="DetectionZones"]
-visible = false
 collision_layer = 8
 collision_mask = 32
 

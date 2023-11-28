@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal game_over
 signal clear_inventory
 
-var chase_speed = 50
+var chase_speed = 80
 var return_speed = 40
 var patrol_speed = 40
 var health = 60
@@ -21,7 +21,6 @@ var pathfinding
 var eggseeking
 var pursuing_target
 var attacking
-var enemy_within_range
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var facing = Direction.UP
@@ -66,7 +65,7 @@ func _physics_process(delta):
 
 func _process(_delta):
 	if alive:
-		if !target and enemy_within_range:
+		if !target:
 			for ray in detection_rays.get_children():
 				if ray.is_colliding() and ray.get_collider(0).is_in_group("Enemy of Goblins"):
 					var body = ray.get_collider(0)
