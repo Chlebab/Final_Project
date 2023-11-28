@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=14 format=3 uid="uid://drj2qdh51jva0"]
 
+[ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
 [ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="1_vear7"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_ycrid"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_62tn6"]
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="3_cah5b"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="4_2q4qa"]
-[ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="5_vpc82"]
-[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="6_4ew86"]
+[ext_resource type="PackedScene" path="res://World/Candle.tscn" id="5_vpc82"]
+[ext_resource type="PackedScene" path="res://World/Torch.tscn" id="6_4ew86"]
+[ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_04c0o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_itnex"]
 texture = ExtResource("4_2q4qa")
@@ -1052,6 +1054,7 @@ point_count = 9
 
 [node name="LevelThree" type="Node2D"]
 position = Vector2(1211, 908)
+script = ExtResource("1_hj63e")
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -1133,3 +1136,5 @@ position = Vector2(-240, -333)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
 color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Transition" parent="." instance=ExtResource("9_04c0o")]

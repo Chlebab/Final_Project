@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.1", "Mobile")
 
 Global="*res://World/Global.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Liquidation Dash"
