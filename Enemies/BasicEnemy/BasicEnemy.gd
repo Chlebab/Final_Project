@@ -27,7 +27,6 @@ var attacking
 @onready var navigator = $NavigationAgent2D
 @onready var animate = $AnimationPlayer
 
-@export var enum = animate.facing
 
 func _ready():
 	if get_parent() is PathFollow2D:
