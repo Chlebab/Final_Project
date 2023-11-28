@@ -273,8 +273,9 @@ _data = {
 "run_up": SubResource("Animation_iqhyy")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpu6w"]
-size = Vector2(9, 7)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt4xm"]
+radius = 6.05335
+height = 12.1067
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks22v"]
 size = Vector2(10, 15)
@@ -303,6 +304,8 @@ fill_from = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 7
 collision_priority = 100.0
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_2eumn")
 inv = ExtResource("2_ctd2c")
 speed = 120.0
@@ -328,7 +331,7 @@ script = ExtResource("4_i1dh3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 scale = Vector2(1.32158, 0.374263)
-shape = SubResource("RectangleShape2D_dpu6w")
+shape = SubResource("CapsuleShape2D_vt4xm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
