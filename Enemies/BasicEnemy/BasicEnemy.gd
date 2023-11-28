@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal game_over
 signal clear_inventory
 
-var chase_speed = 50
+var chase_speed = 80
 var return_speed = 40
 var patrol_speed = 40
 var health = 60
@@ -67,9 +67,9 @@ func _process(_delta):
 	if alive:
 		if !target:
 			for ray in detection_rays.get_children():
-				if ray.is_colliding() and ray.get_collider().is_in_group("Enemy of Goblins"):
-					var body = ray.get_collider()
-					if body.alive: on_target_detection(ray.get_collider())
+				if ray.is_colliding() and ray.get_collider(0).is_in_group("Enemy of Goblins"):
+					var body = ray.get_collider(0)
+					if body.alive: on_target_detection(body)
 					if body.is_in_group("Player"): alert()
 		if velocity or patrolling:
 			animate.movement("run")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://clr2ermprnh3m"]
+[gd_scene load_steps=33 format=3 uid="uid://clr2ermprnh3m"]
 
 [ext_resource type="Script" path="res://Enemies/BasicEnemy/BasicEnemy.gd" id="1_g6vn1"]
 [ext_resource type="Texture2D" uid="uid://3r02ctfsuix4" path="res://Enemies/BasicEnemy/Assets/GoblinRogue.png" id="2_pb3nx"]
@@ -314,6 +314,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch6tb"]
 radius = 236.104
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcug2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2sy3c"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h6ass"]
 radius = 9.05539
 
@@ -329,7 +333,7 @@ stream_2/weight = 1.0
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["Living"]]
 collision_layer = 4
-collision_mask = 130
+collision_mask = 134
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_g6vn1")
@@ -364,16 +368,58 @@ shape = SubResource("CircleShape2D_ch6tb")
 
 [node name="DetectionRays" type="Node2D" parent="DetectionZones"]
 
-[node name="RayCast2D" type="RayCast2D" parent="DetectionZones/DetectionRays"]
-target_position = Vector2(0, -199)
+[node name="ShapeCast2D" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_bcug2")
+target_position = Vector2(-21, -66)
 collision_mask = 7
 
-[node name="RayCast2D2" type="RayCast2D" parent="DetectionZones/DetectionRays"]
-target_position = Vector2(-99, -198)
+[node name="ShapeCast2D3" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_bcug2")
+target_position = Vector2(22, -66)
 collision_mask = 7
 
-[node name="RayCast2D3" type="RayCast2D" parent="DetectionZones/DetectionRays"]
-target_position = Vector2(100, -199)
+[node name="ShapeCast2D2" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(0, -72)
+collision_mask = 7
+
+[node name="ShapeCast2D4" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(-42, -64)
+collision_mask = 7
+
+[node name="ShapeCast2D5" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(42, -66)
+collision_mask = 7
+
+[node name="ShapeCast2D6" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(56, -52)
+collision_mask = 7
+
+[node name="ShapeCast2D7" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(-56, -51)
+collision_mask = 7
+
+[node name="ShapeCast2D8" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(68, -37)
+collision_mask = 7
+
+[node name="ShapeCast2D9" type="ShapeCast2D" parent="DetectionZones/DetectionRays"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_2sy3c")
+target_position = Vector2(-69, -40)
 collision_mask = 7
 
 [node name="LureArea" type="Area2D" parent="DetectionZones"]
