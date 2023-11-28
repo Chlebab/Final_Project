@@ -1163,6 +1163,7 @@ color = Color(0.443137, 0.443137, 0.443137, 1)
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_17jf0")
 volume_db = -12.235
+autoplay = true
 
 [node name="Checkpoint" parent="." instance=ExtResource("9_bs20y")]
 position = Vector2(246, 106)
