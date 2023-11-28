@@ -1,13 +1,16 @@
 extends Node2D
-
 var speed = 1
 var player_entering = false
+var level = "LEVEL 3"
+var description = "Goblins Love Jack-In-Boxes and can't see barrels"
 var paused = false
 
 @onready var pause_menu = $Player/Pause
 
 func _ready():
 	$Transition.play("fade_in")
+	$Player/LevelLabel.text = level
+	$Player/DescriptionLabel.text = description
 	await get_tree().create_timer(1).timeout
 	$Player/LevelLabel.show()
 	$Player/DescriptionLabel.show()
@@ -18,7 +21,7 @@ func _ready():
 	player_entering = true
 	await get_tree().create_timer(1.2).timeout
 	player_entering = false
-	
+
 func _process(delta):
 	if player_entering:
 		get_node("Player").global_position.y += speed
@@ -35,4 +38,13 @@ func pauseMenu():
 	
 	paused = !paused	
 
+
+
+	
+	
+	
+
+
+	
+	
 
