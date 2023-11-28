@@ -1,4 +1,4 @@
-[gd_scene load_steps=248 format=3 uid="uid://ceexjcfeqc27e"]
+[gd_scene load_steps=249 format=3 uid="uid://ceexjcfeqc27e"]
 
 [ext_resource type="Script" path="res://Levels/LevelTwo.gd" id="1_4deut"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_55sex"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="8_k7mxc"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_jcwn4"]
 [ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="11_m8djp"]
+[ext_resource type="Script" path="res://Levels/EndLevelTwo.gd" id="12_d8kv1"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="13_v3e6e"]
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="14_k4i5w"]
 
@@ -6468,8 +6469,9 @@ position = Vector2(-42, 354)
 [node name="Player" parent="." instance=ExtResource("3_r1fnl")]
 position = Vector2(60, 408)
 
-[node name="EndLevel" parent="." instance=ExtResource("10_jcwn4")]
+[node name="EndLevelTwo" parent="." instance=ExtResource("10_jcwn4")]
 position = Vector2(288, -43)
+script = ExtResource("12_d8kv1")
 
 [node name="Chest" parent="." instance=ExtResource("11_m8djp")]
 position = Vector2(-18, 80)

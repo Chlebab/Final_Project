@@ -35,8 +35,8 @@ func close_door():
 		$Open.hide()
 		$Close.show()
 		$Close.play()
-		self.collision_layer = 2
-		self.collision_mask = 2
+		self.collision_layer = 1
+		self.collision_mask = 1
 		open = false
 
 func toggle_door():
