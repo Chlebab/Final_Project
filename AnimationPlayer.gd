@@ -1,49 +1,39 @@
 extends AnimationPlayer
 
-enum Direction {UP, DOWN, LEFT, RIGHT}
-@export var facing = Direction.UP
-
 var animating_action = false
 
 @onready var sprite = get_parent().get_node("Sprite2D")
+@onready var parent = get_parent()
 
-func adjust_direction(direction):
-	if direction.x > 0.7:
-		facing = Direction.RIGHT
-	if direction.x < -0.7:
-		facing = Direction.LEFT
-	if direction.y < -0.7:
-		facing = Direction.UP
-	if direction.y > 0.7:
-		facing = Direction.DOWN
+enum Direction {UP, DOWN, LEFT, RIGHT}
 
 func movement(state):
 	if !animating_action:
-		if facing == Direction.RIGHT:
+		if parent.facing == Direction.RIGHT:
 			sprite.flip_h = false
 			play(state + "_right")
-		if facing == Direction.LEFT:
+		if parent.facing == Direction.LEFT:
 			sprite.flip_h = true
 			play(state + "_right")
-		if facing == Direction.DOWN:
+		if parent.facing == Direction.DOWN:
 			sprite.flip_h = false
 			play(state + "_down")
-		if facing == Direction.UP:
+		if parent.facing == Direction.UP:
 			sprite.flip_h = false
 			play(state + "_up")
 
 func action(command):
 	animating_action = true
-	if facing == Direction.RIGHT:
+	if parent.facing == Direction.RIGHT:
 		sprite.flip_h = false
 		play(command + "_right")
-	if facing == Direction.LEFT:
+	if parent.facing == Direction.LEFT:
 		sprite.flip_h = true
 		play(command + "_right")
-	if facing == Direction.DOWN:
+	if parent.facing == Direction.DOWN:
 		sprite.flip_h = false
 		play(command + "_down")
-	if facing == Direction.UP:
+	if parent.facing == Direction.UP:
 		sprite.flip_h = false
 		play(command + "_up")
 	await animation_finished
