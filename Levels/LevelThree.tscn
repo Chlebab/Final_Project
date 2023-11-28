@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=18 format=3 uid="uid://drj2qdh51jva0"]
 
 [ext_resource type="TileSet" uid="uid://da1vxxfqiqvrw" path="res://World/Tilesets/Dungeon2.tres" id="1_cowsg"]
 [ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
-[ext_resource type="TileSet" uid="uid://co5njuulq7hmr" path="res://World/Tilesets/Dungeon.tres" id="1_vear7"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_ycrid"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_62tn6"]
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="3_cah5b"]
@@ -10,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="5_vpc82"]
 [ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="6_4ew86"]
 [ext_resource type="AudioStream" uid="uid://duwlhcm4tt0nb" path="res://World/Assets/Sounds/Music/dungeon1.wav" id="8_17jf0"]
-[ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="9_bs20y"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_04c0o"]
+[ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="9_bs20y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_itnex"]
 texture = ExtResource("4_2q4qa")
@@ -1167,4 +1166,5 @@ volume_db = -12.235
 
 [node name="Checkpoint" parent="." instance=ExtResource("9_bs20y")]
 position = Vector2(246, 106)
+
 [node name="Transition" parent="." instance=ExtResource("9_04c0o")]
