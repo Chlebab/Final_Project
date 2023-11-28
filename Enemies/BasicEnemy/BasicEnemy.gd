@@ -21,6 +21,7 @@ var pathfinding
 var eggseeking
 var pursuing_target
 var attacking
+var enemy_within_range
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var facing = Direction.UP
@@ -65,11 +66,11 @@ func _physics_process(delta):
 
 func _process(_delta):
 	if alive:
-		if !target:
+		if !target and enemy_within_range:
 			for ray in detection_rays.get_children():
-				if ray.is_colliding() and ray.get_collider().is_in_group("Enemy of Goblins"):
-					var body = ray.get_collider()
-					if body.alive: on_target_detection(ray.get_collider())
+				if ray.is_colliding() and ray.get_collider(0).is_in_group("Enemy of Goblins"):
+					var body = ray.get_collider(0)
+					if body.alive: on_target_detection(body)
 					if body.is_in_group("Player"): alert()
 		if velocity or patrolling:
 			animate.movement("run")

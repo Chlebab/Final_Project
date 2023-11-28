@@ -27,6 +27,6 @@ func _on_button_area_body_entered(body):
 		print("player in button")
 
 
-func _on_button_area_body_exited(body):
+func _on_button_area_body_exited():
 	player_in_area = false
 	print("player left button")
