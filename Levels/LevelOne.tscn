@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://cmeunnw4p4pd0"]
+[gd_scene load_steps=80 format=3 uid="uid://cmeunnw4p4pd0"]
 
 [ext_resource type="Script" path="res://Levels/LevelOne.gd" id="1_pf3et"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_xxoyr"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="7_17yv2"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_332ev"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_td3kt"]
-[ext_resource type="Script" path="res://Levels/EndLevelOne.gd" id="11_8pc5t"]
 [ext_resource type="PackedScene" path="res://World/Torch.tscn" id="12_exosl"]
 [ext_resource type="PackedScene" path="res://World/Candle.tscn" id="13_sirtq"]
 
@@ -5407,10 +5406,6 @@ layer_0/tile_data = PackedInt32Array(-1048634, 3014656, 18, -917561, 3014656, 18
 
 [node name="Transition" parent="." instance=ExtResource("9_332ev")]
 
-[node name="EndLevel" parent="." instance=ExtResource("10_td3kt")]
-position = Vector2(181, -140)
-script = ExtResource("11_8pc5t")
-
 [node name="Light" type="Node2D" parent="."]
 
 [node name="Torch" parent="Light" instance=ExtResource("12_exosl")]
@@ -5437,3 +5432,6 @@ position = Vector2(238, 401)
 
 [node name="Candle2" parent="Light" instance=ExtResource("13_sirtq")]
 position = Vector2(310, 404)
+
+[node name="EndLevel" parent="." instance=ExtResource("10_td3kt")]
+position = Vector2(181, -130)
