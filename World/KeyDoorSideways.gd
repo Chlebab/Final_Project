@@ -2,24 +2,23 @@ extends StaticBody2D
 
 @export var inv: Inventory
 signal door_opened
-var open = true
+var open = false
 
 func _ready():
-	open_door() 
+	pass
 
 func _process(_delta):
 	pass
 
 func _on_door_area_body_entered(body):
-	print("Player entered")
 	if body.get_name() == "Player":
 		for i in body.inv.slots.size():
 			if body.inv.slots[i].item and str(body.inv.slots[i].item.name) == "Key":
 				open_door()
 				
+				
 func _on_door_area_body_exited(body):
-	print("Player exited")
-	if body.get_name() == "Player":
+	if open == true && body.get_name() == "Player":
 		close_door()
 		
 func open_door():

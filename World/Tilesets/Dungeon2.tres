@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=48 format=3 uid="uid://da1vxxfqiqvrw"]
+[gd_resource type="TileSet" load_steps=48 format=3 uid="uid://dcggrntnvmgm7"]
 
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="1_3885x"]
 [ext_resource type="Texture2D" uid="uid://dirtj66wotwsv" path="res://World/Assets/RogueCatacombs/decorative.png" id="2_x67ya"]

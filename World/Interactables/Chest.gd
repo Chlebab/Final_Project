@@ -9,13 +9,18 @@ func _process(_delta):
 		open_chest()
 		take_money()
 		
-func _on_area_2d_body_entered(body):
+func _on_chest_area_body_entered(body):
 	if body.get_name() == "Player":
 		var inv_msg_label = body.get_node("InvMsg")
 		var inv_msg_timer = body.get_node("InvMsgTimer")
 		inv_msg_label.text = "[e] to open chest!"
 		inv_msg_timer.start()
 		player_in_chest_area = true
+		
+func _on_chest_area_body_exited(body):
+	if body.get_name() == "Player":
+		body.display_points()
+		player_in_chest_area = false
 
 func open_chest():
 	if player_in_chest_area == true && chest_open == false:
@@ -31,7 +36,9 @@ func take_money():
 		money_in_chest = false		
 		Global.points += 400
 		
-func _on_area_2d_body_exited(body):
-	if body.get_name() == "Player":
-		body.display_points()
-		player_in_chest_area = false
+
+
+
+	
+
+
