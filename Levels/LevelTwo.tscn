@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="7_d3pi7"]
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="8_k7mxc"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_jcwn4"]
+[ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="11_m8djp"]
 [ext_resource type="Script" path="res://Levels/EndLevelTwo.gd" id="12_d8kv1"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="13_v3e6e"]
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="14_k4i5w"]
-[ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="15_ou3p4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ey3rx"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -6451,6 +6451,14 @@ position = Vector2(344, 127)
 position = Vector2(395, 122)
 facing = 2
 
+[node name="Door" parent="." instance=ExtResource("4_b0d35")]
+material = ExtResource("5_2ftqg")
+position = Vector2(-88, 153)
+scale = Vector2(1.21339, 1)
+
+[node name="Node2D" parent="." instance=ExtResource("5_g8b4a")]
+position = Vector2(-123, 284)
+
 [node name="Door2" parent="." instance=ExtResource("7_d3pi7")]
 material = ExtResource("5_2ftqg")
 position = Vector2(288, 25)
@@ -6465,18 +6473,12 @@ position = Vector2(60, 408)
 position = Vector2(288, -43)
 script = ExtResource("12_d8kv1")
 
+[node name="Chest" parent="." instance=ExtResource("11_m8djp")]
+position = Vector2(-18, 80)
+
 [node name="Transition" parent="." instance=ExtResource("13_v3e6e")]
 
 [node name="egg_collectible" parent="." instance=ExtResource("14_k4i5w")]
 position = Vector2(149, 344)
 
-[node name="Chest" parent="." instance=ExtResource("15_ou3p4")]
-position = Vector2(-181, 79)
-
-[node name="Door" parent="." instance=ExtResource("4_b0d35")]
-position = Vector2(-85, 156)
-
-[node name="Button" parent="." instance=ExtResource("5_g8b4a")]
-position = Vector2(-113, 283)
-
-[connection signal="toggle_door" from="Button" to="Door" method="toggle_door"]
+[connection signal="toggle_door" from="Node2D" to="Door" method="toggle_door"]

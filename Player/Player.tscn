@@ -372,7 +372,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="InvMsg" type="Label" parent="."]
-z_index = 200
 texture_filter = 1
 offset_left = -233.0
 offset_top = -45.0
