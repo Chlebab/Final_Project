@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var facing = Direction.UP
 @export var inv: Inventory
-@export var speed = 80.0
+@export var speed = 50.0
 @export var spawn_point = Vector2(0,0)
 
 @onready var animate = $AnimationPlayer

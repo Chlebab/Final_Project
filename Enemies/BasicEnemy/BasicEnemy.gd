@@ -3,9 +3,9 @@ extends CharacterBody2D
 signal game_over
 signal clear_inventory
 
-var chase_speed = 80
-var return_speed = 40
-var patrol_speed = 40
+var chase_speed = 120
+var return_speed = 50
+var patrol_speed = 50
 var health = 60
 var attack_damage = 20
 var alive = true
@@ -40,7 +40,7 @@ func _physics_process(delta):
 	if alive:
 		if pursuing_target and !attacking:
 			update_path_to_target()
-			if global_position.distance_to(target.global_position) > 20:
+			if global_position.distance_to(target.global_position) > 40:
 				move_towards(navigator.get_next_path_position(), chase_speed)
 			else:
 				attack()

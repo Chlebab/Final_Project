@@ -2,7 +2,7 @@ extends Node2D
 var speed = 1
 var player_entering = false
 var level = "LEVEL 3"
-var description = "Goblins on patrol are easily distracted with a jack-in-the-box."
+var description = "Goblins on patrol are easily distracted..."
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
