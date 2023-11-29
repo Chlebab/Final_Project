@@ -19,7 +19,6 @@ func _on_chest_area_body_entered(body):
 		
 func _on_chest_area_body_exited(body):
 	if body.get_name() == "Player":
-		body.display_points()
 		player_in_chest_area = false
 
 func open_chest():

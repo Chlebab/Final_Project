@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_332ev"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_td3kt"]
 [ext_resource type="Script" path="res://Levels/EndLevelOne.gd" id="11_8pc5t"]
+[ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="11_031yx"]
+[ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="16_3ddwo"]
 [ext_resource type="PackedScene" path="res://World/Torch.tscn" id="12_exosl"]
 [ext_resource type="PackedScene" path="res://World/Candle.tscn" id="13_sirtq"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="14_25f0q"]
@@ -5498,6 +5500,8 @@ script = ExtResource("11_8pc5t")
 
 [node name="Light" type="Node2D" parent="."]
 
+[node name="LevelDarkener" parent="Light" instance=ExtResource("11_031yx")]
+
 [node name="Torch" parent="Light" instance=ExtResource("12_exosl")]
 z_index = 5
 position = Vector2(7, -70)
@@ -5523,6 +5527,12 @@ position = Vector2(181, -130)
 z_index = -1
 position = Vector2(-153, 18)
 
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 6
+position = Vector2(105, 58)
+zoom = Vector2(1.5, 1.5)
+
+[node name="HUD" parent="Camera" instance=ExtResource("16_3ddwo")]
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.733333, 0.733333, 0.733333, 1)
 

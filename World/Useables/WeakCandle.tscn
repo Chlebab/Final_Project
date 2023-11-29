@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyl4i8wgi21k6"]
+
+[ext_resource type="Texture2D" uid="uid://dirtj66wotwsv" path="res://World/Assets/RogueCatacombs/decorative.png" id="1_5djrm"]
+[ext_resource type="Script" path="res://World/FlickeringLight.gd" id="2_0nqjl"]
+
+[sub_resource type="Gradient" id="Gradient_0y0fu"]
+offsets = PackedFloat32Array(0.122449, 0.278912)
+colors = PackedColorArray(1, 1, 0.870588, 0.345098, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tm3wi"]
+gradient = SubResource("Gradient_0y0fu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="WeakCandle" type="Sprite2D"]
+texture = ExtResource("1_5djrm")
+hframes = 16
+vframes = 15
+frame = 26
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_tm3wi")
+script = ExtResource("2_0nqjl")

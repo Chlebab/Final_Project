@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=23 format=3 uid="uid://drj2qdh51jva0"]
 
 [ext_resource type="TileSet" uid="uid://dcggrntnvmgm7" path="res://World/Tilesets/Dungeon2.tres" id="1_cowsg"]
 [ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
+[ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="2_6gl28"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="2_avjwx"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_ycrid"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="3_0mdg3"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="4_2q4qa"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="5_vpc82"]
 [ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="6_4ew86"]
+[ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="7_yiuct"]
 [ext_resource type="AudioStream" uid="uid://duwlhcm4tt0nb" path="res://World/Assets/Sounds/Music/dungeon1.wav" id="8_17jf0"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_04c0o"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="9_bs20y"]
@@ -1073,11 +1075,12 @@ point_count = 11
 position = Vector2(1211, 908)
 script = ExtResource("1_hj63e")
 
-[node name="StartDoor" parent="." instance=ExtResource("2_avjwx")]
-position = Vector2(248, -6)
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 6
+position = Vector2(20, 48)
+zoom = Vector2(1.5, 1.5)
 
-[node name="Door" parent="." instance=ExtResource("3_0mdg3")]
-position = Vector2(-94, -335)
+[node name="HUD" parent="Camera" instance=ExtResource("2_6gl28")]
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -1154,6 +1157,8 @@ facing = 2
 
 [node name="Lighting" type="Node2D" parent="."]
 
+[node name="LevelDarkener" parent="Lighting" instance=ExtResource("7_yiuct")]
+
 [node name="Candle" parent="Lighting" instance=ExtResource("5_vpc82")]
 z_index = 5
 position = Vector2(-44, 127)
@@ -1166,8 +1171,16 @@ position = Vector2(64, 34)
 z_index = 5
 position = Vector2(-240, -333)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Lighting"]
-color = Color(0.733333, 0.733333, 0.733333, 1)
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="StartDoor" parent="Doors" instance=ExtResource("2_avjwx")]
+position = Vector2(248, -6)
+
+[node name="Door" parent="Doors" instance=ExtResource("3_0mdg3")]
+position = Vector2(-94, -335)
+
+[node name="key_collectable" parent="Doors" instance=ExtResource("14_psonq")]
+position = Vector2(-202, -272)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_17jf0")
@@ -1178,6 +1191,3 @@ autoplay = true
 position = Vector2(246, 106)
 
 [node name="Transition" parent="." instance=ExtResource("9_04c0o")]
-
-[node name="key_collectable" parent="." instance=ExtResource("14_psonq")]
-position = Vector2(-202, -272)
