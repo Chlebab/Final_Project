@@ -13,7 +13,6 @@ var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
 var alive = true
 var falling = false
-var lives_remaining = 3
 var health = 40
 var previous_checkpoint
 
@@ -35,7 +34,7 @@ func _physics_process(_delta):
 		velocity = velocity.normalized() * speed
 		adjust_direction(velocity)
 		move_and_slide()
-	elif lives_remaining > 0:
+	elif Global.lives_remaining > 0:
 		respawn()
 #	else:
 #		game_over()
@@ -53,7 +52,11 @@ func _process(_delta):
 			animate.movement("run")
 		else:
 			animate.movement("idle")
-
+	
+	
+		
+	
+	
 func adjust_direction(direction):
 	if direction.x > 0.7:
 		facing = Direction.RIGHT
@@ -179,10 +182,11 @@ func fall_into_hole():
 	alive = false
 
 func respawn():
+	alive = true
 	await get_tree().create_timer(3.0).timeout
 	$Sprite2D.scale = Vector2(1.5, 1.5)
-	lives_remaining -= 1
+	Global.lives_remaining -= 1
+	print("lives:", Global.lives_remaining)
 	global_position = previous_checkpoint
-	alive = true
 	$CollisionShape2D.disabled = false
 	animate.animating_action = false

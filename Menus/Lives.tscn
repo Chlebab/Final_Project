@@ -18,8 +18,19 @@ animations = [{
 }]
 
 [node name="Lives" type="Node2D"]
+metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(45, 40)
-scale = Vector2(2.5, 2.625)
+[node name="Life1" type="AnimatedSprite2D" parent="."]
+position = Vector2(39.5, 35)
+scale = Vector2(2.15625, 2.3125)
+sprite_frames = SubResource("SpriteFrames_tvxpe")
+
+[node name="Life2" type="AnimatedSprite2D" parent="."]
+position = Vector2(81, 35)
+scale = Vector2(2.15625, 2.3125)
+sprite_frames = SubResource("SpriteFrames_tvxpe")
+
+[node name="Life3" type="AnimatedSprite2D" parent="."]
+position = Vector2(123, 35)
+scale = Vector2(2.15625, 2.3125)
 sprite_frames = SubResource("SpriteFrames_tvxpe")

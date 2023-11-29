@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://nunvumufugbx"]
+[gd_scene load_steps=7 format=3 uid="uid://nunvumufugbx"]
 
 [ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="1_n2aln"]
 [ext_resource type="Script" path="res://Menus/HUD.gd" id="1_yv7p5"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_geden"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="3_drvrc"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="5_tbpop"]
+[ext_resource type="PackedScene" uid="uid://gjrab27fnbm0" path="res://Menus/Lives.tscn" id="6_hls8t"]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_yv7p5")
@@ -68,3 +69,6 @@ horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
+
+[node name="Lives" parent="." instance=ExtResource("6_hls8t")]
+position = Vector2(-390, 145)
