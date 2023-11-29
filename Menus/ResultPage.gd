@@ -1,7 +1,7 @@
 extends Control
 
 var score = 0
-var time_taken = 120-Global.time
+var time_taken = 600-Global.time
 
 func _process(delta):
 	pass

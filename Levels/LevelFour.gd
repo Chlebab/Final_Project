@@ -2,7 +2,7 @@ extends Node2D
 var speed = 1.3
 var player_entering = false
 var level = "LEVEL 4"
-var description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGUS'"
+var description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGI!"
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause

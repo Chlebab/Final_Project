@@ -5769,11 +5769,11 @@ script = ExtResource("1_n7put")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Player" parent="." instance=ExtResource("4_i8uw8")]
-position = Vector2(1436, 130)
+position = Vector2(2014, -377)
 
 [node name="Camera" type="Camera2D" parent="."]
 z_index = 6
-position = Vector2(1546, 168)
+position = Vector2(2053, -495)
 scale = Vector2(0.998498, 1)
 zoom = Vector2(1.4, 1.4)
 
