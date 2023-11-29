@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Levels/EndLevelTwo.gd" id="12_d8kv1"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="13_v3e6e"]
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="14_k4i5w"]
-[ext_resource type="PackedScene" path="res://World/Torch.tscn" id="18_ebwn0"]
+[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="18_ebwn0"]
 [ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="18_jxpdh"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="20_425ws"]
 

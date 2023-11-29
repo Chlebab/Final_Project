@@ -4,6 +4,10 @@ extends StaticBody2D
 signal door_opened
 var open = false
 
+func _ready():
+	self.collision_layer = 2
+	self.collision_mask = 2
+
 func open_door():
 	if open == false:
 		$Close.hide()
