@@ -1,3 +1,137 @@
-[gd_scene format=3 uid="uid://btq8pxwad7tbb"]
+[gd_scene load_steps=17 format=3 uid="uid://btq8pxwad7tbb"]
+
+[ext_resource type="Script" path="res://Menus/EndScene.gd" id="1_o8xih"]
+[ext_resource type="Texture2D" uid="uid://c06w25gljupyj" path="res://Player/Assets/PlayerSpriteSheet.png" id="2_5bmv1"]
+[ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="3_e6ptc"]
+[ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="4_tsbd3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6kmb"]
+atlas = ExtResource("2_5bmv1")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkbq6"]
+atlas = ExtResource("2_5bmv1")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj17e"]
+atlas = ExtResource("2_5bmv1")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67mtt"]
+atlas = ExtResource("2_5bmv1")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3wrb"]
+atlas = ExtResource("2_5bmv1")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7eehn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6kmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkbq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj17e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67mtt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3wrb")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx0lx"]
+atlas = ExtResource("4_tsbd3")
+region = Rect2(0, 0, 44, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnuaf"]
+atlas = ExtResource("4_tsbd3")
+region = Rect2(48, 0, 44, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fauld"]
+atlas = ExtResource("4_tsbd3")
+region = Rect2(96, 0, 44, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya78s"]
+atlas = ExtResource("4_tsbd3")
+region = Rect2(144, 0, 44, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fep6"]
+atlas = ExtResource("4_tsbd3")
+region = Rect2(192, 0, 44, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw41p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx0lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnuaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fauld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya78s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fep6")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [node name="EndScene" type="Node2D"]
+script = ExtResource("1_o8xih")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -14.0
+offset_top = -8.0
+offset_right = 1166.0
+offset_bottom = 662.0
+color = Color(0, 0, 0, 1)
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+z_index = 2
+position = Vector2(587, 540)
+scale = Vector2(15.125, 13.25)
+sprite_frames = SubResource("SpriteFrames_7eehn")
+animation = &"stand"
+frame_progress = 0.722338
+
+[node name="DoorNode" type="Node2D" parent="."]
+visible = false
+position = Vector2(572, 278)
+scale = Vector2(0.116435, 0.120301)
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="DoorNode"]
+offset_left = -54.0
+offset_top = -80.0
+offset_right = 45.0
+offset_bottom = 77.0
+scale = Vector2(1.24011, 1.09219)
+color = Color(0.960784, 0.952941, 0.870588, 1)
+
+[node name="Door" type="AnimatedSprite2D" parent="DoorNode/ColorRect2"]
+material = ExtResource("3_e6ptc")
+position = Vector2(49.9956, 33.8768)
+scale = Vector2(2.39165, 1.70084)
+sprite_frames = SubResource("SpriteFrames_xw41p")
+animation = &"open"

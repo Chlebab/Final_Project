@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://cmeunnw4p4pd0"]
+[gd_scene load_steps=105 format=3 uid="uid://cmeunnw4p4pd0"]
 
 [ext_resource type="Script" path="res://Levels/LevelOne.gd" id="1_pf3et"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_xxoyr"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_td3kt"]
 [ext_resource type="Script" path="res://Levels/EndLevelOne.gd" id="11_8pc5t"]
 [ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="11_031yx"]
-[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="12_exosl"]
+[ext_resource type="PackedScene" path="res://World/Torch.tscn" id="12_exosl"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="13_sirtq"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="14_25f0q"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="14_kavqy"]
