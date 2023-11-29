@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dicy7yrjc5qgn"]
+[gd_scene load_steps=4 format=3 uid="uid://dicy7yrjc5qgn"]
 
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="1_dj5hv"]
 [ext_resource type="Script" path="res://Menus/PauseMenu.gd" id="1_roxl0"]
+[ext_resource type="PackedScene" uid="uid://8opg5v5kv74j" path="res://Menus/fullscreen.tscn" id="3_oxxfq"]
 
 [node name="Pause" type="Control"]
 layout_mode = 3
@@ -42,6 +43,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_dj5hv")
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
+
+[node name="Fullscreen" parent="." instance=ExtResource("3_oxxfq")]
+z_index = 100
+offset_left = -14.0
+offset_top = 537.0
+offset_right = -14.0
+offset_bottom = 537.0
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=23 format=3 uid="uid://drj2qdh51jva0"]
 
 [ext_resource type="TileSet" uid="uid://dcggrntnvmgm7" path="res://World/Tilesets/Dungeon2.tres" id="1_cowsg"]
 [ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
+[ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="2_6gl28"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="2_avjwx"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_ycrid"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="3_0mdg3"]
@@ -1073,6 +1074,13 @@ point_count = 11
 [node name="LevelThree" type="Node2D"]
 position = Vector2(1211, 908)
 script = ExtResource("1_hj63e")
+
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 6
+position = Vector2(20, 48)
+zoom = Vector2(1.5, 1.5)
+
+[node name="HUD" parent="Camera" instance=ExtResource("2_6gl28")]
 
 [node name="Tilemaps" type="Node2D" parent="."]
 

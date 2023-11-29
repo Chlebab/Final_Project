@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cmbffo0u3ew3f"]
+[gd_scene load_steps=75 format=3 uid="uid://cmbffo0u3ew3f"]
 
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="6_0b2cp"]
 [ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="6_50151"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="7_mhmax"]
+[ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="8_h6n58"]
 [ext_resource type="PackedScene" uid="uid://q7t1uri3tbas" path="res://World/KeyDoorSideways.tscn" id="13_xi14u"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gj4m0"]
@@ -5414,3 +5415,10 @@ position = Vector2(2926, -27)
 [node name="Candle3" parent="lights" instance=ExtResource("7_mhmax")]
 z_index = -3
 position = Vector2(3327, 56)
+
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 6
+position = Vector2(1741, 109)
+zoom = Vector2(1.5, 1.5)
+
+[node name="HUD" parent="Camera" instance=ExtResource("8_h6n58")]

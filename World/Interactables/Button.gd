@@ -10,12 +10,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed("e"):
 		press_button()
 
-
 func press_button():
 	if player_in_area: 	
 		toggle_door.emit()
 		print("player pressed button")	
-
 
 func _on_button_area_body_entered(body):
 	if body.get_name() == "Player":
@@ -25,7 +23,6 @@ func _on_button_area_body_entered(body):
 		inv_msg_timer.start()
 		player_in_area = true
 		print("player in button")
-
 
 func _on_button_area_body_exited(body):
 	if body.get_name() == "Player":
