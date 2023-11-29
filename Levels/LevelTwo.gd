@@ -1,5 +1,5 @@
 extends Node2D
-var speed = 1
+var speed = 1.3
 var player_entering = false
 var level = "LEVEL 2"
 var description = "FIND A WAY TO LURE THE GUARDS AND LOCK THEM IN A ROOM!"
