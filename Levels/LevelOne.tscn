@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="3_bxrwd"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="4_3x4bq"]
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="5_wjij3"]
-[ext_resource type="PackedScene" uid="uid://b870y5m2pcfpr" path="res://World/ButtonedDoor.tscn" id="6_8sw4y"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="7_17yv2"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_332ev"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_td3kt"]
 [ext_resource type="Script" path="res://Levels/EndLevelOne.gd" id="11_8pc5t"]
-[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="12_exosl"]
-[ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="13_sirtq"]
+[ext_resource type="PackedScene" path="res://World/Torch.tscn" id="12_exosl"]
+[ext_resource type="PackedScene" path="res://World/Candle.tscn" id="13_sirtq"]
+[ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="14_25f0q"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="14_kavqy"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gj4m0"]
@@ -5522,6 +5522,12 @@ position = Vector2(-151, 106)
 
 [node name="EndLevel2" parent="." instance=ExtResource("10_td3kt")]
 position = Vector2(181, -130)
+
+[node name="StartDoor" parent="." instance=ExtResource("14_25f0q")]
+z_index = -1
+position = Vector2(-153, 18)
+collision_layer = 1
+collision_mask = 7
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.568627, 0.568627, 0.568627, 1)

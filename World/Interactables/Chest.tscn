@@ -71,11 +71,11 @@ scale = Vector2(0.583333, 0.5625)
 sprite_frames = SubResource("SpriteFrames_5qov4")
 animation = &"Empty"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ChestArea" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChestArea"]
 position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_0wkrj")
 
@@ -83,5 +83,5 @@ shape = SubResource("CircleShape2D_0wkrj")
 position = Vector2(-5, 0.5)
 shape = SubResource("RectangleShape2D_03eih")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="ChestArea" to="." method="_on_chest_area_body_entered"]
+[connection signal="body_exited" from="ChestArea" to="." method="_on_chest_area_body_exited"]

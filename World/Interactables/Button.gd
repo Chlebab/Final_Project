@@ -7,7 +7,7 @@ var open = false
 var player_in_area = false
 
 func _process(_delta):
-	if Input.is_action_just_pressed("open"):
+	if Input.is_action_just_pressed("e"):
 		press_button()
 
 
