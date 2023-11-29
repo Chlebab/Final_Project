@@ -1,5 +1,5 @@
 extends Node2D
-var speed = 1
+var speed = 1.4
 var player_entering = false
 var level = "LEVEL 3"
 var description = "Goblins Love Jack-In-Boxes and can't see barrels"
