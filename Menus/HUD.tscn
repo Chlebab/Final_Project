@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://nunvumufugbx"]
+
+[ext_resource type="PackedScene" uid="uid://bmior6v73pyvd" path="res://Inventory/InventoryUi.tscn" id="1_n2aln"]
+[ext_resource type="Script" path="res://Menus/HUD.gd" id="1_yv7p5"]
+[ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_geden"]
+[ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="3_drvrc"]
+[ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="5_tbpop"]
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_yv7p5")
+
+[node name="InventoryUi" parent="." instance=ExtResource("1_n2aln")]
+z_index = 50
+offset_left = 163.0
+offset_top = 99.0
+offset_right = 265.0
+offset_bottom = 139.0
+
+[node name="PointsDisplay" type="Label" parent="."]
+z_index = 50
+texture_filter = 1
+offset_left = -363.0
+offset_top = -196.0
+offset_right = -323.0
+offset_bottom = -173.0
+theme_override_fonts/font = ExtResource("2_geden")
+theme_override_font_sizes/font_size = 20
+
+[node name="Timer" parent="." instance=ExtResource("3_drvrc")]
+z_index = 50
+texture_filter = 1
+offset_left = 183.0
+offset_top = -199.0
+offset_right = 183.0
+offset_bottom = -199.0
+
+[node name="Pause" parent="." instance=ExtResource("5_tbpop")]
+visible = false
+z_index = 50
+offset_left = -567.0
+offset_top = -339.0
+offset_right = -567.0
+offset_bottom = -339.0
+
+[node name="LevelLabel" type="Label" parent="."]
+z_index = 200
+offset_left = -53.0
+offset_top = -45.0
+offset_right = 53.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("2_geden")
+theme_override_font_sizes/font_size = 12
+text = "LEVEL 1"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+z_index = 200
+offset_left = -268.0
+offset_top = -1.0
+offset_right = 268.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_geden")
+theme_override_font_sizes/font_size = 10
+text = "FREEDOM AWAITS! BUT THE DOOR IS LOCKED!
+"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://6a1u6ndan3ia"]
+
+[node name="LevelDarkener" type="CanvasModulate"]
+color = Color(0.666667, 0.666667, 0.666667, 1)

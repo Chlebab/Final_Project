@@ -20,7 +20,6 @@ var previous_checkpoint
 signal update_slots
 
 func _ready():
-	display_points()
 	$BarrelSprite.visible = false
 
 func _physics_process(_delta):
@@ -71,10 +70,6 @@ func player():
 func collect(item):
 	Global.points += item.points
 	inv.insert(item)
-	display_points()
-
-func display_points():
-	$PointsDisplay.text = str(Global.points) + " points"
 
 func _on_enemy_navigator_clear_inventory():
 	print("You have been cought. Your inventory has been taken.")

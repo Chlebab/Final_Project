@@ -10,6 +10,7 @@ script = ExtResource("1_gk1y8")
 metadata/_edit_group_ = true
 
 [node name="FullscreenText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 47.0
 offset_top = 77.0
 offset_right = 207.0
@@ -19,6 +20,7 @@ theme_override_font_sizes/font_size = 10
 text = "FULLSCREEN"
 
 [node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
 offset_left = 142.0
 offset_top = 71.0
 offset_right = 186.0

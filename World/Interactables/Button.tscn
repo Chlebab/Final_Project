@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cae7w3rtormm8" path="res://World/Assets/vecteezy_pixel-art-play-button_8506351.png" id="1_ev1xp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5xc5"]
-radius = 32.28
+radius = 30.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_dcvlc")
@@ -16,10 +16,12 @@ scale = Vector2(0.00221474, -0.00248014)
 texture = ExtResource("1_ev1xp")
 
 [node name="ButtonArea" type="Area2D" parent="."]
+position = Vector2(0, 28)
 collision_layer = 64
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea"]
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_u5xc5")
 
 [connection signal="body_entered" from="ButtonArea" to="." method="_on_button_area_body_entered"]

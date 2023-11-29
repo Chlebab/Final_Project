@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://do1cfsvbmiqgf"]
+[gd_scene load_steps=18 format=3 uid="uid://dpmkp7gubht23"]
 
-[ext_resource type="Script" path="res://World/KeyDoorSideways.gd" id="1_xdqs6"]
-[ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="3_fm47n"]
+[ext_resource type="Script" path="res://World/ButtonDoorSideways.gd" id="1_7hhve"]
+[ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="2_hybm0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8u5lt"]
 
@@ -12,23 +12,23 @@ radius = 38.0526
 size = Vector2(14.2857, 152.155)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6764p"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(0, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2vku"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(48, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijo1w"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(96, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2spk"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(144, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i62ut"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(192, 0, 44, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3lmlf"]
@@ -55,23 +55,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_813ry"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(192, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clgrb"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(240, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owpyw"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(288, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_va2k6"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(336, 0, 44, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0lc1"]
-atlas = ExtResource("3_fm47n")
+atlas = ExtResource("2_hybm0")
 region = Rect2(0, 0, 44, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mg3r4"]
@@ -97,10 +97,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="KeyDoorSideways" type="StaticBody2D"]
+[node name="ButtonedDoorSideways" type="StaticBody2D"]
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_8u5lt")
-script = ExtResource("1_xdqs6")
+script = ExtResource("1_7hhve")
 
 [node name="DoorArea" type="Area2D" parent="."]
 collision_layer = 8
