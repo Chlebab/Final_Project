@@ -1082,7 +1082,7 @@ position = Vector2(15, 35)
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("2_g6lgg")
 original_position = Vector2(15, 35)
-second_position = Vector2(-10, -190)
+second_position = Vector2(-66, -180)
 
 [node name="HUD" parent="Camera" instance=ExtResource("2_6gl28")]
 

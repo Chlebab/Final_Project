@@ -1,7 +1,6 @@
 extends Node2D
 
 var speed = 2
-var player_entering = false
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
@@ -16,16 +15,14 @@ func _ready():
 	$Camera/HUD/LevelLabel.hide()
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
-	player_entering = true
-	player.animate.movement("run")
+	player.entering_level = true
 	await get_tree().create_timer(2).timeout
-	player_entering = false
-	player.alive = true
+	player.entering_level = false
 	
 func _process(_delta):
-	if player_entering:
-		player.alive = false
+	if player.entering_level:
 		player.global_position.y += speed
+		player.animate.movement("run")
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
@@ -36,7 +33,6 @@ func pauseMenu():
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
-	
-	paused = !paused	
+	paused = !paused
 
 
