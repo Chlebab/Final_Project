@@ -63,15 +63,6 @@ func adjust_direction(direction):
 	if direction.y > 0.7:
 		facing = Direction.DOWN
 
-func move_towards(target_vector):
-	var direction = (target_vector - global_position).normalized()
-	velocity = direction * 10000
-	print(velocity)
-	print(global_position)
-	adjust_direction(direction)
-	animate.movement("run")
-	move_and_slide()
-
 func player():
 	pass
 

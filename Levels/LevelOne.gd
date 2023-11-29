@@ -18,7 +18,7 @@ func _ready():
 	player.entering_level = true
 	player.animate.movement("run")
 	await get_tree().create_timer(2).timeout
-	player.animate.movement("idle")
+	player.facing = 1
 	player.entering_level = false
 
 func _process(_delta):
@@ -36,5 +36,3 @@ func pauseMenu():
 		pause_menu.show()
 		Engine.time_scale = 0
 	paused = !paused
-
-

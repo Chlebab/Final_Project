@@ -1,13 +1,15 @@
 extends Node2D
-var speed = 1.4
+var speed = 1
 var player_entering = false
 var level = "LEVEL 3"
-var description = "Goblins Love Jack-In-Boxes and can't see barrels"
+var description = "Goblins on patrol are easily distracted with a jack-in-the-box."
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
+@onready var player = $Player
 
 func _ready():
+	Global.lives_remaining = 3
 	$Transition.play("fade_in")
 	$Camera/HUD/LevelLabel.text = level
 	$Camera/HUD/DescriptionLabel.text = description
@@ -18,13 +20,16 @@ func _ready():
 	$Camera/HUD/LevelLabel.hide()
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
-	player_entering = true
-	await get_tree().create_timer(1.2).timeout
-	player_entering = false
+	player.entering_level = true
+	player.animate.movement("run")
+	await get_tree().create_timer(2).timeout
+	player.facing = 1
+	player.entering_level = false
 
 func _process(delta):
-	if player_entering:
-		get_node("Player").global_position.y += speed
+	if player.entering_level:
+		player.facing = 4
+		player.global_position.y += speed
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
