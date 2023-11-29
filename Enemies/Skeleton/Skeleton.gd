@@ -42,7 +42,7 @@ func adjust_direction(direction):
 		facing = Direction.UP
 	if direction.y > 0.7:
 		facing = Direction.DOWN
-
+	
 func _on_target_detection(body):
 	if body.is_in_group("Living") and body.alive:
 		target = body
@@ -52,7 +52,8 @@ func take_hit(damage, attacker):
 	health -= damage
 	if health > 0:
 		if !attacking: animate.action("hit")
-		if target != attacker: target = attacker
+		if !target:
+			target = attacker
 	else:
 		die()
 
