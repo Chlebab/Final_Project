@@ -348,7 +348,7 @@ offset_right = 265.0
 offset_bottom = 139.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="PointsDisplay" type="Label" parent="."]
 z_index = 50
@@ -372,6 +372,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="InvMsg" type="Label" parent="."]
+z_index = 100
 texture_filter = 1
 offset_left = -233.0
 offset_top = -45.0
