@@ -1,5 +1,6 @@
-[gd_scene load_steps=88 format=3 uid="uid://cmbffo0u3ew3f"]
+[gd_scene load_steps=93 format=3 uid="uid://cmbffo0u3ew3f"]
 
+[ext_resource type="Script" path="res://Levels/LevelFour.gd" id="1_n7put"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="4_i8uw8"]
@@ -16,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://b6ne77pr8p6vb" path="res://World/Collectables/BarrelCollectable.tscn" id="15_5862y"]
 [ext_resource type="PackedScene" uid="uid://dpmkp7gubht23" path="res://World/ButtonDoorSideways.tscn" id="15_flyxd"]
 [ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="16_oqlcl"]
+[ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="18_mg42g"]
+[ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="19_27qp4"]
+[ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="20_snctb"]
+[ext_resource type="Script" path="res://Levels/EndLevelFour.gd" id="21_x57ml"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gj4m0"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5760,14 +5765,16 @@ points = 0
 [node name="LevelFour" type="Node2D"]
 texture_filter = 1
 position = Vector2(1077, 431)
+script = ExtResource("1_n7put")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Player" parent="." instance=ExtResource("4_i8uw8")]
-position = Vector2(2018, -322)
+position = Vector2(1436, 130)
 
 [node name="Camera" type="Camera2D" parent="."]
 z_index = 6
-position = Vector2(2021, -458)
+position = Vector2(1546, 168)
+scale = Vector2(0.998498, 1)
 zoom = Vector2(1.4, 1.4)
 
 [node name="HUD" parent="Camera" instance=ExtResource("8_h6n58")]
@@ -5909,6 +5916,15 @@ position = Vector2(2289, -516)
 [node name="BarrelCollectable" parent="." instance=ExtResource("15_5862y")]
 position = Vector2(1915, -384)
 item = SubResource("Resource_u1n5a")
+
+[node name="Transition" parent="." instance=ExtResource("18_mg42g")]
+
+[node name="StartDoor" parent="." instance=ExtResource("19_27qp4")]
+position = Vector2(1436, 195)
+
+[node name="EndLevel" parent="." instance=ExtResource("20_snctb")]
+position = Vector2(2016, -696)
+script = ExtResource("21_x57ml")
 
 [connection signal="spawn_enemy" from="Section 1/Spawn areas/SpawnButton" to="Section 1/Spawn areas/SpawnArea3" method="spawn_enemy"]
 [connection signal="spawn_enemy" from="Section 1/Spawn areas/SpawnButton" to="Section 1/Spawn areas/SpawnArea2" method="spawn_enemy"]

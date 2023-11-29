@@ -1,8 +1,8 @@
 extends Node2D
-var speed = 1.4
+var speed = 1.3
 var player_entering = false
-var level = "LEVEL 3"
-var description = "USE STEALTH AND DISTRACTION TO CREEP PAST THE GOBLINS"
+var level = "LEVEL 4"
+var description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGUS'"
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
@@ -22,6 +22,8 @@ func _ready():
 	await get_tree().create_timer(1.2).timeout
 	player_entering = false
 
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player_entering:
 		get_node("Player").global_position.y += speed
@@ -41,10 +43,6 @@ func pauseMenu():
 
 
 	
-	
-	
-
-
 	
 	
 

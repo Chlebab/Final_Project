@@ -25,7 +25,7 @@ func _ready():
 	
 
 func _on_play_again_pressed():
-	get_tree().change_scene_to_file("res://Levels/DungeonLevel.tscn")
+	get_tree().change_scene_to_file("res://Menus/MainMenu.tscn")
 	
 
 func _on_quit_pressed():
