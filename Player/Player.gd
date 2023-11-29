@@ -173,6 +173,7 @@ func die():
 	alive = false
 	$CollisionShape2D.disabled = true
 	animate.action("die")
+	Global.lives_remaining -= 1
 
 func fall_into_hole():
 	falling = true
@@ -182,11 +183,11 @@ func fall_into_hole():
 	alive = false
 
 func respawn():
-	alive = true
+	
 	await get_tree().create_timer(3.0).timeout
 	$Sprite2D.scale = Vector2(1.5, 1.5)
-	Global.lives_remaining -= 1
 	print("lives:", Global.lives_remaining)
 	global_position = previous_checkpoint
+	alive = true
 	$CollisionShape2D.disabled = false
 	animate.animating_action = false
