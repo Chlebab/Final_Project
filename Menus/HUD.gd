@@ -5,7 +5,7 @@ var points_displayed
 func _ready():
 	display_points()
 
-func _process(delta):
+func _process(_delta):
 	if Global.points != points_displayed:
 		display_points()
 
