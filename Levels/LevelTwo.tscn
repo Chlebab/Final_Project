@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=3 uid="uid://ceexjcfeqc27e"]
+[gd_scene load_steps=241 format=3 uid="uid://ceexjcfeqc27e"]
 
 [ext_resource type="Script" path="res://Levels/LevelTwo.gd" id="1_4deut"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_55sex"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dirtj66wotwsv" path="res://World/Assets/RogueCatacombs/decorative.png" id="4_hvjkq"]
 [ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="5_2ftqg"]
 [ext_resource type="PackedScene" uid="uid://baafpkdcleopl" path="res://World/Interactables/Button.tscn" id="5_g8b4a"]
+[ext_resource type="PackedScene" uid="uid://cyl4i8wgi21k6" path="res://World/Useables/WeakCandle.tscn" id="5_gbjcv"]
 [ext_resource type="PackedScene" uid="uid://clr2ermprnh3m" path="res://Enemies/BasicEnemy/BasicEnemy.tscn" id="6_itml1"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="7_d3pi7"]
 [ext_resource type="PackedScene" uid="uid://cv375sbdpabws" path="res://World/Collectables/KeyCollectable.tscn" id="8_k7mxc"]
@@ -16,8 +17,9 @@
 [ext_resource type="Script" path="res://Levels/EndLevelTwo.gd" id="12_d8kv1"]
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="13_v3e6e"]
 [ext_resource type="PackedScene" uid="uid://4kqe0iojjjh7" path="res://World/Collectables/EggCollectable.tscn" id="14_k4i5w"]
-[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="17_0v52o"]
-[ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="18_ebwn0"]
+[ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="18_ebwn0"]
+[ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="18_jxpdh"]
+[ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="20_425ws"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m136y"]
 
@@ -6774,20 +6776,23 @@ position = Vector2(-18, 80)
 [node name="egg_collectible" parent="." instance=ExtResource("14_k4i5w")]
 position = Vector2(149, 344)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.733333, 0.733333, 0.733333, 1)
-
 [node name="Lighting" type="Node2D" parent="."]
 
-[node name="Torch" parent="Lighting" instance=ExtResource("17_0v52o")]
+[node name="LevelDarkener" parent="Lighting" instance=ExtResource("18_jxpdh")]
+
+[node name="Torch" parent="Lighting" instance=ExtResource("18_ebwn0")]
 z_index = 3
 position = Vector2(-60, 260)
 
-[node name="Torch2" parent="Lighting" instance=ExtResource("17_0v52o")]
+[node name="WeakCandle" parent="Lighting" instance=ExtResource("5_gbjcv")]
+position = Vector2(-151, 56)
+
+[node name="Torch2" parent="Lighting" instance=ExtResource("18_ebwn0")]
 position = Vector2(79, 7)
 
-[node name="Candle" parent="Lighting" instance=ExtResource("18_ebwn0")]
-z_index = -3
-position = Vector2(366, 114)
+[node name="Candle" parent="Lighting" instance=ExtResource("20_425ws")]
+position = Vector2(368, 115)
+animation = &"candle_2"
+frame_progress = 0.96352
 
 [connection signal="toggle_door" from="Button" to="Door" method="toggle_door"]

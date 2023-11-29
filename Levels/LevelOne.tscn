@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://cmeunnw4p4pd0"]
+[gd_scene load_steps=102 format=3 uid="uid://cmeunnw4p4pd0"]
 
 [ext_resource type="Script" path="res://Levels/LevelOne.gd" id="1_pf3et"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_xxoyr"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cpdbdf2umlb7q" path="res://Levels/Transition.tscn" id="9_332ev"]
 [ext_resource type="PackedScene" uid="uid://wdm6wasuby3q" path="res://Levels/EndLevel.tscn" id="10_td3kt"]
 [ext_resource type="Script" path="res://Levels/EndLevelOne.gd" id="11_8pc5t"]
+[ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="11_031yx"]
 [ext_resource type="PackedScene" uid="uid://cn058bb22rfsu" path="res://World/Torch.tscn" id="12_exosl"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="13_sirtq"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="14_25f0q"]
@@ -5498,6 +5499,8 @@ script = ExtResource("11_8pc5t")
 
 [node name="Light" type="Node2D" parent="."]
 
+[node name="LevelDarkener" parent="Light" instance=ExtResource("11_031yx")]
+
 [node name="Torch" parent="Light" instance=ExtResource("12_exosl")]
 z_index = 5
 position = Vector2(7, -70)
@@ -5524,6 +5527,3 @@ z_index = -1
 position = Vector2(-153, 18)
 collision_layer = 1
 collision_mask = 7
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.733333, 0.733333, 0.733333, 1)
