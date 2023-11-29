@@ -36,7 +36,7 @@ func _physics_process(_delta):
 		move_and_slide()
 	elif Global.lives_remaining > 0:
 		respawn()
-#	else:
+#	elif lives_remaining == 0:
 #		game_over()
 
 func _process(_delta):
@@ -47,7 +47,6 @@ func _process(_delta):
 			use_crossword_item()
 		elif Input.is_action_just_pressed("b"):
 			use_barrel_item()
-
 		if velocity:
 			animate.movement("run")
 		else:

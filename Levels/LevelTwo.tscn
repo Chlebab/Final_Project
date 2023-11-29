@@ -6761,13 +6761,6 @@ position = Vector2(287, 1)
 [node name="key_collectable" parent="." instance=ExtResource("8_k7mxc")]
 position = Vector2(392, 102)
 
-[node name="Camera" type="Camera2D" parent="."]
-z_index = 6
-position = Vector2(100, 171)
-zoom = Vector2(1.5, 1.5)
-
-[node name="HUD" parent="Camera" instance=ExtResource("11_xfopw")]
-
 [node name="Player" parent="." instance=ExtResource("3_r1fnl")]
 position = Vector2(71, 405)
 
@@ -6801,5 +6794,13 @@ position = Vector2(79, 7)
 position = Vector2(368, 115)
 animation = &"candle_2"
 frame_progress = 0.96352
+
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 6
+position = Vector2(100, 171)
+zoom = Vector2(1.5, 1.5)
+drag_horizontal_enabled = true
+
+[node name="HUD" parent="Camera" instance=ExtResource("11_xfopw")]
 
 [connection signal="toggle_door" from="Button" to="Door" method="toggle_door"]

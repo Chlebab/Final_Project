@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://drj2qdh51jva0"]
+[gd_scene load_steps=24 format=3 uid="uid://drj2qdh51jva0"]
 
 [ext_resource type="TileSet" uid="uid://dcggrntnvmgm7" path="res://World/Tilesets/Dungeon2.tres" id="1_cowsg"]
 [ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
 [ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="2_6gl28"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="2_avjwx"]
+[ext_resource type="Script" path="res://Levels/Camera.gd" id="2_g6lgg"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="2_ycrid"]
 [ext_resource type="PackedScene" uid="uid://bs3ltst2g15qh" path="res://World/KeyDoor.tscn" id="3_0mdg3"]
 [ext_resource type="PackedScene" uid="uid://cxqt3y635o61e" path="res://Enemies/BasicEnemy/Patroller.tscn" id="3_62tn6"]
@@ -1076,11 +1077,23 @@ position = Vector2(1211, 908)
 script = ExtResource("1_hj63e")
 
 [node name="Camera" type="Camera2D" parent="."]
-z_index = 6
-position = Vector2(20, 48)
+z_index = 40
+position = Vector2(15, 35)
 zoom = Vector2(1.5, 1.5)
+script = ExtResource("2_g6lgg")
+original_position = Vector2(15, 35)
+second_position = Vector2(-10, -190)
 
 [node name="HUD" parent="Camera" instance=ExtResource("2_6gl28")]
+
+[node name="CameraMovementZone" type="Area2D" parent="."]
+position = Vector2(-106, -116)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="CameraMovementZone"]
+position = Vector2(-95.5, 14)
+polygon = PackedVector2Array(67.5, 201, -142.5, 206, -145.5, -320, 360.5, -282, 340.5, 95, 164.5, 99, 154.5, 169)
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -1191,3 +1204,6 @@ autoplay = true
 position = Vector2(246, 106)
 
 [node name="Transition" parent="." instance=ExtResource("9_04c0o")]
+
+[connection signal="body_entered" from="CameraMovementZone" to="Camera" method="_on_camera_movement_zone_body_entered"]
+[connection signal="body_exited" from="CameraMovementZone" to="Camera" method="_on_camera_movement_zone_body_exited"]
