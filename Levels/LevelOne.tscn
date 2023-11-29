@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://cmeunnw4p4pd0"]
+[gd_scene load_steps=106 format=3 uid="uid://cmeunnw4p4pd0"]
 
 [ext_resource type="Script" path="res://Levels/LevelOne.gd" id="1_pf3et"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_xxoyr"]

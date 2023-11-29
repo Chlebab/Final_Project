@@ -1,6 +1,6 @@
 extends Control
 
-@onready var main = $"../../"
+@onready var main = $"../../../"
 
 func _ready():
 	$VBoxContainer/Resume.grab_focus()
