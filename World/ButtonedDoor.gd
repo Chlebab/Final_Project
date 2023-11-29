@@ -7,7 +7,8 @@ var open = false
 
 
 func _ready():
-	pass 
+	self.collision_layer = 2
+	self.collision_mask = 2
 
 func _process(_delta):
 	pass

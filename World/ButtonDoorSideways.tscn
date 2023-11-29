@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpmkp7gubht23"]
+[gd_scene load_steps=19 format=3 uid="uid://dpmkp7gubht23"]
 
 [ext_resource type="Script" path="res://World/ButtonDoorSideways.gd" id="1_7hhve"]
 [ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="2_hybm0"]
+[ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="2_w1gyo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8u5lt"]
 
@@ -117,6 +118,7 @@ scale = Vector2(0.84, 0.630935)
 shape = SubResource("RectangleShape2D_vle5e")
 
 [node name="Close" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_w1gyo")
 sprite_frames = SubResource("SpriteFrames_3lmlf")
 animation = &"Close"
 frame = 4
@@ -124,6 +126,7 @@ frame_progress = 1.0
 
 [node name="Open" type="AnimatedSprite2D" parent="."]
 visible = false
+material = ExtResource("2_w1gyo")
 sprite_frames = SubResource("SpriteFrames_mg3r4")
 animation = &"Open"
 frame = 4
