@@ -1,6 +1,7 @@
-[gd_scene load_steps=88 format=3 uid="uid://cmbffo0u3ew3f"]
+[gd_scene load_steps=91 format=3 uid="uid://cmbffo0u3ew3f"]
 
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
+[ext_resource type="Script" path="res://Levels/Camera.gd" id="2_qxo4d"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="4_i8uw8"]
 [ext_resource type="PackedScene" uid="uid://docs7khtrm4pa" path="res://Spawns/EnemySpawn/EnemySpawnArea.tscn" id="8_4gcis"]
@@ -16,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://b6ne77pr8p6vb" path="res://World/Collectables/BarrelCollectable.tscn" id="15_5862y"]
 [ext_resource type="PackedScene" uid="uid://dpmkp7gubht23" path="res://World/ButtonDoorSideways.tscn" id="15_flyxd"]
 [ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="16_oqlcl"]
+[ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="18_6wco6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_roed8"]
+size = Vector2(1078, 723)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gj4m0"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5748,9 +5753,9 @@ point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_w7rrv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, -212, 0, 0, 0, 0, -17, 21)
+"points": PackedVector2Array(9.55171, 3.27755, -9.55171, -3.27755, -8, -212, -12.784, -2.30409, 12.784, 2.30409, -17, 21, -6.61496, 2.15544, 6.61496, -2.15544, -4, 20, 16.575, -13.4848, -16.575, 13.4848, -8, -212)
 }
-point_count = 2
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_u1n5a"]
 script = ExtResource("16_oqlcl")
@@ -5763,12 +5768,22 @@ position = Vector2(1077, 431)
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Player" parent="." instance=ExtResource("4_i8uw8")]
-position = Vector2(2018, -322)
+position = Vector2(1442, 194)
+facing = 1
+
+[node name="CameraMovementZon" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraMovementZon"]
+position = Vector2(2079, -450.5)
+shape = SubResource("RectangleShape2D_roed8")
 
 [node name="Camera" type="Camera2D" parent="."]
 z_index = 6
-position = Vector2(2021, -458)
+position = Vector2(1736, 102)
 zoom = Vector2(1.4, 1.4)
+script = ExtResource("2_qxo4d")
+original_position = Vector2(1736, 102)
+second_position = Vector2(2017, -472)
 
 [node name="HUD" parent="Camera" instance=ExtResource("8_h6n58")]
 
@@ -5802,7 +5817,6 @@ position = Vector2(1698, 112)
 [node name="Section 1" type="Node2D" parent="."]
 
 [node name="Spawn areas" type="Node2D" parent="Section 1"]
-visible = false
 
 [node name="SpawnArea3" parent="Section 1/Spawn areas" instance=ExtResource("8_4gcis")]
 position = Vector2(2029, 96)
@@ -5818,7 +5832,6 @@ position = Vector2(1740, -7)
 script = ExtResource("11_mepa5")
 
 [node name="Enemies" type="Node2D" parent="Section 1"]
-visible = false
 
 [node name="PatrolPath" parent="Section 1/Enemies" instance=ExtResource("8_oa51c")]
 position = Vector2(2003, 154)
@@ -5836,18 +5849,21 @@ position = Vector2(2029, 100)
 [node name="Enemies section 2" type="Node2D" parent="Section 2"]
 
 [node name="PatrolPath" parent="Section 2/Enemies section 2" instance=ExtResource("8_oa51c")]
-position = Vector2(2284, -334)
+position = Vector2(2292, -326)
 curve = SubResource("Curve2D_w7rrv")
 
 [node name="BasicEnemy" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(1903, -528)
 facing = 2
 
 [node name="BasicEnemy2" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(2014, -502)
 facing = 1
 
 [node name="BasicEnemy3" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(2140, -528)
 facing = 3
 
@@ -5910,6 +5926,11 @@ position = Vector2(2289, -516)
 position = Vector2(1915, -384)
 item = SubResource("Resource_u1n5a")
 
+[node name="Checkpoint" parent="." instance=ExtResource("18_6wco6")]
+position = Vector2(1441, 269)
+
+[connection signal="body_entered" from="CameraMovementZon" to="Camera" method="_on_camera_movement_zone_body_entered"]
+[connection signal="body_exited" from="CameraMovementZon" to="Camera" method="_on_camera_movement_zone_body_exited"]
 [connection signal="spawn_enemy" from="Section 1/Spawn areas/SpawnButton" to="Section 1/Spawn areas/SpawnArea3" method="spawn_enemy"]
 [connection signal="spawn_enemy" from="Section 1/Spawn areas/SpawnButton" to="Section 1/Spawn areas/SpawnArea2" method="spawn_enemy"]
 [connection signal="spawn_enemy" from="Section 1/Spawn areas/SpawnButton" to="Section 1/Spawn areas/SpawnArea" method="spawn_enemy"]
