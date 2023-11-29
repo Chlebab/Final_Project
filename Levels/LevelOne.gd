@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 1
+var speed = 2
 var player_entering = false
 var paused = false
 
@@ -16,7 +16,7 @@ func _ready():
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
 	player_entering = true
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(2).timeout
 	player_entering = false
 	
 func _process(delta):

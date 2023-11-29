@@ -6769,7 +6769,7 @@ zoom = Vector2(1.5, 1.5)
 [node name="HUD" parent="Camera" instance=ExtResource("11_xfopw")]
 
 [node name="Player" parent="." instance=ExtResource("3_r1fnl")]
-position = Vector2(60, 408)
+position = Vector2(71, 405)
 
 [node name="EndLevelTwo" parent="." instance=ExtResource("10_jcwn4")]
 position = Vector2(288, -43)
