@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://cmbffo0u3ew3f"]
+[gd_scene load_steps=84 format=3 uid="uid://cmbffo0u3ew3f"]
 
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://World/Interactables/SpawnButton.gd" id="11_mepa5"]
 [ext_resource type="PackedScene" uid="uid://f42box3ir8pp" path="res://World/Interactables/Chest.tscn" id="12_2ueuk"]
 [ext_resource type="Texture2D" uid="uid://dirtj66wotwsv" path="res://World/Assets/RogueCatacombs/decorative.png" id="13_8vnby"]
-[ext_resource type="PackedScene" uid="uid://do1cfsvbmiqgf" path="res://World/KeyDoorSideways.tscn" id="13_xi14u"]
 
 [sub_resource type="Curve2D" id="Curve2D_ik31m"]
 _data = {

@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_geden"]
 [ext_resource type="PackedScene" uid="uid://cheqqhuwp6ln6" path="res://Menus/Timer/timer.tscn" id="3_drvrc"]
 [ext_resource type="PackedScene" uid="uid://dicy7yrjc5qgn" path="res://Menus/PauseMenu.tscn" id="5_tbpop"]
-[ext_resource type="PackedScene" uid="uid://gjrab27fnbm0" path="res://Menus/Lives.tscn" id="6_hls8t"]
+[ext_resource type="PackedScene" uid="uid://d0jb84poxw43c" path="res://Menus/Lives.tscn" id="6_hls8t"]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_yv7p5")

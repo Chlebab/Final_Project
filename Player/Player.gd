@@ -13,6 +13,7 @@ var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
 
 var alive = true
 var falling = false
+var entering_level
 var health = 40
 var previous_checkpoint
 
@@ -26,7 +27,7 @@ func _physics_process(_delta):
 		$Sprite2D.apply_scale(Vector2(.96, .96))
 		velocity = Vector2(0, 1) * 16
 		move_and_slide()
-	elif alive:
+	elif alive and !entering_level:
 		var direction_x = Input.get_axis("move_left", "move_right")
 		var direction_y = Input.get_axis("move_up", "move_down")
 		velocity.x = direction_x
@@ -34,9 +35,9 @@ func _physics_process(_delta):
 		velocity = velocity.normalized() * speed
 		adjust_direction(velocity)
 		move_and_slide()
-	elif Global.lives_remaining > 0:
+	elif !alive and Global.lives_remaining > 0:
 		respawn()
-#	elif lives_remaining == 0:
+#	else:
 #		game_over()
 
 func _process(_delta):
@@ -51,11 +52,7 @@ func _process(_delta):
 			animate.movement("run")
 		else:
 			animate.movement("idle")
-	
-	
-		
-	
-	
+
 func adjust_direction(direction):
 	if direction.x > 0.7:
 		facing = Direction.RIGHT
@@ -65,6 +62,15 @@ func adjust_direction(direction):
 		facing = Direction.UP
 	if direction.y > 0.7:
 		facing = Direction.DOWN
+
+func move_towards(target_vector):
+	var direction = (target_vector - global_position).normalized()
+	velocity = direction * 10000
+	print(velocity)
+	print(global_position)
+	adjust_direction(direction)
+	animate.movement("run")
+	move_and_slide()
 
 func player():
 	pass
@@ -182,8 +188,7 @@ func fall_into_hole():
 	alive = false
 
 func respawn():
-	
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	$Sprite2D.scale = Vector2(1.5, 1.5)
 	print("lives:", Global.lives_remaining)
 	global_position = previous_checkpoint
