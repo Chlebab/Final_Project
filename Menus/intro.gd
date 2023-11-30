@@ -4,7 +4,7 @@ var move_timer = 30.0
 var speed = 5
 		
 func _process(delta):
-	await get_tree().create_timer(15).timeout
+	await get_tree().create_timer(11).timeout
 	$Player.play("Run")
 	$Enemy.play("Run")
 	$Player.global_position.x += speed
@@ -14,15 +14,15 @@ func _process(delta):
 		
 func _ready():
 	$AnimationPlayer.play("fade")
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(4).timeout
 	$AnimationPlayer.play("fadeout")
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	$ColorRect/Text.hide()
 	$ColorRect/Text2.show()
 	$AnimationPlayer.play("fade")
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(4).timeout
 	$AnimationPlayer.play("fadeout")
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	$ColorRect/Text2.hide()
 	$ColorRect/Title.show()
 	$Player.show()

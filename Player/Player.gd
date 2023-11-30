@@ -112,22 +112,22 @@ func use_egg_item():
 
 func use_crossword_item():
 	var crossword_slot = -1
-	print("f pressed, use crossword function triggered")
+	print("f pressed, use Jack-in-the-box function triggered")
 	for i in inv.slots.size():
 		if inv.slots[i].item and str(inv.slots[i].item.name) == "Crossword":
 			crossword_slot = i
 			break
 	if crossword_slot != -1:
-		print("You got yourself a crossword in slot ", inv.slots[crossword_slot].item)
+		print("You got yourself a Jack-in-the-box in slot ", inv.slots[crossword_slot].item)
 		var crossword_instance = crossword.instantiate()
 		crossword_instance.position = global_position
 		get_parent().add_child(crossword_instance)
 		reduce_amount_by_1(crossword_slot)
-		$InvMsg.text = "Crossword used!"
+		$InvMsg.text = "Jack-in-the-box used!"
 		$InvMsgTimer.start()
 	else:
 		print("No crossword found in the inventory")
-		$InvMsg.text = "No crossword found in the inventory"
+		$InvMsg.text = "No Jack-in-the-box found in the inventory"
 
 func use_barrel_item():
 	var barrel_slot = -1

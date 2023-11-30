@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://btq8pxwad7tbb"]
+[gd_scene load_steps=18 format=3 uid="uid://btq8pxwad7tbb"]
 
 [ext_resource type="Script" path="res://Menus/EndScene.gd" id="1_o8xih"]
 [ext_resource type="Texture2D" uid="uid://c06w25gljupyj" path="res://Player/Assets/PlayerSpriteSheet.png" id="2_5bmv1"]
 [ext_resource type="Material" uid="uid://c4as32wt8thh8" path="res://World/DoorShader.tres" id="3_e6ptc"]
 [ext_resource type="Texture2D" uid="uid://cs7briyx334p7" path="res://World/Assets/animated_door_prison_48x48.png" id="4_tsbd3"]
+[ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="5_wlbg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6kmb"]
 atlas = ExtResource("2_5bmv1")
@@ -116,9 +117,8 @@ animation = &"stand"
 frame_progress = 0.722338
 
 [node name="DoorNode" type="Node2D" parent="."]
-visible = false
-position = Vector2(572, 278)
-scale = Vector2(0.116435, 0.120301)
+position = Vector2(564, 277)
+scale = Vector2(0.00954802, 0.00960432)
 metadata/_edit_group_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="DoorNode"]
@@ -127,7 +127,6 @@ offset_top = -80.0
 offset_right = 45.0
 offset_bottom = 77.0
 scale = Vector2(1.24011, 1.09219)
-color = Color(0.960784, 0.952941, 0.870588, 1)
 
 [node name="Door" type="AnimatedSprite2D" parent="DoorNode/ColorRect2"]
 material = ExtResource("3_e6ptc")
@@ -135,3 +134,16 @@ position = Vector2(49.9956, 33.8768)
 scale = Vector2(2.39165, 1.70084)
 sprite_frames = SubResource("SpriteFrames_xw41p")
 animation = &"open"
+
+[node name="End" type="Label" parent="."]
+visible = false
+offset_left = 495.0
+offset_top = 309.0
+offset_right = 670.0
+offset_bottom = 337.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wlbg0")
+theme_override_font_sizes/font_size = 25
+text = "THE END"

@@ -148,27 +148,24 @@ color = Color(0, 0, 0, 1)
 
 [node name="Text" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 140.0
-offset_top = 190.0
-offset_right = 980.0
-offset_bottom = 452.0
+offset_left = 189.0
+offset_top = 314.0
+offset_right = 1029.0
+offset_bottom = 576.0
 theme_override_fonts/font = ExtResource("2_nocqk")
 theme_override_font_sizes/font_size = 30
-text = "   
-
-
-    CODECLAN GAMES PRESENTS...."
+text = "CODECLAN GAMES PRESENTS...."
 
 [node name="Text2" type="Label" parent="ColorRect"]
 visible = false
 layout_mode = 0
-offset_left = 140.0
-offset_top = 190.0
-offset_right = 980.0
-offset_bottom = 452.0
+offset_left = 155.0
+offset_top = 209.0
+offset_right = 995.0
+offset_bottom = 471.0
 theme_override_fonts/font = ExtResource("2_nocqk")
 theme_override_font_sizes/font_size = 30
-text = "From the makers of
+text = "From the creators of
 'THE RECIPE APP' 
 & 
 'THE WEATHER APP'..."
@@ -178,13 +175,13 @@ horizontal_alignment = 1
 visible = false
 custom_minimum_size = Vector2(900, 200)
 layout_mode = 0
-offset_left = 228.0
-offset_top = 218.0
-offset_right = 1128.0
-offset_bottom = 418.0
+offset_left = 10.0
+offset_top = 221.0
+offset_right = 1150.0
+offset_bottom = 421.0
 theme_override_fonts/font = ExtResource("2_nocqk")
 theme_override_font_sizes/font_size = 60
-text = "DUNGEON RUN"
+text = "EGG GOBLIN' GOBLINS"
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 layout_mode = 0
