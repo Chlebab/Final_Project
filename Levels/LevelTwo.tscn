@@ -1,4 +1,4 @@
-[gd_scene load_steps=242 format=3 uid="uid://ceexjcfeqc27e"]
+[gd_scene load_steps=243 format=3 uid="uid://ceexjcfeqc27e"]
 
 [ext_resource type="Script" path="res://Levels/LevelTwo.gd" id="1_4deut"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_55sex"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://World/Torch.tscn" id="18_ebwn0"]
 [ext_resource type="PackedScene" uid="uid://6a1u6ndan3ia" path="res://World/LevelDarkener.tscn" id="18_jxpdh"]
 [ext_resource type="PackedScene" uid="uid://bby3ppere1jaw" path="res://World/Candle.tscn" id="20_425ws"]
+[ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="22_qn0r5"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m136y"]
 
@@ -6802,5 +6803,8 @@ zoom = Vector2(1.5, 1.5)
 drag_horizontal_enabled = true
 
 [node name="HUD" parent="Camera" instance=ExtResource("11_xfopw")]
+
+[node name="Checkpoint" parent="." instance=ExtResource("22_qn0r5")]
+position = Vector2(67, 323)
 
 [connection signal="toggle_door" from="Button" to="Door" method="toggle_door"]

@@ -16,13 +16,15 @@ func _ready():
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
 	player.entering_level = true
+	player.animate.movement("run")
 	await get_tree().create_timer(2).timeout
+	player.facing = 1
 	player.entering_level = false
-	
+
 func _process(_delta):
 	if player.entering_level:
+		player.facing = 4
 		player.global_position.y += speed
-		player.animate.movement("run")
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
@@ -34,5 +36,3 @@ func pauseMenu():
 		pause_menu.show()
 		Engine.time_scale = 0
 	paused = !paused
-
-
