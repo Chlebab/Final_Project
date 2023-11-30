@@ -32,7 +32,7 @@ func take_money():
 		$EmptyChest.show()
 		$GoldChest.hide()
 		$EmptyChest.play("empty")
-		money_in_chest = false		
+		money_in_chest = false
 		Global.points += 400
 		
 

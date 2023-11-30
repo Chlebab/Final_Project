@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpdwrut1e04vv"]
+[gd_scene load_steps=5 format=3 uid="uid://dpdwrut1e04vv"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu.gd" id="1_lq2rj"]
 [ext_resource type="FontFile" uid="uid://cjtpjddif3jnn" path="res://Menus/Assets/PublicPixel-z84yD.ttf" id="2_1k5th"]
 [ext_resource type="Texture2D" uid="uid://dnsxhi7xxin7j" path="res://World/Assets/Screenshot 2023-11-29 at 21.50.01.png" id="3_n7sr6"]
+[ext_resource type="AudioStream" uid="uid://duwlhcm4tt0nb" path="res://World/Assets/Sounds/Music/dungeon1.wav" id="4_eggvw"]
 
 [node name="MainMenu" type="Control"]
 layout_direction = 1
@@ -87,6 +88,11 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.79828, 0.860371)
 texture = ExtResource("3_n7sr6")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eggvw")
+volume_db = -12.235
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]

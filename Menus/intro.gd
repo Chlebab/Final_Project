@@ -10,8 +10,7 @@ func _process(delta):
 	$Player.global_position.x += speed
 	await get_tree().create_timer(1).timeout
 	$Enemy.global_position.x += speed
-		
-		
+
 func _ready():
 	$AnimationPlayer.play("fade")
 	await get_tree().create_timer(4).timeout
