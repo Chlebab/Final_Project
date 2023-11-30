@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal game_over
 signal clear_inventory
 
-var chase_speed = 120
+var chase_speed = 100
 var return_speed = 50
 var patrol_speed = 50
 var health = 60

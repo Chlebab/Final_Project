@@ -40,9 +40,3 @@ func pauseMenu():
 	
 	paused = !paused	
 
-
-
-	
-	
-	
-
