@@ -2,12 +2,14 @@ extends Node2D
 
 
 @onready var skeleton = preload("res://Enemies/Skeleton/Skeleton.tscn")
+var enemySpawned = false
 
 func _on_area_2d_body_entered(body):
-	if body.get_name() == "Player" or body.has_method("alert"):
+	if body and not enemySpawned:
 		print("Player entered")
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1).timeout
 		spawn_enemy()
+		enemySpawned = true
 
 func spawn_enemy():
 	var instance = skeleton.instantiate()
