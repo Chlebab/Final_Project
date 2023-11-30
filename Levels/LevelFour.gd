@@ -6,9 +6,11 @@ var description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGI!"
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
+@onready var player = $Player
 
 func _ready():
 	$Transition.play("fade_in")
+	Global.lives_remaining = 3
 	$Camera/HUD/LevelLabel.text = level
 	$Camera/HUD/DescriptionLabel.text = description
 	await get_tree().create_timer(1).timeout
@@ -18,15 +20,16 @@ func _ready():
 	$Camera/HUD/LevelLabel.hide()
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
-	player_entering = true
-	await get_tree().create_timer(1.2).timeout
-	player_entering = false
+	player.entering_level = true
+	player.animate.movement("run")
+	await get_tree().create_timer(.8).timeout
+	player.facing = 1
+	player.entering_level = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if player_entering:
-		get_node("Player").global_position.y += speed
+func _process(_delta):
+	if player.entering_level:
+		player.facing = 1
+		player.global_position.y += speed
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()
 

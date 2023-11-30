@@ -9,8 +9,8 @@ var paused = false
 
 
 func _ready():
-	Global.lives_remaining = 3
 	$Transition.play("fade_in")
+	Global.lives_remaining = 3
 	$Camera/HUD/LevelLabel.text = level
 	$Camera/HUD/DescriptionLabel.text = description
 	await get_tree().create_timer(1).timeout

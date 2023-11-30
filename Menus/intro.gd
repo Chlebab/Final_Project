@@ -12,11 +12,10 @@ func _process(delta):
 	$Enemy.global_position.x += speed
 
 func _ready():
-	$AnimationPlayer.play("fade")
+
 	await get_tree().create_timer(4).timeout
+	$AnimationPlayer.play("fade")
 	$AnimationPlayer.play("fadeout")
-	await get_tree().create_timer(2).timeout
-	$ColorRect/Text.hide()
 	$ColorRect/Text2.show()
 	$AnimationPlayer.play("fade")
 	await get_tree().create_timer(4).timeout

@@ -72,7 +72,6 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
 z_index = 102
 offset_left = -6256.0
 offset_top = -3900.0

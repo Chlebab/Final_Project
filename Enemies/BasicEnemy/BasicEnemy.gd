@@ -9,6 +9,7 @@ var patrol_speed = 50
 var health = 60
 var attack_damage = 20
 var alive = true
+var fascinated
 
 var previous_frame_position # these two variables are to record the direction of 
 var detection_position      # movement while patrolling in order to adjust the direction of vision
@@ -70,7 +71,7 @@ func _process(_delta):
 				if ray.is_colliding() and ray.get_collider(0).is_in_group("Enemy of Goblins"):
 					var body = ray.get_collider(0)
 					if body.alive: on_target_detection(body)
-					if body.is_in_group("Player"): alert()
+					if body.is_in_group("Player") and !fascinated: alert()
 		if velocity or patrolling:
 			animate.movement("run")
 		else: 
@@ -118,14 +119,15 @@ func move_detection_cone(input_velocity):
 	detection_rays.rotation = atan2(-input_velocity.x, input_velocity.y)
 
 func on_target_detection(new_target):
-	if patrolling:
-		patrolling = false
-		detection_position = global_position
-	pathfinding = false
-	eggseeking = false
-	target = new_target
-	navigator.set_target_position(target.global_position)
-	pursuing_target = true
+	if !fascinated:
+		if patrolling:
+			patrolling = false
+			detection_position = global_position
+		pathfinding = false
+		eggseeking = false
+		target = new_target
+		navigator.set_target_position(target.global_position)
+		pursuing_target = true
 
 func on_egg_detection(egg_position):
 	if !target:
@@ -139,8 +141,10 @@ func on_crossword_detection():
 	if !target:
 		if patroller:
 			patrolling = false
+		fascinated = true
 		await get_tree().create_timer(15.0).timeout
 		patrolling = true
+		fascinated = false
 
 func _on_detection_area_body_exited(body):
 	if body == target:

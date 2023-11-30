@@ -128,6 +128,7 @@ func use_crossword_item():
 	else:
 		print("No crossword found in the inventory")
 		$InvMsg.text = "No Jack-in-the-box found in the inventory"
+		$InvMsgTimer.start()
 
 func use_barrel_item():
 	var barrel_slot = -1
