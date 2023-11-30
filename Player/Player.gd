@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var facing = Direction.UP
 @export var inv: Inventory
-@export var speed = 80.0
+@export var speed = 50.0
 @export var spawn_point = Vector2(0,0)
 
 @onready var animate = $AnimationPlayer
@@ -62,15 +62,6 @@ func adjust_direction(direction):
 		facing = Direction.UP
 	if direction.y > 0.7:
 		facing = Direction.DOWN
-
-func move_towards(target_vector):
-	var direction = (target_vector - global_position).normalized()
-	velocity = direction * 10000
-	print(velocity)
-	print(global_position)
-	adjust_direction(direction)
-	animate.movement("run")
-	move_and_slide()
 
 func player():
 	pass

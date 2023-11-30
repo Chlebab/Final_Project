@@ -2,12 +2,14 @@ extends Node2D
 var speed = 1.3
 var player_entering = false
 var level = "LEVEL 2"
-var description = "FIND A WAY TO LURE THE GUARDS AND LOCK THEM IN A ROOM!"
+var description = "Goblins are known to be extremely fond of eggs"
 var paused = false
 
 @onready var pause_menu = $Camera/HUD/Pause
 
+
 func _ready():
+	Global.lives_remaining = 3
 	$Transition.play("fade_in")
 	$Camera/HUD/LevelLabel.text = level
 	$Camera/HUD/DescriptionLabel.text = description
@@ -19,11 +21,9 @@ func _ready():
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
 	player_entering = true
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1).timeout
 	player_entering = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player_entering:
 		get_node("Player").global_position.y -= speed
@@ -39,10 +39,3 @@ func pauseMenu():
 		Engine.time_scale = 0
 	
 	paused = !paused	
-
-
-
-	
-	
-	
-

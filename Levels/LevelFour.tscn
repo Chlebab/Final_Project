@@ -1,6 +1,7 @@
 [gd_scene load_steps=85 format=3 uid="uid://cmbffo0u3ew3f"]
 
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
+[ext_resource type="Script" path="res://Levels/Camera.gd" id="2_qxo4d"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="4_i8uw8"]
 [ext_resource type="PackedScene" uid="uid://docs7khtrm4pa" path="res://Spawns/EnemySpawn/EnemySpawnArea.tscn" id="8_4gcis"]
@@ -5757,6 +5758,9 @@ position = Vector2(2016, -313)
 z_index = 6
 position = Vector2(2024, -464)
 zoom = Vector2(1.4, 1.4)
+script = ExtResource("2_qxo4d")
+original_position = Vector2(1736, 102)
+second_position = Vector2(2017, -472)
 
 [node name="HUD" parent="Camera" instance=ExtResource("8_h6n58")]
 
@@ -5808,18 +5812,21 @@ curve = SubResource("Curve2D_lah0b")
 [node name="Enemies section 2" type="Node2D" parent="Section 2"]
 
 [node name="PatrolPath" parent="Section 2/Enemies section 2" instance=ExtResource("8_oa51c")]
-position = Vector2(2284, -334)
+position = Vector2(2292, -326)
 curve = SubResource("Curve2D_w7rrv")
 
 [node name="BasicEnemy" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(1903, -528)
 facing = 2
 
 [node name="BasicEnemy2" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(2014, -502)
 facing = 1
 
 [node name="BasicEnemy3" parent="Section 2/Enemies section 2" instance=ExtResource("8_orayg")]
+visible = false
 position = Vector2(2140, -528)
 facing = 3
 
