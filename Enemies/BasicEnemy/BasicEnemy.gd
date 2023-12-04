@@ -29,7 +29,7 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @onready var spawn_point = global_position
 @onready var detection_rays = $DetectionZones/DetectionRays
 @onready var navigator = $NavigationAgent2D
-@onready var animate = $AnimationPlayer
+@onready var animator = $AnimationPlayer
 
 func _ready():
 	if get_parent() is PathFollow2D:
@@ -73,9 +73,9 @@ func _process(_delta):
 					if body.alive: on_target_detection(body)
 					if body.is_in_group("Player") and !fascinated: alert()
 		if velocity or patrolling:
-			animate.movement("run")
+			animator.animate("run")
 		else: 
-			animate.movement("idle")
+			animator.animate("idle")
 			move_vision_while_idle()
 
 func alert():
@@ -162,7 +162,7 @@ func return_to_path():
 func attack():
 	attacking = true
 	adjust_direction(target.global_position - global_position)
-	animate.action("attack")
+	animator.animate("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
@@ -175,12 +175,12 @@ func attack():
 func take_hit(damage, attacker):
 	health -= damage
 	if health > 0:
-		if !attacking: animate.action("hit")
+		if !attacking: animator.animate("hit")
 		if target != attacker: on_target_detection(attacker)
 	else: 
 		die()
 
 func die():
-	animate.action("death")
+	animator.animate("die")
 	alive = false
 	$CollisionShape2D.disabled = true
