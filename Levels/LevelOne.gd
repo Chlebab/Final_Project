@@ -23,7 +23,7 @@ func _ready():
 
 func _process(_delta):
 	if player.entering_level:
-		player.facing = 4
+		player.facing = 3
 		player.global_position.y += speed
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()

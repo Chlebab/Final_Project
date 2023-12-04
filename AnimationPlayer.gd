@@ -7,20 +7,33 @@ var animating_action = false
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
 
+var movement_dictionary = {
+	Direction.RIGHT : {
+		"flipped" : false,
+		"idle" : "idle_right",
+		"run" : "run_right",
+	},
+	Direction.LEFT : {
+		"flipped" : true,
+		"idle" : "idle_right",
+		"run" : "run_right",
+	},
+	Direction.DOWN : {
+		"flipped" : false,
+		"idle" : "idle_down",
+		"run" : "run_down",
+	},
+	Direction.UP : {
+		"flipped" : false,
+		"idle" : "idle_up",
+		"run" : "run_up"
+	}
+}
+
 func movement(state):
 	if !animating_action:
-		if parent.facing == Direction.RIGHT:
-			sprite.flip_h = false
-			play(state + "_right")
-		if parent.facing == Direction.LEFT:
-			sprite.flip_h = true
-			play(state + "_right")
-		if parent.facing == Direction.DOWN:
-			sprite.flip_h = false
-			play(state + "_down")
-		if parent.facing == Direction.UP:
-			sprite.flip_h = false
-			play(state + "_up")
+		sprite.flip_h = movement_dictionary[parent.facing]["flipped"]
+		play(movement_dictionary[parent.facing][state])
 
 func action(command):
 	animating_action = true
