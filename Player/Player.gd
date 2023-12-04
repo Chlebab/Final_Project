@@ -49,9 +49,9 @@ func _process(_delta):
 		elif Input.is_action_just_pressed("b"):
 			use_barrel_item()
 		if velocity:
-			animator.animate("run")
+			animator.movement("run")
 		else:
-			animator.animate("idle")
+			animator.movement("idle")
 
 func adjust_direction(direction):
 	if direction.x > 0.7:
@@ -162,19 +162,19 @@ func _on_inv_msg_timer_timeout():
 func take_hit(damage, _attacker):
 	health -= damage
 	if health > 0:
-		animator.animate("hit")
+		animator.action("hit")
 	if health <= 0:
 		die()
 
 func die():
 	alive = false
 	$CollisionShape2D.disabled = true
-	animator.animate("die")
+	animator.action("die")
 	Global.lives_remaining -= 1
 
 func fall_into_hole():
 	falling = true
-	animator.animate("die")
+	animator.action("die")
 	await get_tree().create_timer(1.0).timeout
 	falling = false
 	alive = false

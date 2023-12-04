@@ -42,16 +42,16 @@ var animation_dictionary = {
 	},
 }
 
-func animate(state):
-	if is_an_action(state):
-		animating_action = true
-	if !animating_action or is_an_action(state):
-		sprite.flip_h = animation_dictionary[parent.facing]["flipped"]
-		play(animation_dictionary[parent.facing][state])
-	if is_an_action(state):
-		await animation_finished
-		if state != "die":
-			animating_action = false
+func movement(command):
+	if !animating_action:
+		play_animation(command)
 
-func is_an_action(state):
-	return state == "attack" or state == "hit" or state == "die"
+func action(command):
+	animating_action = true
+	play_animation(command)
+	await animation_finished
+	animating_action = false
+
+func play_animation(command):
+	sprite.flip_h = animation_dictionary[parent.facing]["flipped"]
+	play(animation_dictionary[parent.facing][command])

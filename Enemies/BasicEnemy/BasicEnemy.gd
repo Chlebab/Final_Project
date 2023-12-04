@@ -4,15 +4,14 @@ signal game_over
 signal clear_inventory
 
 var chase_speed = 100
-var return_speed = 50
-var patrol_speed = 50
+var idle_speed = 50
 var health = 60
 var attack_damage = 20
 var alive = true
 var fascinated
 
-var previous_frame_position # these two variables are to record the direction of 
-var detection_position      # movement while patrolling in order to adjust the direction of vision
+var previous_frame_position # these two variables are to record the direction of movement
+var detection_position      # while patrolling in order to adjust the direction of vision
 
 var patroller
 var patrolling
@@ -46,8 +45,8 @@ func _physics_process(delta):
 			else:
 				attack()
 		if pathfinding:
-			move_towards(navigator.get_next_path_position(), return_speed)
-			if global_position.distance_to(navigator.target_position) < 1:
+			move_towards(navigator.get_next_path_position(), idle_speed)
+			if global_position.distance_to(navigator.target_position) < 3:
 				pathfinding = false
 				if patroller: patrolling = true
 		if eggseeking:
@@ -57,7 +56,7 @@ func _physics_process(delta):
 				await get_tree().create_timer(10.0).timeout
 				return_to_path()
 		if patrolling:
-			get_parent().progress += delta * patrol_speed
+			get_parent().progress += delta * idle_speed
 			var direction = (global_position - previous_frame_position)
 			direction = direction.normalized()
 			adjust_direction(direction)
@@ -73,9 +72,9 @@ func _process(_delta):
 					if body.alive: on_target_detection(body)
 					if body.is_in_group("Player") and !fascinated: alert()
 		if velocity or patrolling:
-			animator.animate("run")
+			animator.movement("run")
 		else: 
-			animator.animate("idle")
+			animator.movement("idle")
 			move_vision_while_idle()
 
 func alert():
@@ -162,7 +161,7 @@ func return_to_path():
 func attack():
 	attacking = true
 	adjust_direction(target.global_position - global_position)
-	animator.animate("attack")
+	animator.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
@@ -175,12 +174,12 @@ func attack():
 func take_hit(damage, attacker):
 	health -= damage
 	if health > 0:
-		if !attacking: animator.animate("hit")
+		if !attacking: animator.action("hit")
 		if target != attacker: on_target_detection(attacker)
 	else: 
 		die()
 
 func die():
-	animator.animate("die")
+	animator.action("die")
 	alive = false
 	$CollisionShape2D.disabled = true
