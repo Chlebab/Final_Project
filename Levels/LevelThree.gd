@@ -1,6 +1,6 @@
 extends Node2D
 var speed = 1
-var player_entering = false
+var making_an_entrance
 var level = "LEVEL 3"
 var description = "USE STEALTH AND DISTRACTION TO CREEP PAST THE GOBLINS"
 var paused = false
@@ -9,6 +9,7 @@ var paused = false
 @onready var player = $Player
 
 func _ready():
+	player.entering_level = true
 	$Transition.play("fade_in")
 	Global.lives_remaining = 3
 	$Camera/HUD/LevelLabel.text = level
@@ -20,12 +21,14 @@ func _ready():
 	$Camera/HUD/LevelLabel.hide()
 	$Camera/HUD/DescriptionLabel.hide()
 	await get_tree().create_timer(1).timeout
-	player.entering_level = true
+	making_an_entrance = true
+	player.animator.movement("run")
 	await get_tree().create_timer(2).timeout
 	player.entering_level = false
+	making_an_entrance = false
 
 func _process(delta):
-	if player.entering_level:
+	if making_an_entrance:
 		player.global_position.y += speed
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()

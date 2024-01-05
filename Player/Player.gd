@@ -41,7 +41,7 @@ func _physics_process(_delta):
 #		game_over()
 
 func _process(_delta):
-	if alive:
+	if alive and !entering_level:
 		if Input.is_action_just_pressed("r"):
 			use_egg_item()
 		elif Input.is_action_just_pressed("f"):
