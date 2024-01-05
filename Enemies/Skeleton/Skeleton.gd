@@ -11,7 +11,7 @@ var attacking
 enum Direction {UP, DOWN, LEFT, RIGHT}
 var facing = Direction.DOWN
 
-@onready var animate = $AnimationPlayer
+@onready var animator = $AnimationPlayer
 @onready var navigator = $NavigationAgent2D
 
 func _physics_process(_delta):
@@ -23,9 +23,9 @@ func _physics_process(_delta):
 				move_towards(target.global_position)
 			else:
 				attack()
-			animate.movement("run")
+			animator.movement("run")
 		else:
-			animate.movement("idle")
+			animator.movement("idle")
 
 func move_towards(target_vector):
 	var direction = (target_vector - global_position).normalized()
@@ -51,7 +51,7 @@ func _on_target_detection(body):
 func take_hit(damage, attacker):
 	health -= damage
 	if health > 0:
-		if !attacking: animate.action("hit")
+		if !attacking: animator.action("hit")
 		if !target:
 			target = attacker
 	else:
@@ -60,7 +60,7 @@ func take_hit(damage, attacker):
 func attack():
 	attacking = true
 	adjust_direction(target.global_position - global_position)
-	animate.action("attack")
+	animator.action("attack")
 	$SwordSound.play()
 	target.take_hit(attack_damage, self)
 	if target.health <= 0:
@@ -70,7 +70,7 @@ func attack():
 	attacking = false
 
 func die():
-	animate.action("die")
+	animator.action("die")
 	alive = false
 	$CollisionShape2D.disabled = true
 	await get_tree().create_timer(1.0).timeout

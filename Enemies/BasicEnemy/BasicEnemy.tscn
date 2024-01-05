@@ -77,22 +77,6 @@ tracks/0/keys = {
 "values": [56, 57, 58, 59]
 }
 
-[sub_resource type="Animation" id="Animation_of40e"]
-resource_name = "death_down"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [36, 37, 38]
-}
-
 [sub_resource type="Animation" id="Animation_oi04a"]
 resource_name = "death_fade"
 length = 0.6
@@ -109,8 +93,24 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_of40e"]
+resource_name = "die_down"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [36, 37, 38]
+}
+
 [sub_resource type="Animation" id="Animation_72847"]
-resource_name = "death_right"
+resource_name = "die_right"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -126,7 +126,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_7i8pc"]
-resource_name = "death_up"
+resource_name = "die_up"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -296,10 +296,10 @@ _data = {
 "attack_down": SubResource("Animation_02sm1"),
 "attack_right": SubResource("Animation_4yrnc"),
 "attack_up": SubResource("Animation_ic1ih"),
-"death_down": SubResource("Animation_of40e"),
 "death_fade": SubResource("Animation_oi04a"),
-"death_right": SubResource("Animation_72847"),
-"death_up": SubResource("Animation_7i8pc"),
+"die_down": SubResource("Animation_of40e"),
+"die_right": SubResource("Animation_72847"),
+"die_up": SubResource("Animation_7i8pc"),
 "hit_down": SubResource("Animation_afa7c"),
 "hit_right": SubResource("Animation_3xkxw"),
 "hit_up": SubResource("Animation_w3wj0"),

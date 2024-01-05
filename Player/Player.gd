@@ -6,7 +6,7 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var speed = 50.0
 @export var spawn_point = Vector2(0,0)
 
-@onready var animate = $AnimationPlayer
+@onready var animator = $AnimationPlayer
 
 var egg = preload("res://World/Useables/EggUseable.tscn")
 var crossword = preload("res://World/Useables/CrosswordUseable.tscn")
@@ -49,9 +49,9 @@ func _process(_delta):
 		elif Input.is_action_just_pressed("b"):
 			use_barrel_item()
 		if velocity:
-			animate.movement("run")
+			animator.movement("run")
 		else:
-			animate.movement("idle")
+			animator.movement("idle")
 
 func adjust_direction(direction):
 	if direction.x > 0.7:
@@ -162,19 +162,19 @@ func _on_inv_msg_timer_timeout():
 func take_hit(damage, _attacker):
 	health -= damage
 	if health > 0:
-		animate.action("hit")
+		animator.action("hit")
 	if health <= 0:
 		die()
 
 func die():
 	alive = false
 	$CollisionShape2D.disabled = true
-	animate.action("die")
+	animator.action("die")
 	Global.lives_remaining -= 1
 
 func fall_into_hole():
 	falling = true
-	animate.action("die")
+	animator.action("die")
 	await get_tree().create_timer(1.0).timeout
 	falling = false
 	alive = false
@@ -186,4 +186,4 @@ func respawn():
 	global_position = previous_checkpoint
 	alive = true
 	$CollisionShape2D.disabled = false
-	animate.animating_action = false
+	animator.animating_action = false

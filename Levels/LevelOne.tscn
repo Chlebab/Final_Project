@@ -5517,7 +5517,7 @@ position = Vector2(306, 406)
 
 [node name="Candle2" parent="Light" instance=ExtResource("13_sirtq")]
 z_index = 5
-position = Vector2(146, 96)
+position = Vector2(145, 94)
 
 [node name="Checkpoint" parent="." instance=ExtResource("14_kavqy")]
 position = Vector2(-151, 106)
