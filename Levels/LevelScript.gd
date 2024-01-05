@@ -1,12 +1,15 @@
 extends Node2D
-var speed = 2
-var making_an_entrance
-var level = "LEVEL 4"
-var description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGI!"
+
 var paused = false
+var making_an_entrance
 
 @onready var pause_menu = $Camera/HUD/Pause
 @onready var player = $Player
+
+@export var level: String
+@export var description: String
+@export var speed: float
+@export var entrance_duration: float
 
 func _ready():
 	player.entering_level = true
@@ -20,16 +23,18 @@ func _ready():
 	await get_tree().create_timer(4.5).timeout
 	$Camera/HUD/LevelLabel.hide()
 	$Camera/HUD/DescriptionLabel.hide()
+	if level != "LEVEL 4":
+		await get_tree().create_timer(1).timeout
 	making_an_entrance = true
-	player.facing = 1
 	player.animator.movement("run")
-	print(player.facing)
-	await get_tree().create_timer(1.7).timeout
+	await get_tree().create_timer(entrance_duration).timeout
 	player.entering_level = false
 	making_an_entrance = false
 
 func _process(_delta):
-	if making_an_entrance:
+	if making_an_entrance and level == "LEVEL 2":
+		player.global_position.y -= speed
+	elif making_an_entrance:
 		player.global_position.y += speed
 	elif Input.is_action_just_pressed("pause"):
 		pauseMenu()
@@ -41,6 +46,4 @@ func pauseMenu():
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
-	
 	paused = !paused
-

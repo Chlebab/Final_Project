@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://drj2qdh51jva0"]
 
 [ext_resource type="TileSet" uid="uid://dcggrntnvmgm7" path="res://World/Tilesets/Dungeon2.tres" id="1_cowsg"]
-[ext_resource type="Script" path="res://Levels/LevelThree.gd" id="1_hj63e"]
+[ext_resource type="Script" path="res://Levels/LevelScript.gd" id="1_oagkx"]
 [ext_resource type="PackedScene" uid="uid://nunvumufugbx" path="res://Menus/HUD.tscn" id="2_6gl28"]
 [ext_resource type="PackedScene" uid="uid://bot4x5nnye8h1" path="res://World/StartDoor.tscn" id="2_avjwx"]
 [ext_resource type="Script" path="res://Levels/Camera.gd" id="2_g6lgg"]
@@ -1078,7 +1078,11 @@ point_count = 11
 
 [node name="LevelThree" type="Node2D"]
 position = Vector2(1211, 908)
-script = ExtResource("1_hj63e")
+script = ExtResource("1_oagkx")
+level = "LEVEL 3"
+description = "USE STEALTH AND DISTRACTION TO CREEP PAST THE GOBLINS"
+speed = 1.0
+entrance_duration = 2.0
 
 [node name="Camera" type="Camera2D" parent="."]
 z_index = 40

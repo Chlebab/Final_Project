@@ -1,6 +1,6 @@
 [gd_scene load_steps=106 format=3 uid="uid://cmeunnw4p4pd0"]
 
-[ext_resource type="Script" path="res://Levels/LevelOne.gd" id="1_pf3et"]
+[ext_resource type="Script" path="res://Levels/LevelScript.gd" id="1_i8f4h"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_xxoyr"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="2_21fnd"]
 [ext_resource type="Script" path="res://Levels/Camera.gd" id="2_i1ihg"]
@@ -5453,7 +5453,11 @@ size = Vector2(157, 286)
 [node name="LevelOne" type="Node2D"]
 texture_filter = 1
 position = Vector2(1077, 431)
-script = ExtResource("1_pf3et")
+script = ExtResource("1_i8f4h")
+level = "LEVEL 1"
+description = "FREEDOM AWAITS! BUT THE DOOR IS LOCKED!"
+speed = 3.5
+entrance_duration = 2.4
 
 [node name="Dungeon" parent="." instance=ExtResource("1_xxoyr")]
 position = Vector2(956, 337)
