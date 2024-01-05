@@ -1,7 +1,7 @@
 [gd_scene load_steps=244 format=3 uid="uid://ceexjcfeqc27e"]
 
-[ext_resource type="Script" path="res://Levels/LevelTwo.gd" id="1_4deut"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="1_55sex"]
+[ext_resource type="Script" path="res://Levels/LevelScript.gd" id="1_yfeca"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="2_myv2h"]
 [ext_resource type="PackedScene" uid="uid://r0gkykvms8if" path="res://Player/Player.tscn" id="3_r1fnl"]
 [ext_resource type="PackedScene" uid="uid://b870y5m2pcfpr" path="res://World/ButtonedDoor.tscn" id="4_b0d35"]
@@ -6705,7 +6705,11 @@ sources/0 = SubResource("TileSetAtlasSource_x0j4d")
 
 [node name="LevelTwo" type="Node2D"]
 position = Vector2(1354, 1072)
-script = ExtResource("1_4deut")
+script = ExtResource("1_yfeca")
+level = "LEVEL 2"
+description = "FIND A WAY TO DISTRACT THE GOBLINS GUARDING THE DOOR!"
+speed = 1.2
+entrance_duration = 1.0
 
 [node name="Dungeon" parent="." instance=ExtResource("1_55sex")]
 position = Vector2(959, 320)

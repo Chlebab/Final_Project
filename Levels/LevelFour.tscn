@@ -1,7 +1,7 @@
 [gd_scene load_steps=118 format=3 uid="uid://cmbffo0u3ew3f"]
 
+[ext_resource type="Script" path="res://Levels/LevelScript.gd" id="1_8hh4g"]
 [ext_resource type="PackedScene" uid="uid://xq8qykfh3a40" path="res://Spawns/PlayerSpawn/Checkpoint.tscn" id="1_vjaa6"]
-[ext_resource type="Script" path="res://Levels/LevelFour.gd" id="1_yrsv7"]
 [ext_resource type="PackedScene" uid="uid://b3cxq7tpl556e" path="res://World/dungeon.tscn" id="2_i1f6y"]
 [ext_resource type="Script" path="res://Levels/Camera.gd" id="2_qxo4d"]
 [ext_resource type="Texture2D" uid="uid://dtou8ccoba4lr" path="res://World/Assets/mainlevbuild.png" id="3_yriaf"]
@@ -4402,6 +4402,12 @@ texture = ExtResource("3_yriaf")
 14:33/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:33/0/physics_layer_0/angular_velocity = 0.0
 14:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:18/0 = 0
+15:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+15:18/0/physics_layer_0/angular_velocity = 0.0
+16:18/0 = 0
+16:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+16:18/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5e4n"]
 texture = ExtResource("13_8vnby")
@@ -5837,7 +5843,11 @@ point_count = 8
 [node name="LevelFour" type="Node2D"]
 texture_filter = 1
 position = Vector2(1077, 431)
-script = ExtResource("1_yrsv7")
+script = ExtResource("1_8hh4g")
+level = "LEVEL 4"
+description = "FREEDOM IS WITHIN REACH BUT STAY CLEAR OF THE SARCOPHAGI!"
+speed = 1.5
+entrance_duration = 2.0
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = [3724.0]
 
@@ -5845,7 +5855,8 @@ metadata/_edit_vertical_guides_ = [3724.0]
 position = Vector2(1439, 275)
 
 [node name="Player" parent="." instance=ExtResource("4_i8uw8")]
-position = Vector2(1440, 199)
+position = Vector2(1441, 188)
+facing = 1
 
 [node name="CameraMovementZone" type="Area2D" parent="."]
 collision_layer = 8
